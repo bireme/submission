@@ -1,0 +1,25 @@
+.content {
+    margin-top: 100px;
+}
+.navbar .logged {
+    margin: 5px 0 10px 15px;
+}
+.logo {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
+.login {
+    margin-top: 150px;
+}
+.login .textEntry {
+    width: 100%;
+}
+.blockSubmission {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.blockSubmission h2 {
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}

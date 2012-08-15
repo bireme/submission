@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+    {% if request.user.is_authenticated %}
+    <script>window.location = "{% url submission.views.index %}"</script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    
+    <div class="row">
+        <div class="logo span4 offset4"><h1><a href=""/ title="BVS Guichê">BVS Guichê</a></h1></div>
+    </div>
+
+    <div class="row">
+        <div class="login span4 offset4">
+            <form action="{% url django.contrib.auth.views.login %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url submission.views.index %}" />
+
+                <div class="formSegment">
+                    <label for="id_username">Username</label>
+                    <input type="text" maxlength="30" name="username" class="textEntry" id="id_username" />
+                </div>
+                <div class="formSegment">
+                    <label for="id_password">Password</label>
+                    <input type="password" id="id_password" class="textEntry" name="password" />
+                </div>
+                <input type="submit" class="submit" value="Login" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

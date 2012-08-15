@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>New Submission</h2>
+    
+    <p>
+        {% if form.errors %}
+            <div class="alert alert-error">
+                <button class="close" data-dismiss="alert">×</button>
+                <strong>Errors:</strong><br>
+                <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><b>{{ field.label }}</b>: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if not form.errors and request.POST %}
+            <div class="alert alert-success">
+                <b>Success!</b> Submission was {% if edited %}edited{% else %}created{% endif %}.
+            </div>
+        {% endif %}
+    </p>
+
+    <form class="form-vertical" method="POST" action="
+        {% if edited %}
+            {% url submission.views.edit id %}
+        {% else %}
+            {% url submission.views.create %}
+        {% endif %}
+        ">{% csrf_token %}
+
+        {% for field in form %}
+            {{ field.label_tag }}
+            {{ field }}
+        {% endfor %}
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

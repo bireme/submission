@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>{% block "head" %}
+
+        <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}/css/screen.css" rel="stylesheet">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+
+        <title>{% block "title" %}Guiche BVS{% endblock %}</title>
+
+        {% block extrahead %}{% endblock %}
+    {% endblock %}</head>
+    <body>{% block "body" %}
+            {% block top %}
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <div class="row top">
+                                {% if request.user.is_authenticated %}
+                                    <ul class="nav pull-left">
+                                        <li class=""><a href="{% url submission.views.index %}">Submissions</a></li>
+                                        <li class="divider-vertical"></li>
+                                    </ul>
+                                    <ul class="nav pull-right">
+                                        <li class="divider-vertical"></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class=" icon-user icon-white"></i><b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="logged">Logged as {{ request.user }}</li>
+                                                <li><a href="#" title="Logout">Edit</a></li>
+                                                <li><a href="{% url django.contrib.auth.views.logout %}" title="Logout">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+            <div class="container content">
+                {% block content %}{% endblock %}
+            </div>
+    {% endblock %}</body>
+</html>

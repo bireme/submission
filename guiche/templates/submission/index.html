@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block content %}
+    
+    {% block new_submission %}
+        <div class="row newSubmission">
+            <div class="span10 offset1">
+                <a href="submission/new/" title="New Subission" class="btn btn-primary btn-large">
+                    <i class="icon-plus icon-white"></i> New Submission
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+
+    <div class="row">
+        <div class="span10 offset1 submissions">
+            <div class="relation">
+                {% block relations %}
+                    <div class="blockSubmission">
+                        <h2>Pending submissions ({{ pending|length }})</h2>
+                        {% if submissions|length %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Type</th>
+                                        <th>Creation Date</th>
+                                        <th>Last update</th>
+                                        <th>Updated by</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sub in submissions %}
+                                        <tr>
+                                            <td>{{ sub.id }}</td>
+                                            <td>{{ sub.type }}</td>
+                                            <td>{{ sub.created }}</td>
+                                            <td>{{ sub.updated }}</td>
+                                            <td>{{ sub.updater }}</td>
+                                            
+                                            {% if sub.status == "p" %}
+                                                <td class="pending">Pending</td>
+                                            {% endif %}
+                                            {% if sub.status == "a" %}
+                                                <td class="accepted">Accepted</td>
+                                            {% endif %}
+                                            {% if sub.status == "d" %}
+                                                <td class="declined">Declined</td>
+                                            {% endif %}
+                                            
+                                            <td>
+                                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
+
+                                                <a href="/exclude/{{ sub.id }}/{{ sub.id|md5 }}" title="Exclude submission {{ sub.id }}"><i class="icon-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+
+                    <div class="blockSubmission">
+                        <h2>Submissions already approved ({{ approved|length }})</h2>
+                        {% if approved|length %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Type</th>
+                                        <th>Creation Date</th>
+                                        <th>Last update</th>
+                                        <th>Updated by</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for sub in approved %}
+                                        <tr>
+                                            <td>{{ sub.id }}</td>
+                                            <td>
+                                                {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
+                                                {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
+                                            </td>
+                                            <td>{{ sub.created }}</td>
+                                            <td>{{ sub.updated }}</td>
+                                            <td>{{ sub.updater }}</td>
+                                            
+                                            {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
+                                            {% if sub.status == "a" %}<td class="accepted">Accepted</td>{% endif %}
+                                            {% if sub.status == "d" %}<td class="declined">Declined</td>{% endif %}
+                                            
+                                            <td>
+                                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
+                                                <a href="/exclude/{{ sub.id }}/{{ sub.id|md5 }}" title="Exclude submission {{ sub.id }}"><i class="icon-trash"></i></a>
+                                                <a href="{% url submission.views.approve sub.id %}" title="Aprove submission {{ sub.id }}"><i class="icon-ok"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
