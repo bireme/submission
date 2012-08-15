@@ -1,14 +1,19 @@
 {% extends "submission/index.html" %}
 {% load custom_filters %}
 
+{% block extrahead %}
+<script>
+    $('#confirmApproved').modal();
+</script>
+{% endblock %}
+
 {% block relations %}
     <div class="blockSubmission">
         <h2>Submissions to be aproved ({{ pending|length }})</h2>
-        {% if submissions|length %}
+        {% if pending|length %}
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Type</th>
                         <th>Creation Date</th>
                         <th>Last update</th>
@@ -20,13 +25,12 @@
                 <tbody>
                     {% for sub in pending %}
                         <tr>
-                            <td>{{ sub.id }}</td>
-                            <td>
+                            <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
                                 {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
                                 {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
-                            </td>
-                            <td>{{ sub.created }}</td>
-                            <td>{{ sub.updated }}</td>
+                            </a></td>
+                            <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
+                            <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
                             <td>{{ sub.updater }}</td>
                             
                             {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
@@ -35,8 +39,8 @@
                             
                             <td>
                                 <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-                                <a href="/exclude/{{ sub.id }}/{{ sub.id|md5 }}" title="Exclude submission {{ sub.id }}"><i class="icon-trash"></i></a>
-                                <a href="{% url submission.views.approve sub.id %}" title="Aprove submission {{ sub.id }}"><i class="icon-ok"></i></a>
+                                <a data-toggle="modal" href="#confirmApproved" title="approve/decline submission {{ sub.id }}"><i class="icon-exclamation-sign"></i></a>
+                                {% include 'submission/approvation-box.html' %}
                             </td>
                         </tr>
                     {% endfor %}
@@ -51,7 +55,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Type</th>
                         <th>Creation Date</th>
                         <th>Last update</th>
@@ -63,13 +66,12 @@
                 <tbody>
                     {% for sub in approved %}
                         <tr>
-                            <td>{{ sub.id }}</td>
-                            <td>
+                            <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
                                 {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
                                 {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
-                            </td>
-                            <td>{{ sub.created }}</td>
-                            <td>{{ sub.updated }}</td>
+                            </a></td>
+                            <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
+                            <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
                             <td>{{ sub.updater }}</td>
                             
                             {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
@@ -78,8 +80,6 @@
                             
                             <td>
                                 <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-                                <a href="/exclude/{{ sub.id }}/{{ sub.id|md5 }}" title="Exclude submission {{ sub.id }}"><i class="icon-trash"></i></a>
-                                <a href="{% url submission.views.approve sub.id %}" title="Aprove submission {{ sub.id }}"><i class="icon-ok"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

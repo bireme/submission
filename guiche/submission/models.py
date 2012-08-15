@@ -38,3 +38,15 @@ class Submission(models.Model):
     def save(self):
         self.updated = datetime.now()
         super(Submission, self).save()
+
+class SubmissionHistory(models.Model):
+
+    class Meta:
+        verbose_name = "submission message"
+        verbose_name_plural = "submission messages"
+
+    submission = models.ForeignKey(Submission)
+    created = models.DateTimeField("created", default=datetime.now())
+    creator = models.ForeignKey(User, null=True, blank=True, related_name="+")
+    status = models.CharField('status', max_length=1, choices=STATUS_CHOICES, default='a')
+    obs = models.TextField('observation', null=True, blank=True)

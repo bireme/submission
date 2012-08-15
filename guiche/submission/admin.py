@@ -21,3 +21,4 @@ class SubmissionAdmin(GeneralAdmin):
     list_filter = ('status', )
 
 admin.site.register(Submission, SubmissionAdmin)
+admin.site.register(SubmissionHistory)

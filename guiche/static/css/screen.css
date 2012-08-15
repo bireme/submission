@@ -1,3 +1,7 @@
+.table td, .table th {
+    text-align: center;
+}
+
 .content {
     margin-top: 100px;
 }
@@ -22,4 +26,11 @@
 .blockSubmission h2 {
     margin-bottom: 10px;
     letter-spacing: -1px;
+}
+#confirmApproved textarea {
+    width: 98%;
+    height: 70px;
+}
+.submissionHistory {
+    margin-top: 50px;
 }

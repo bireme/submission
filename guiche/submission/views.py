@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.models import Group
+from django.http import Http404
 from models import *
 from forms import *
 
@@ -14,7 +15,7 @@ def index(request):
     user_type = 'user'
 
     output = {}
-    submissions = Submission.objects.all()
+    submissions = Submission.objects.all().order_by('-updated')
 
     if 'admins' in user_groups:
         user_type = 'admin'
@@ -87,11 +88,31 @@ def approve(request, id):
     if 'next' in request.GET:
         next = request.GET['next']
 
-    submission = get_object_or_404(Submission, pk=id)
-    submission.status = 'a'
-    submission.updater = request.user
-    submission.save()
+    if request.POST:
 
-    print submission.status
+        submission = get_object_or_404(Submission, pk=id)
+
+        message = SubmissionHistory(submission=submission)
+        message.obs = request.POST['obs']
+        message.status = request.POST['status']
+        message.creator = request.user
+        message.save()
+
+        submission.status = request.POST['status']
+        submission.updater = request.user
+        submission.save()
 
     return redirect(next)
+
+@login_required
+def show_submission(request, id):
+
+    submission = get_object_or_404(Submission, pk=id)
+    history = SubmissionHistory.objects.filter(submission=submission)
+
+    output = {
+        'submission': submission,
+        'history': history,
+    }
+
+    return render_to_response('submission/show.html', output, context_instance=RequestContext(request))

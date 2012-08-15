@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="submissionContent">
+        <h2>Submission #{{ submission.id }} 
+            {% if submission.status == 'a' %}(Approved){% endif %}
+            {% if submission.status == 'd' %}(Decline)d{% endif %}
+            {% if submission.status == 'p' %}(Pending){% endif %}
+        </h2>
+        
+        <h3>This is a
+            {% if submission.type == "oai" %}OAI-PMH Link{% endif %}
+            {% if submission.type == "iso" %}ISO File{% endif %}
+        </h3>
+
+        <p>
+            {% if submission.oai_url %}
+                <a href="{{ submission.oai_url }}" title="Go to OAI-PMH Link">{{ submission.oai_url }}</a>
+            {% endif %}
+
+            {% if submission.file %}
+                This is a ISO FIle.
+            {% endif %}
+        </p>
+        <div class="submissionHistory">
+            {% if history %}
+                <h4>Histories for this submission ({{ history|length }})</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in history %}
+                            <tr>
+                                <td>{{ item.created }}</td>
+                                <td>{{ item.creator }}</td>
+                                <td>
+                                    {% if item.status == 'a' %}Accepted{% endif %}
+                                    {% if item.status == 'd' %}Declined{% endif %}
+                                    {% if item.status == 'p' %}Pending{% endif %}
+                                </td>
+                                <td>{% if item.obs %}{{ item.obs }}{% else %}-{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

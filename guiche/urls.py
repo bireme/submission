@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     (r'^submission/exclude/(?P<id>\d+)/?$', 'submission.views.exclude'),
     (r'^submission/new/?$', 'submission.views.create'),
     (r'^submission/approve/(?P<id>\d+)/?$', 'submission.views.approve'),
+    (r'^submission/show/(?P<id>\d+)/?$', 'submission.views.show_submission'),
 )
 
 if settings.DEBUG:
