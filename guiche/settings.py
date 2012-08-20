@@ -171,3 +171,8 @@ TEMPLATE_LOADERS = (
 AUTH_PROFILE_MODULE = "account.UserProfile"
 
 AUTHENTICATION_BACKENDS = ('authentication.NMailAuthentication',)
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
