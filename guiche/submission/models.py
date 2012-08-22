@@ -1,8 +1,9 @@
-from django.db import models
+from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-from datetime import datetime
 from django.conf import settings
-import os
+from datetime import datetime
+from django.db import models
+import os, md5
 
 TYPE_CHOICES = (
     ('iso', "ISO File"),
@@ -15,38 +16,88 @@ STATUS_CHOICES = (
     ('d', 'declined'),
 )
 
-class Submission(models.Model):
+class Generic(models.Model):
 
     class Meta:
-        verbose_name = "submission"
-        verbose_name_plural = "submissions"
+        abstract = True
 
     created = models.DateTimeField("created", default=datetime.now())
     updated = models.DateTimeField("updated", default=datetime.now())
     creator = models.ForeignKey(User, null=True, blank=True, related_name="+")
     updater = models.ForeignKey(User, null=True, blank=True, related_name="+")
 
-    type = models.CharField('type', max_length=255, choices=TYPE_CHOICES)
-    status = models.CharField('status', max_length=1, choices=STATUS_CHOICES, default='p')
-    file = models.FileField("file", null=True, blank=True, upload_to=os.path.join(settings.MEDIA_ROOT, 'files'))
-    oai_link = models.URLField("OAI-PMH link", null=True, blank=True)
+    def save(self):
+        self.updated = datetime.now()
+        super(Generic, self).save()
+
+class Step(Generic):
+
+    class Meta:
+        verbose_name = "step"
+        verbose_name_plural = "steps"
+
+    type = models.ForeignKey("Type")
+    title = models.CharField("title", max_length=255)
+    parent = models.ForeignKey('Step', blank=True, null=True)
+    finish = models.BooleanField('finish step?')
+    pending = models.BooleanField('pending step?')
+
+    def __unicode__(self):
+        return unicode(self.title)
+
+class Type(Generic):
+
+    class Meta:
+        verbose_name = "type"
+        verbose_name_plural = "types"
+
+    title = models.CharField("title", max_length=255)
+
+    def __unicode__(self):
+        return unicode(self.title)
+
+class Submission(Generic):
+
+    class Meta:
+        verbose_name = "submission"
+        verbose_name_plural = "submissions"
+
+    # Function that remove spaces and special characters from filenames
+    def new_filename(instance, filename):
+        fname, dot, extension = filename.rpartition('.')
+        fname = slugify(fname)
+        fname = fname + "_" + md5.new(fname).hexdigest()
+        return settings.MEDIA_ROOT + '/iso/' + '%s.%s' % (fname, extension)
+
+    type = models.ForeignKey("Type")
+    current_status = models.ForeignKey("Step", verbose_name="Current Status")
+    iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)
+    observation = models.TextField("observation", blank=True, null=True)
+
+    def get_iso_url(self):
+        return unicode(self.iso_file).replace(settings.MEDIA_ROOT, '')
 
     def __unicode__(self):
         return unicode(self.type)
 
-    # rewrite to update the last modification's time
-    def save(self):
-        self.updated = datetime.now()
-        super(Submission, self).save()
-
-class SubmissionHistory(models.Model):
+class FollowUp(Generic):
 
     class Meta:
-        verbose_name = "submission message"
-        verbose_name_plural = "submission messages"
+        verbose_name = "follow up"
+        verbose_name_plural = "follow ups"
 
-    submission = models.ForeignKey(Submission)
-    created = models.DateTimeField("created", default=datetime.now())
-    creator = models.ForeignKey(User, null=True, blank=True, related_name="+")
-    status = models.CharField('status', max_length=1, choices=STATUS_CHOICES, default='a')
-    obs = models.TextField('observation', null=True, blank=True)
+    # Function that remove spaces and special characters from filenames
+    def new_filename(instance, filename):
+        fname, dot, extension = filename.rpartition('.')
+        fname = slugify(fname)
+        fname = fname + "_" + md5.new(fname).hexdigest()
+        return settings.MEDIA_ROOT + '/attac/' + '%s.%s' % (fname, extension)
+
+    submission = models.ForeignKey('Submission')
+    previous_status = models.ForeignKey('Step', related_name="+")
+    current_status = models.ForeignKey('Step', related_name="+")
+    message = models.TextField("message", blank=True, null=True)
+    attachment = models.FileField('attachment', upload_to=new_filename, blank=True, null=True)
+
+    def __unicode__(self):
+        return unicode(self.submission)

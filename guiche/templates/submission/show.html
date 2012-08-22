@@ -2,54 +2,80 @@
 
 {% block content %}
     <div class="submissionContent">
-        <h2>Submission #{{ submission.id }} 
-            {% if submission.status == 'a' %}(Approved){% endif %}
-            {% if submission.status == 'd' %}(Decline)d{% endif %}
-            {% if submission.status == 'p' %}(Pending){% endif %}
-        </h2>
-        
-        <h3>This is a
-            {% if submission.type == "oai" %}OAI-PMH Link{% endif %}
-            {% if submission.type == "iso" %}ISO File{% endif %}
-        </h3>
 
-        <p>
-            {% if submission.oai_url %}
-                <a href="{{ submission.oai_url }}" title="Go to OAI-PMH Link">{{ submission.oai_url }}</a>
-            {% endif %}
+        <div class="row">
+            <div class="span6 offset3">
+                <h2>Submission #{{ submission.id }}</h2>
+                <h3>Current status: {{ submission.current_status }} </h3>
 
-            {% if submission.file %}
-                This is a ISO FIle.
-            {% endif %}
-        </p>
-        <div class="submissionHistory">
-            {% if history %}
-                <h4>Histories for this submission ({{ history|length }})</h4>
+                {% if user_type == 'admin' %}
+                    
+                    <div class="actions">
+                        <a data-toggle="modal" href="#confirmStatusChange" class="btn btn-danger" title="Decline submission">Decline</a>
+                        {% for step in next_step %}<a data-toggle="modal" href="#confirmStatusChange" class="btn btn-success" title="Go to {{ step }}">Go to {{ step }}</a>{% endfor %}
+                    </div>
+
+                    {% include 'submission/box-change-status.html' %}
+
+                {% endif %}
+
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>User</th>
-                            <th>Status</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        {% for item in history %}
+                        <tr>
+                            <th>Creator</th>
+                            <td>{{ submission.creator }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last updater</th>
+                            <td>{{ submission.updater }}</td>
+                        </tr>
+                        <tr>
+                            <th>Created at</th>
+                            <td>{{ submission.created }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last update</th>
+                            <td>{{ submission.updated }}</td>
+                        </tr>
+                        {% if submission.iso_file %}
                             <tr>
-                                <td>{{ item.created }}</td>
-                                <td>{{ item.creator }}</td>
-                                <td>
-                                    {% if item.status == 'a' %}Accepted{% endif %}
-                                    {% if item.status == 'd' %}Declined{% endif %}
-                                    {% if item.status == 'p' %}Pending{% endif %}
-                                </td>
-                                <td>{% if item.obs %}{{ item.obs }}{% else %}-{% endif %}</td>
+                                <th>ISO File</th>
+                                <td><a href="{{ submission.get_iso_url }}" title="ISO File" target="_blank">{{ submission.get_iso_url|slice:"40" }}..</a></td>
                             </tr>
-                        {% endfor %}
+                        {% endif %}
+                        {% if submission.observation %}
+                            <tr>
+                                <th>Observation</th>
+                                <td>{{ submission.observation|slice:"40" }}{% if submission.observation|length > 40 %}...{% endif %}</td>
+                            </tr>
+                        {% endif %}
                     </tbody>
                 </table>
-            {% endif %}
+
+                <h4>Last follow ups ({{ followups|length }})</h4>
+                {% if followups %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Previous Status</th>
+                                <th>Change to</th>
+                                <th>Message</th>
+                                <th>Attatchment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in followups %}
+                                <tr>
+                                    <td>{{ item.previous_status }}</td>
+                                    <td>{{ item.current_status }}</td>
+                                    <td>{% if item.message %}{{ item.message }}{% else %}-{% endif %}</td>
+                                    <td>{% if item.attachment %}{{ item.attachment }}{% else %}-{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
         </div>
     </div>
 

@@ -15,7 +15,8 @@ def index(request):
     user_type = 'user'
 
     output = {}
-    submissions = Submission.objects.all().order_by('-updated')
+    submissions = Submission.objects.all().order_by('updated')
+    filters = Step.objects.all()
 
     if 'admins' in user_groups:
         user_type = 'admin'
@@ -23,12 +24,15 @@ def index(request):
     if user_type == 'user':
         submissions = submissions.filter(creator=request.user)
 
-    pending = submissions.filter(status='p')
-    approved = submissions.filter(status='a')
-
+    if 'opened_filter' in request.GET:
+        filtr = Step.objects.get(pk=request.GET['opened_filter'])
+        try:
+            submissions = submissions.filter(current_status=filtr)
+        except:
+            pass
+            
     output['submissions'] = submissions
-    output['pending'] = pending
-    output['approved'] = approved
+    output['filters'] = filters
 
     if user_type == 'admin':
         return render_to_response('submission/index-admin.html', output, context_instance=RequestContext(request))
@@ -38,23 +42,30 @@ def index(request):
 
 @login_required
 def create(request):
-    
+    types = Type.objects.all()
     form = SubmissionForm()
+    success = False
 
-    if request.POST:
-        submission = Submission()
+    if request.POST:        
+
+        status = Step.objects.filter(type=request.POST['type']).filter(parent=None)[0]
+        submission = Submission(current_status=status)
         submission.creator = request.user
         submission.updater = request.user
 
-        form = SubmissionForm(request.POST, instance=submission)
-
-        if form.is_valid():            
-            form.save()
-
+        form = SubmissionForm(request.POST, request.FILES, instance=submission)
+        if form.is_valid():
+            form.save()  
+            success = True      
+        else:
+            print form.errors
+        
+    
     output = {
+        'types': types,
         'form': form,
+        'success': success,
     }
-
     return render_to_response('submission/create.html', output, context_instance=RequestContext(request))
 
 @login_required
@@ -107,12 +118,25 @@ def approve(request, id):
 @login_required
 def show_submission(request, id):
 
+    user = request.user
+    user_groups = [group.name for group in user.groups.all()]
+    user_type = 'user'
+    if 'admins' in user_groups:
+        user_type = 'admin'
+
     submission = get_object_or_404(Submission, pk=id)
-    history = SubmissionHistory.objects.filter(submission=submission)
+
+    if user_type != 'admin' and submission.creator != request.user:
+        return Http404
+
+    followups = FollowUp.objects.filter(submission=id)
+    next_step = Step.objects.filter(parent=submission.current_status)
 
     output = {
+        'user_type': user_type,
         'submission': submission,
-        'history': history,
+        'followups': followups,
+        'next_step': next_step,
     }
 
     return render_to_response('submission/show.html', output, context_instance=RequestContext(request))

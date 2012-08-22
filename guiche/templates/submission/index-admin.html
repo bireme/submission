@@ -1,16 +1,15 @@
 {% extends "submission/index.html" %}
 {% load custom_filters %}
 
-{% block extrahead %}
-<script>
-    $('#confirmApproved').modal();
-</script>
-{% endblock %}
-
 {% block relations %}
     <div class="blockSubmission">
-        <h2>Submissions to be aproved ({{ pending|length }})</h2>
-        {% if pending|length %}
+        <h2>Opened submissions  ({{ submissions|length }})</h2>
+        <div class="filters">
+            <ul>
+                {% for filter in filters %}<li><a href="?opened_filter={{ filter.id }}">{{ filter }}</a></li>{% endfor %}
+            </ul>
+        </div>
+        {% if submissions|length %}
             <table class="table">
                 <thead>
                     <tr>
@@ -19,68 +18,19 @@
                         <th>Last update</th>
                         <th>Updated by</th>
                         <th>Status</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for sub in pending %}
+                    {% for sub in submissions %}
                         <tr>
                             <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
-                                {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
-                                {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
+                                {{ sub.type }}
                             </a></td>
                             <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
                             <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
                             <td>{{ sub.updater }}</td>
+                            <td>{{ sub.current_status }}</td>
                             
-                            {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
-                            {% if sub.status == "a" %}<td class="accepted">Accepted</td>{% endif %}
-                            {% if sub.status == "d" %}<td class="declined">Declined</td>{% endif %}
-                            
-                            <td>
-                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-                                <a data-toggle="modal" href="#confirmApproved" title="approve/decline submission {{ sub.id }}"><i class="icon-exclamation-sign"></i></a>
-                                {% include 'submission/approvation-box.html' %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-    </div>
-
-    <div class="blockSubmission">
-        <h2>Submissions already approved ({{ approved|length }})</h2>
-        {% if approved|length %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Creation Date</th>
-                        <th>Last update</th>
-                        <th>Updated by</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for sub in approved %}
-                        <tr>
-                            <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
-                                {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
-                                {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
-                            </a></td>
-                            <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
-                            <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
-                            <td>{{ sub.updater }}</td>
-                            
-                            {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
-                            {% if sub.status == "a" %}<td class="accepted">Accepted</td>{% endif %}
-                            {% if sub.status == "d" %}<td class="declined">Declined</td>{% endif %}
-                            
-                            <td>
-                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

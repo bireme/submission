@@ -1,0 +1,17 @@
+<div class="modal hide confirm_change" id="confirmStatusChange">     
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Change submission status</h3>
+    </div>
+    <div class="modal-body">
+        <form name="approvationForm_{{ sub.id }}" method="POST" action="" class="">{% csrf_token %}
+            <input type="hidden" name="status" value="" />
+                <label for="obs">Observations:</label>
+                <textarea name="obs" id="obs"></textarea>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-success">Change status</a>
+    </div>
+</div>

@@ -21,10 +21,10 @@ urlpatterns = patterns('',
     (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
     
     (r'^/?$', 'submission.views.index'),
-    (r'^submission/edit/(?P<id>\d+)/?$', 'submission.views.edit'),
-    (r'^submission/exclude/(?P<id>\d+)/?$', 'submission.views.exclude'),
+    # (r'^submission/edit/(?P<id>\d+)/?$', 'submission.views.edit'),
+    # (r'^submission/exclude/(?P<id>\d+)/?$', 'submission.views.exclude'),
+    # (r'^submission/approve/(?P<id>\d+)/?$', 'submission.views.approve'),
     (r'^submission/new/?$', 'submission.views.create'),
-    (r'^submission/approve/(?P<id>\d+)/?$', 'submission.views.approve'),
     (r'^submission/show/(?P<id>\d+)/?$', 'submission.views.show_submission'),
 )
 

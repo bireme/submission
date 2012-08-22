@@ -1,7 +1,3 @@
-.table td, .table th {
-    text-align: center;
-}
-
 .content {
     margin-top: 100px;
 }
@@ -27,10 +23,33 @@
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
-#confirmApproved textarea {
+.confirm_change textarea {
     width: 98%;
     height: 70px;
 }
 .submissionHistory {
     margin-top: 50px;
+}
+.submission-form{
+    text-align:center;
+    
+}
+.submission-form label {
+    font-size: 160%;
+}
+.block {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.block .line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.block select {
+    width: 80%;
+    font-size: 17pt;
+    height: 50px;
+}
+.block textarea {
+    width: 100%;
 }

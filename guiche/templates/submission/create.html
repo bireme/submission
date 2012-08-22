@@ -1,43 +1,72 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<script>
+    $(function(){
+        $('.block-type').hide();
+    });
+
+    function show_block(obj) {
+        var name = obj.value;
+
+        $('.type').hide();
+        $('.block-type').hide();
+        $('.type-'+name).fadeIn('fast');
+    }
+</script>
+{% endblock %}
+
 {% block content %}
     <h2>New Submission</h2>
     
-    <p>
-        {% if form.errors %}
-            <div class="alert alert-error">
-                <button class="close" data-dismiss="alert">×</button>
-                <strong>Errors:</strong><br>
-                <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li><b>{{ field.label }}</b>: {{ error }}</li>
+    <div class="row">
+        <div class="span10 offset1">
+            {% if form.errors %}
+                <div class="alert alert-error">
+                    <button class="close" data-dismiss="alert">×</button>
+                    <strong>Errors:</strong><br>
+                    <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li><b>{{ field.label }}</b>: {{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-                </ul>
+                    </ul>
+                </div>
+            {% endif %}
+                
+            {% if success %}
+                <div class="alert alert-success">
+                    <b>Success!</b> Submission was {% if edited %}edited{% else %}created{% endif %}.
+                </div>        
+            {% endif %}
+
+            <div class="submission-form">
+                <form class="form-vertical" method="POST" action="{% url submission.views.create %}" enctype="multipart/form-data">{% csrf_token %}
+
+                    <div class="block type">
+                        <label for="type">Select your submission type</label>
+                        <select class="" name="type" id="type" onchange="show_block(this);">
+                            <option value=""></option>
+                            {% for type in types %}
+                                <option value="{{ type.id }}">{{ type.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="block block-type type-1">
+                        <div class="line">
+                            <label for="file">Upload your ISO file:</label>
+                            {{ form.iso_file }}
+                        </div>
+                        <div class="line">
+                            <label for="observation">If needed, please insert some observation:</label>
+                            <textarea id="observation" name="observation" rows=5></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" value="Send your ISO File" class="btn btn-large btn-primmary">
+                </form>
             </div>
-        {% endif %}
-
-        {% if not form.errors and request.POST %}
-            <div class="alert alert-success">
-                <b>Success!</b> Submission was {% if edited %}edited{% else %}created{% endif %}.
-            </div>
-        {% endif %}
-    </p>
-
-    <form class="form-vertical" method="POST" action="
-        {% if edited %}
-            {% url submission.views.edit id %}
-        {% else %}
-            {% url submission.views.create %}
-        {% endif %}
-        ">{% csrf_token %}
-
-        {% for field in form %}
-            {{ field.label_tag }}
-            {{ field }}
-        {% endfor %}
-        <br>
-        <input type="submit" value="Submit">
-    </form>
+        </div>
+    </div>
 {% endblock %}
