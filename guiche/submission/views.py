@@ -93,29 +93,6 @@ def edit(request, id):
     return render_to_response('submission/create.html', output, context_instance=RequestContext(request))
 
 @login_required
-def approve(request, id):
-
-    next = reverse("submission.views.index")
-    if 'next' in request.GET:
-        next = request.GET['next']
-
-    if request.POST:
-
-        submission = get_object_or_404(Submission, pk=id)
-
-        message = SubmissionHistory(submission=submission)
-        message.obs = request.POST['obs']
-        message.status = request.POST['status']
-        message.creator = request.user
-        message.save()
-
-        submission.status = request.POST['status']
-        submission.updater = request.user
-        submission.save()
-
-    return redirect(next)
-
-@login_required
 def show(request, id):
 
     user = request.user
@@ -130,7 +107,7 @@ def show(request, id):
     if user_type != 'admin' and submission.creator != request.user:
         return Http404
 
-    followups = FollowUp.objects.filter(submission=id)
+    followups = FollowUp.objects.filter(submission=id).order_by('-created')
     steps = Step.objects.filter(type=submission.type)
     pending = steps.filter(pending=True)[0]
     next_step = steps.filter(parent=submission.current_status)
@@ -141,7 +118,12 @@ def show(request, id):
         # ele tá em pending
         else:
             followup = FollowUp.objects.filter(submission=submission).order_by('-created')[0]
-            next_step = [followup.current_status]
+            if followup.current_status == pending:
+                start = steps.filter(parent=None)[0]
+                next_step = steps.filter(parent=start)
+            else:
+                print 1
+                next_step = [followup.current_status]
     
     output = {
         'user_type': user_type,
@@ -185,6 +167,9 @@ def list(request, type=0, filtr=0):
         user_type = 'admin'
 
     submissions = Submission.objects.all().order_by('updated')
+    if not user_type == 'admin':
+        submissions = submissions.filter(creator=request.user)
+
     filters = Step.objects.all()
     types = Type.objects.all()
 

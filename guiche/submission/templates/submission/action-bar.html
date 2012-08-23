@@ -1,0 +1,14 @@
+<!-- Button actions -->
+{% if user_type == 'admin' and not is_finish %}
+    <form name="change_status" class="form_change_status" action="{% url submission.views.change_status submission.id %}" method="POST">{% csrf_token %}
+        <input type="hidden" name="next" value="{% url submission.views.show submission.id %}">
+        <input type="hidden" name="action" value="">
+
+        <div class="actions">
+            <a data-toggle="modal" action="0" href="#confirmStatusChange" class="btn btn-danger btn-large" title="Decline submission">Decline</a>
+            <a data-toggle="modal" action="{{ pending.id }}"href="#confirmStatusChange" class="btn btn-warning btn-large" title="{{ pending.title }} Submission">{{ pending.title }}</a>
+            {% for step in next_step %}<a data-toggle="modal" action="{{ step.id }}" href="#confirmStatusChange" class="btn btn-success btn-large" title="Go to {{ step }}">Go to {{ step }}</a>{% endfor %}
+        </div>
+        {% include 'submission/box-change-status.html' %}
+    </form>
+{% endif %}
