@@ -23,6 +23,13 @@
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
+.blockSubmission .filters ul {
+    margin: 0 0 25px 0;
+}
+.blockSubmission .filters ul li {
+    display: inline;
+    padding: 0 10px;
+}
 .confirm_change textarea {
     width: 98%;
     height: 70px;
@@ -52,4 +59,13 @@
 }
 .block textarea {
     width: 100%;
+}
+.actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.actions .btn {
+    margin-left: 5px;
+    margin-right: 5px;
 }

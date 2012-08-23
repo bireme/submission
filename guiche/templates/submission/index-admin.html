@@ -6,7 +6,20 @@
         <h2>Opened submissions  ({{ submissions|length }})</h2>
         <div class="filters">
             <ul>
-                {% for filter in filters %}<li><a href="?opened_filter={{ filter.id }}">{{ filter }}</a></li>{% endfor %}
+                <li>
+                {% if not filtr %}
+                    <b>All</b>
+                {% else %}
+                    <a href="?opened_filter=0">All</a>
+                {% endif %}
+                </li>
+                {% for filter in filters %}
+                    <li>
+                        {% if filtr == filter %}<b>{{ filter }}</b>
+                        {% else %}<a href="?opened_filter={{ filter.id }}">{{ filter }}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         {% if submissions|length %}
@@ -23,7 +36,7 @@
                 <tbody>
                     {% for sub in submissions %}
                         <tr>
-                            <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">
                                 {{ sub.type }}
                             </a></td>
                             <td>{{ sub.created|date:"d/m/Y H:i" }}</td>

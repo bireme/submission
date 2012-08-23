@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+<script src="{{ STATIC_URL }}/js/change-status.js"></script>
+{% endblock %}
+
 {% block content %}
     <div class="submissionContent">
 
@@ -7,17 +11,6 @@
             <div class="span6 offset3">
                 <h2>Submission #{{ submission.id }}</h2>
                 <h3>Current status: {{ submission.current_status }} </h3>
-
-                {% if user_type == 'admin' %}
-                    
-                    <div class="actions">
-                        <a data-toggle="modal" href="#confirmStatusChange" class="btn btn-danger" title="Decline submission">Decline</a>
-                        {% for step in next_step %}<a data-toggle="modal" href="#confirmStatusChange" class="btn btn-success" title="Go to {{ step }}">Go to {{ step }}</a>{% endfor %}
-                    </div>
-
-                    {% include 'submission/box-change-status.html' %}
-
-                {% endif %}
 
                 <table class="table">
                     <tbody>
@@ -51,6 +44,22 @@
                         {% endif %}
                     </tbody>
                 </table>
+
+                <!-- Button actions -->
+                {% if user_type == 'admin' and not is_finish %}
+                    <form name="change_status" class="form_change_status" action="{% url submission.views.change_status submission.id %}" method="POST">{% csrf_token %}
+                        <input type="hidden" name="next" value="{% url submission.views.show submission.id %}">
+                        <input type="hidden" name="action" value="">
+
+                        <div class="actions">
+                            <a data-toggle="modal" action="0" href="#confirmStatusChange" class="btn btn-danger btn-large" title="Decline submission">Decline</a>
+                            <a data-toggle="modal" action="{{ pending.id }}"href="#confirmStatusChange" class="btn btn-warning btn-large" title="{{ pending.title }} Submission">{{ pending.title }}</a>
+                            {% for step in next_step %}<a data-toggle="modal" action="{{ step.id }}" href="#confirmStatusChange" class="btn btn-success btn-large" title="Go to {{ step }}">Go to {{ step }}</a>{% endfor %}
+                        </div>
+                        {% include 'submission/box-change-status.html' %}
+                    </form>
+                {% endif %}
+
 
                 <h4>Last follow ups ({{ followups|length }})</h4>
                 {% if followups %}

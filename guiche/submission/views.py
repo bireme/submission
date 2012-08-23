@@ -1,3 +1,4 @@
+#! coding: utf-8
 from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -13,9 +14,10 @@ def index(request):
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
+    filtr = False
 
     output = {}
-    submissions = Submission.objects.all().order_by('updated')
+    submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True)
     filters = Step.objects.all()
 
     if 'admins' in user_groups:
@@ -25,14 +27,15 @@ def index(request):
         submissions = submissions.filter(creator=request.user)
 
     if 'opened_filter' in request.GET:
-        filtr = Step.objects.get(pk=request.GET['opened_filter'])
         try:
+            filtr = Step.objects.get(pk=request.GET['opened_filter'])
             submissions = submissions.filter(current_status=filtr)
         except:
             pass
             
     output['submissions'] = submissions
     output['filters'] = filters
+    output['filtr'] = filtr
 
     if user_type == 'admin':
         return render_to_response('submission/index-admin.html', output, context_instance=RequestContext(request))
@@ -116,11 +119,12 @@ def approve(request, id):
     return redirect(next)
 
 @login_required
-def show_submission(request, id):
+def show(request, id):
 
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
+    finish = False
     if 'admins' in user_groups:
         user_type = 'admin'
 
@@ -130,13 +134,47 @@ def show_submission(request, id):
         return Http404
 
     followups = FollowUp.objects.filter(submission=id)
-    next_step = Step.objects.filter(parent=submission.current_status)
-
+    steps = Step.objects.filter(type=submission.type)
+    pending = steps.filter(pending=True)[0]
+    next_step = steps.filter(parent=submission.current_status)
+    
+    if not next_step:
+        if submission.current_status.finish:
+            finish = True
+        # ele tá em pending
+        else:
+            followup = FollowUp.objects.filter(submission=submission).order_by('-created')[0]
+            next_step = [followup.current_status]
+    
     output = {
         'user_type': user_type,
         'submission': submission,
         'followups': followups,
         'next_step': next_step,
+        'pending': pending,
+        'is_finish': finish,
     }
 
     return render_to_response('submission/show.html', output, context_instance=RequestContext(request))
+
+@login_required
+def change_status(request, id):
+
+    submission = get_object_or_404(Submission, pk=id)
+
+    if request.POST:
+        next = request.POST['next']
+        status = get_object_or_404(Step, pk=int(request.POST['action']))
+        obs = request.POST['obs']
+
+        followup = FollowUp()
+        followup.submission = submission
+        followup.previous_status = submission.current_status
+        followup.current_status = status
+        followup.message = obs
+        followup.save()
+
+        submission.current_status = status
+        submission.save()
+
+    return redirect(next)
