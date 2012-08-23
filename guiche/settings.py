@@ -112,7 +112,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     # os.path.join(PROJECT_ROOT_PATH, 'templates'),
     # os.path.join(PROJECT_ROOT_PATH, 'submission/templates'),
-    os.path.join(os.getcwd(), "templates"),
+    os.path.join(PROJECT_ROOT_PATH, 'templates'),
+    os.path.join(PROJECT_ROOT_PATH, 'submission/templates'),
 )
 
 INSTALLED_APPS = [
