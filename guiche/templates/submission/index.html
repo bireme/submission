@@ -4,103 +4,68 @@
 {% block content %}
     
     {% block new_submission %}
-        <div class="row newSubmission">
+        <!-- <div class="row newSubmission">
             <div class="span10 offset1">
                 <a href="submission/new/" title="New Subission" class="btn btn-primary btn-large">
                     <i class="icon-plus icon-white"></i> New Submission
                 </a>
             </div>
-        </div>
+        </div> -->
     {% endblock %}
 
     <div class="row">
-        <div class="span10 offset1 submissions">
+        <div class="span12 submissions">
             <div class="relation">
                 {% block relations %}
                     <div class="blockSubmission">
-                        <h2>Pending submissions ({{ pending|length }})</h2>
-                        {% if submissions|length %}
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Type</th>
-                                        <th>Creation Date</th>
-                                        <th>Last update</th>
-                                        <th>Updated by</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <h2>Opened submissions  ({{ submissions|length }})</h2>
+                        <div class="filters">
+                            <ul>
+                                <li>
+                                {% if not filtr %}
+                                    <b>All</b>
+                                {% else %}
+                                    <a href="?opened_filter=0">All</a>
+                                {% endif %}
+                                </li>
+                                {% for filter in filters %}
+                                    <li>
+                                        {% if filtr == filter %}<b>{{ filter }}</b>
+                                        {% else %}<a href="?opened_filter={{ filter.id }}">{{ filter }}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Creation Date</th>
+                                    <th>Last update</th>
+                                    <th>Updated by</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if submissions|length %}
                                     {% for sub in submissions %}
                                         <tr>
-                                            <td>{{ sub.id }}</td>
-                                            <td><a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
-                                                {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
-                                                {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
+                                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">
+                                                {{ sub.type }}
                                             </a></td>
                                             <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
                                             <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
                                             <td>{{ sub.updater }}</td>
+                                            <td>{{ sub.current_status }}</td>
                                             
-                                            {% if sub.status == "p" %}
-                                                <td class="pending">Pending</td>
-                                            {% endif %}
-                                            {% if sub.status == "a" %}
-                                                <td class="accepted">Accepted</td>
-                                            {% endif %}
-                                            {% if sub.status == "d" %}
-                                                <td class="declined">Declined</td>
-                                            {% endif %}
-                                            
-                                            <td>
-                                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-
-                                                <a href="/exclude/{{ sub.id }}/{{ sub.id|md5 }}" title="Exclude submission {{ sub.id }}"><i class="icon-trash"></i></a>
-                                            </td>
                                         </tr>
                                     {% endfor %}
-                                </tbody>
-                            </table>
-                        {% endif %}
-                    </div>
-
-                    <div class="blockSubmission">
-                        <h2>Submissions already approved ({{ approved|length }})</h2>
-                        {% if approved|length %}
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Last update</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for sub in approved %}
-                                        <tr>
-                                            <td>
-                                                <a href="{% url submission.views.show_submission sub.id %}" title="Go to submission {{ sub.id }}">
-                                                    {% if sub.type == 'oai' %}OAI-PMH Link{% endif %}
-                                                    {% if sub.type == 'iso' %}ISIS ISO File{% endif %}
-                                                </a>
-                                            </td>
-                                            <td>{{ sub.updated|date:"d/m/Y H:i" }} by {{ sub.updater }}</td>
-                                            
-                                            {% if sub.status == "p" %}<td class="pending">Pending</td>{% endif %}
-                                            {% if sub.status == "a" %}<td class="accepted">Accepted</td>{% endif %}
-                                            {% if sub.status == "d" %}<td class="declined">Declined</td>{% endif %}
-                                            
-                                            <td>
-                                                <a href="{% url submission.views.edit sub.id %}" title="Edit submission {{ sub.id }}"><i class="icon-pencil"></i></a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% endif %}
+                                {% else %}
+                                    <tr><td colspan=5>No matches for your query</td></tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
                     </div>
                 {% endblock %}
             </div>
