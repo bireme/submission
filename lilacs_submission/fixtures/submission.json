@@ -10,7 +10,8 @@
       "title": "New", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
     }
   }, 
   {
@@ -24,7 +25,8 @@
       "title": "Validating Format", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
     }
   }, 
   {
@@ -38,7 +40,8 @@
       "title": "Format validated", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
     }
   }, 
   {
@@ -52,7 +55,8 @@
       "title": "Validating Content", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
     }
   }, 
   {
@@ -66,7 +70,8 @@
       "title": "Certified (waiting publish)", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
     }
   }, 
   {
@@ -80,7 +85,23 @@
       "title": "Published", 
       "created": "2012-08-22 14:14:43", 
       "updater": 1, 
-      "type": 1
+      "type": 1, 
+      "pending": false
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "submission.step", 
+    "fields": {
+      "updated": "2012-08-23 18:15:56", 
+      "finish": false, 
+      "parent": null, 
+      "creator": 1, 
+      "title": "Pending", 
+      "created": "2012-08-23 18:15:13", 
+      "updater": 1, 
+      "type": 1, 
+      "pending": true
     }
   }, 
   {
@@ -92,6 +113,20 @@
       "creator": 1, 
       "updater": 1, 
       "created": "2012-08-22 14:14:43"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "submission.submission", 
+    "fields": {
+      "updated": "2012-08-23 18:15:30", 
+      "observation": "", 
+      "creator": 1, 
+      "created": "2012-08-23 18:15:13", 
+      "current_status": 1, 
+      "iso_file": "/home/moa/project/bireme/git/submission/lilacs_submission/media/iso/2012-05-04-191829_95ca4c0a99383cc07e5caeda057197f5.jpg", 
+      "updater": 1, 
+      "type": 1
     }
   }
 ]
