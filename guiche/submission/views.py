@@ -18,7 +18,7 @@ def index(request):
 
     output = {}
     submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True)
-    filters = Step.objects.all()
+    filters = Step.objects.all().exclude(finish=True)
 
     if 'admins' in user_groups:
         user_type = 'admin'
@@ -36,9 +36,6 @@ def index(request):
     output['submissions'] = submissions
     output['filters'] = filters
     output['filtr'] = filtr
-
-    if user_type == 'admin':
-        return render_to_response('submission/index-admin.html', output, context_instance=RequestContext(request))
 
     return render_to_response('submission/index.html', output, context_instance=RequestContext(request))
         
@@ -178,3 +175,36 @@ def change_status(request, id):
         submission.save()
 
     return redirect(next)
+
+@login_required
+def list(request, type=0, filtr=0):
+    user = request.user
+    user_groups = [group.name for group in user.groups.all()]
+    user_type = 'user'
+    if 'admins' in user_groups:
+        user_type = 'admin'
+
+    submissions = Submission.objects.all().order_by('updated')
+    filters = Step.objects.all()
+    types = Type.objects.all()
+
+    if int(type) > 0:
+        type = get_object_or_404(Type, pk=type)
+        submissions = submissions.filter(type=type)
+        filters = filters.filter(type=type) 
+        type = type.id
+    
+    if int(filtr) > 0:
+        filtr = get_object_or_404(Step, pk=filtr)
+        submissions = submissions.filter(current_status=filtr)
+        filtr = filtr.id
+
+    output = {
+        'submissions': submissions,
+        'filters': filters,
+        'filtr': filtr,
+        'types': types,
+        'type': type,
+    }
+
+    return render_to_response('submission/list.html', output, context_instance=RequestContext(request))

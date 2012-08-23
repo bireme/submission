@@ -1,0 +1,58 @@
+{% extends "submission/index.html" %}
+
+{% block relations %}
+<div class="blockSubmission">
+    <h2>Submissions ({{ submissions|length }})</h2>
+    <div class="filters">
+        <ul>
+            <li><a href="{% url submission.views.list 0 filtr %}">All</a></li>
+            {% for item in types %}
+                <li>
+                    {% if type == item.id %}<b>{{ item }}</b>
+                    {% else %}<a href="{% url submission.views.list item.id filtr %}">{{ item }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <ul>
+            <li><a href="{% url submission.views.list type 0 %}">All</a></li>
+            {% for filter in filters %}
+                <li>
+                    {% if filtr == filter.id %}<b>{{ filter }}</b>
+                    {% else %}<a href="{% url submission.views.list type filter.id %}">{{ filter }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Creation Date</th>
+                <th>Last update</th>
+                <th>Updated by</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if submissions|length %}
+                {% for sub in submissions %}
+                    <tr>
+                        <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">
+                            {{ sub.type }}
+                        </a></td>
+                        <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
+                        <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
+                        <td>{{ sub.updater }}</td>
+                        <td>{{ sub.current_status }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan=5>No matches for your query</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

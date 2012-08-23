@@ -27,6 +27,9 @@ urlpatterns = patterns('',
     (r'^submission/new/?$', 'submission.views.create'),
     (r'^submission/show/(?P<id>\d+)/?$', 'submission.views.show'),
     (r'^submission/change_status/(?P<id>\d+)/?$', 'submission.views.change_status'),
+    (r'^submission/list/?$', 'submission.views.list'),
+    (r'^submission/list/(?P<type>\d+)/?$', 'submission.views.list'),
+    (r'^submission/list/(?P<type>\d+)/(?P<filtr>\d+)/?$', 'submission.views.list'),
 )
 
 if settings.DEBUG:
