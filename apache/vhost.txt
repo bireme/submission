@@ -1,0 +1,31 @@
+<VirtualHost *:3001>
+    ServerName guiche.teste.bvs.br
+
+    Alias /robots.txt /home/aplicacoes/guiche/static/robots.txt
+    Alias /favicon.ico /home/aplicacoes/guiche/static/favicon.ico
+    Alias /static/ /home/aplicacoes/guiche/static/
+    Alias /media/ /home/aplicacoes/guiche/media/
+
+    <Directory /home/aplicacoes/guiche/static>
+        AllowOverride All
+        Options FollowSymLinks MultiViews
+        Order allow,deny
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    WSGIApplicationGroup %{GLOBAL}
+    WSGIPassAuthorization On
+    WSGIDaemonProcess guiche user=apache group=apache processes=1 threads=10 python-path=/home/aplicacoes/guiche-env/lib/python2.6/site-packages
+    WSGIScriptAlias / /home/aplicacoes/guiche/application.wsgi
+
+    <Directory /home/aplicacoes/guiche/>
+        AllowOverride All
+        WSGIProcessGroup guiche
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    ErrorLog "| /usr/local/httplog/bin/httplog /home/apache/wsgi/%Y-%m-%d+guiche-error.log 5M"
+    CustomLog "| /usr/local/httplog/bin/httplog /home/apache/wsgi/%Y-%m-%d+guiche-access.log" combined
+</VirtualHost>
