@@ -91,7 +91,7 @@ class Submission(Generic):
     observation = models.TextField("observation", blank=True, null=True)
 
     def get_iso_url(self):
-        return unicode(self.iso_file)
+        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
 
     def __unicode__(self):
         return unicode(self.type)
@@ -119,4 +119,4 @@ class FollowUp(Generic):
         return unicode(self.submission)
 
     def get_attachment_url(self):
-        return unicode(self.attachment)
+        return unicode(self.attachment.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
