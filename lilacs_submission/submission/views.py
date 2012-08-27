@@ -105,6 +105,7 @@ def show(request, id):
     if user_type != 'admin' and submission.creator != request.user:
         return Http404
 
+    metadata = None
     followup_form = FollowUpForm()
     followups = FollowUp.objects.filter(submission=id).order_by('-created')
     steps = Step.objects.filter(type=submission.type)
@@ -114,7 +115,7 @@ def show(request, id):
     
     if not next_step:
         if submission.current_status.finish:
-            
+            metadata = TypeSubmission.objects.get(submission=submission)
             finish = True
         # ele tá em pending
         else:
@@ -134,6 +135,7 @@ def show(request, id):
         'is_finish': finish,
         'close': close,
         'followup_form': followup_form,
+        'metadata': metadata,
     }
 
     return render_to_response('submission/show.html', output, context_instance=RequestContext(request))
@@ -155,6 +157,21 @@ def change_status(request, id):
         
         form = FollowUpForm(request.POST, request.FILES, instance=followup)
         if form.is_valid:
+
+            if status.finish:
+                metadata = TypeSubmission()
+                
+                metadata.submission = submission
+                metadata.type = submission.type
+                if request.POST['express'] == 'full':
+                    metadata.full_lilacs_express = True
+                else:
+                    metadata.partial_lilacs_express = True
+                metadata.total_records = request.POST['total_records']
+                metadata.certified = request.POST['certified_records']
+
+                metadata.save()
+
             form.save()
         else:
             pass

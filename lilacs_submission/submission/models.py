@@ -57,6 +57,21 @@ class Type(Generic):
     def __unicode__(self):
         return unicode(self.title)
 
+class TypeSubmission(Generic):
+
+    class Meta:
+        verbose_name = 'type in submission'
+        verbose_name_plural = 'types in submission'
+
+    submission = models.ForeignKey("Submission")
+    type = models.ForeignKey("Type")
+
+    # iso
+    full_lilacs_express = models.BooleanField("full lilacs express?")
+    partial_lilacs_express = models.BooleanField("partial lilacs express?")
+    total_records = models.CharField("total of records", max_length=255, blank=True, null=True, default=0)
+    certified = models.CharField("total of certified records", max_length=255, blank=True, null=True, default=0)
+
 class Submission(Generic):
 
     class Meta:

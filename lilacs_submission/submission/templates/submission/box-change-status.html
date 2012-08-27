@@ -6,6 +6,23 @@
     <div class="modal-body">
         <input type="hidden" name="status" value="" />
         {{ followup_form }}
+
+        {% if next_step.0.finish %}
+
+            <label>Metadata:</label>
+            <label for="full_express">
+                <input type="radio" name="express" value="full"> Is Full Lilacs Express?
+            </label>
+            <label for="partial_express">
+                <input type="radio" name="express" value="partial"> Is Partial Lilacs Express?
+            </label>
+
+            <label for="total_records">Total of records in this submission</label>
+            <input type="number" name="total_records" value="">
+
+            <label for="certified_records">Total of certified records in this submission</label>
+            <input type="number" name="certified_records" value="">
+        {% endif %}
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>

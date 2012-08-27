@@ -42,6 +42,33 @@
                                 <td>{{ submission.observation|slice:"40" }}{% if submission.observation|length > 40 %}...{% endif %}</td>
                             </tr>
                         {% endif %}
+
+                        {% if metadata %}
+                            {% if metadata.full_lilacs_express %}
+                                <tr>
+                                    <th>Full Lilacs Express?</th>
+                                    <td>Yes</td>
+                                </tr>
+                            {% endif %}
+
+                            {% if metadata.partial_lilacs_express %}
+                                <tr>
+                                    <th>Partial Lilacs Express?</th>
+                                    <td>Yes</td>
+                                </tr>
+                            {% endif %}
+
+                            <tr>
+                                <th>Total of records</th>
+                                <td>{{ metadata.total_records }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Total of certified records</th>
+                                <td>{{ metadata.certified }}</td>
+                            </tr>
+
+                        {% endif %}
                     </tbody>
                 </table>
 
