@@ -57,8 +57,6 @@ def create(request):
         if form.is_valid():
             form.save()  
             success = True      
-        else:
-            print form.errors
         
     
     output = {
@@ -114,6 +112,7 @@ def show(request, id):
     
     if not next_step:
         if submission.current_status.finish:
+            
             finish = True
         # ele tá em pending
         else:
@@ -122,7 +121,6 @@ def show(request, id):
                 start = steps.filter(parent=None)[0]
                 next_step = steps.filter(parent=start)
             else:
-                print 1
                 next_step = [followup.current_status]
     
     output = {
