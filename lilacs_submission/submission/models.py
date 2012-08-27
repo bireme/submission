@@ -83,7 +83,7 @@ class Submission(Generic):
         fname, dot, extension = filename.rpartition('.')
         fname = slugify(fname)
         fname = fname + "_" + md5.new(fname).hexdigest()
-        return settings.MEDIA_ROOT + '/iso/' + '%s.%s' % (fname, extension)
+        return settings.MEDIA_URL + '/iso/' + '%s.%s' % (fname, extension)
 
     type = models.ForeignKey("Type")
     current_status = models.ForeignKey("Step", verbose_name="Current Status")
@@ -91,7 +91,7 @@ class Submission(Generic):
     observation = models.TextField("observation", blank=True, null=True)
 
     def get_iso_url(self):
-        return unicode(self.iso_file).replace(settings.MEDIA_ROOT, '')
+        return unicode(self.iso_file)
 
     def __unicode__(self):
         return unicode(self.type)
@@ -107,7 +107,7 @@ class FollowUp(Generic):
         fname, dot, extension = filename.rpartition('.')
         fname = slugify(fname)
         fname = fname + "_" + md5.new(fname).hexdigest()
-        return settings.MEDIA_ROOT + '/attac/' + '%s.%s' % (fname, extension)
+        return settings.MEDIA_URL + '/attac/' + '%s.%s' % (fname, extension)
 
     submission = models.ForeignKey('Submission')
     previous_status = models.ForeignKey('Step', related_name="+")
@@ -119,4 +119,4 @@ class FollowUp(Generic):
         return unicode(self.submission)
 
     def get_attachment_url(self):
-        return unicode(self.attachment).replace(settings.MEDIA_ROOT, '')
+        return unicode(self.attachment)
