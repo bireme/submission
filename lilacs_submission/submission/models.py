@@ -41,6 +41,7 @@ class Step(Generic):
     parent = models.ForeignKey('Step', blank=True, null=True)
     finish = models.BooleanField('finish step?')
     pending = models.BooleanField('pending step?')
+    close = models.BooleanField('close step?')
 
     def __unicode__(self):
         return unicode(self.title)
@@ -101,3 +102,6 @@ class FollowUp(Generic):
 
     def __unicode__(self):
         return unicode(self.submission)
+
+    def get_attachment_url(self):
+        return unicode(self.attachment).replace(settings.MEDIA_ROOT, '')

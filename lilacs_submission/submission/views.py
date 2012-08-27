@@ -17,7 +17,7 @@ def index(request):
     filtr = False
 
     output = {}
-    submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True)
+    submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True).exclude(current_status__close=True)
     filters = Step.objects.all().exclude(finish=True)
 
     if 'admins' in user_groups:
@@ -105,9 +105,11 @@ def show(request, id):
     if user_type != 'admin' and submission.creator != request.user:
         return Http404
 
+    followup_form = FollowUpForm()
     followups = FollowUp.objects.filter(submission=id).order_by('-created')
     steps = Step.objects.filter(type=submission.type)
     pending = steps.filter(pending=True)[0]
+    close = steps.filter(close=True)[0]
     next_step = steps.filter(parent=submission.current_status)
     
     if not next_step:
@@ -130,6 +132,8 @@ def show(request, id):
         'next_step': next_step,
         'pending': pending,
         'is_finish': finish,
+        'close': close,
+        'followup_form': followup_form,
     }
 
     return render_to_response('submission/show.html', output, context_instance=RequestContext(request))
@@ -142,14 +146,18 @@ def change_status(request, id):
     if request.POST:
         next = request.POST['next']
         status = get_object_or_404(Step, pk=int(request.POST['action']))
-        obs = request.POST['obs']
 
         followup = FollowUp()
+        followup.creator = request.user
         followup.submission = submission
         followup.previous_status = submission.current_status
         followup.current_status = status
-        followup.message = obs
-        followup.save()
+        
+        form = FollowUpForm(request.POST, request.FILES, instance=followup)
+        if form.is_valid:
+            form.save()
+        else:
+            pass
 
         submission.current_status = status
         submission.save()

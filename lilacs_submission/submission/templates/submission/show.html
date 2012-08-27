@@ -53,6 +53,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
+                                <th>Author</th>
                                 <th>Previous Status</th>
                                 <th>Change to</th>
                                 <th>Message</th>
@@ -64,10 +65,19 @@
                                 {% for item in followups %}
                                     <tr>
                                         <td><span title="{{ item.created }}">{{ item.created|date:"d/m/Y" }}</span></td>
+                                        <td>{{ item.creator }}</td>
                                         <td>{{ item.previous_status }}</td>
                                         <td>{{ item.current_status }}</td>
-                                        <td>{% if item.message %}{{ item.message }}{% else %}-{% endif %}</td>
-                                        <td>{% if item.attachment %}{{ item.attachment }}{% else %}-{% endif %}</td>
+                                        <td>{% if item.message %}
+                                            {% if item.message|length > 20 %}
+                                                <span title="{{ item.message }}">{{ item.message|length }}..</span>
+                                            {% else %}
+                                                {{ item.message}}
+                                            {% endif %}
+                                        {% else %}
+                                            -
+                                        {% endif %}</td>
+                                        <td>{% if item.attachment %}<a href="{{ item.get_attachment_url }}"><i class="icon-file"></i></a>{% else %}-{% endif %}</td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
