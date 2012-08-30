@@ -6,6 +6,11 @@ class SubmissionForm(forms.ModelForm):
         model = Submission
         exclude = ('created', 'updated', 'creator', 'updater', 'current_status')
 
+class SubmissionIsoForm(forms.ModelForm):
+    class Meta:
+        model = TypeSubmission
+        fields = ('total_records', 'certified')
+
 class FollowUpForm(forms.ModelForm):
     class Meta:
         model = FollowUp

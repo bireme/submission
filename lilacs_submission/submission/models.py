@@ -4,6 +4,7 @@ from django.conf import settings
 from datetime import datetime
 from django.db import models
 import os, md5
+from glob import glob
 
 TYPE_CHOICES = (
     ('iso', "ISO File"),
@@ -59,18 +60,32 @@ class Type(Generic):
 
 class TypeSubmission(Generic):
 
+    TYPE_CHOICES = (
+        ('r', 'Revista'),
+        ('m', 'Monografia'),
+        ('e', 'LILACS Express'),
+    )
+
     class Meta:
         verbose_name = 'type in submission'
         verbose_name_plural = 'types in submission'
 
-    submission = models.ForeignKey("Submission")
-    type = models.ForeignKey("Type")
+    submission = models.ForeignKey("Submission", unique=True)
 
-    # iso
-    full_lilacs_express = models.BooleanField("full lilacs express?")
-    partial_lilacs_express = models.BooleanField("partial lilacs express?")
+    # Function that remove spaces and special characters from filenames
+    def new_filename(instance, filename):
+        fname, dot, extension = filename.rpartition('.')
+        fname = slugify(fname)        
+        return settings.MEDIA_ROOT + '/attac/' + '%s.%s' % (fname, extension)
+    
+    # iso    
+    type = models.CharField("Type of Records", max_length=1, choices=TYPE_CHOICES, default='e', null=True, blank=True)
     total_records = models.CharField("total of records", max_length=255, blank=True, null=True, default=0)
     certified = models.CharField("total of certified records", max_length=255, blank=True, null=True, default=0)
+    iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)
+
+    def get_iso_url(self):
+        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
 
 class Submission(Generic):
 
@@ -78,20 +93,9 @@ class Submission(Generic):
         verbose_name = "submission"
         verbose_name_plural = "submissions"
 
-    # Function that remove spaces and special characters from filenames
-    def new_filename(instance, filename):
-        fname, dot, extension = filename.rpartition('.')
-        fname = slugify(fname)
-        fname = fname + "_" + md5.new(fname).hexdigest()
-        return settings.MEDIA_ROOT + '/iso/' + '%s.%s' % (fname, extension)
-
     type = models.ForeignKey("Type")
     current_status = models.ForeignKey("Step", verbose_name="Current Status")
-    iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)
     observation = models.TextField("observation", blank=True, null=True)
-
-    def get_iso_url(self):
-        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
 
     def __unicode__(self):
         return unicode(self.type)
@@ -106,7 +110,6 @@ class FollowUp(Generic):
     def new_filename(instance, filename):
         fname, dot, extension = filename.rpartition('.')
         fname = slugify(fname)
-        fname = fname + "_" + md5.new(fname).hexdigest()
         return settings.MEDIA_ROOT + '/attac/' + '%s.%s' % (fname, extension)
 
     submission = models.ForeignKey('Submission')

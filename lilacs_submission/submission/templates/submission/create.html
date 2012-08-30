@@ -20,53 +20,20 @@
     <h2>New Submission</h2>
     
     <div class="row">
-        <div class="span10 offset1">
-            {% if form.errors %}
-                <div class="alert alert-error">
-                    <button class="close" data-dismiss="alert">×</button>
-                    <strong>Errors:</strong><br>
-                    <ul>
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                            <li><b>{{ field.label }}</b>: {{ error }}</li>
-                        {% endfor %}
-                    {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-                
-            {% if success %}
-                <div class="alert alert-success">
-                    <b>Success!</b> Submission was {% if edited %}edited{% else %}created{% endif %}.
-                </div>        
-            {% endif %}
-
+        <div class="span10 offset1">{% block "form" %}
             <div class="submission-form">
                 <form class="form-vertical" method="POST" action="{% url submission.views.create %}" enctype="multipart/form-data">{% csrf_token %}
 
                     <div class="block type">
                         <label for="type">Select your submission type</label>
-                        <select class="" name="type" id="type" onchange="show_block(this);">
-                            <option value=""></option>
-                            {% for type in types %}
-                                <option value="{{ type.id }}">{{ type.title }}</option>
+                        <ul>
+                            {% for type in types %}                        
+                                <li><a href="{% url submission.views.create type.id %}" title="{{ type.title }}">{{ type.title }}</a></li>
                             {% endfor %}
-                        </select>
+                        </ul>
                     </div>
-
-                    <div class="block block-type type-1">
-                        <div class="line">
-                            <label for="file">Upload your ISO file:</label>
-                            {{ form.iso_file }}
-                        </div>
-                        <div class="line">
-                            <label for="observation">If needed, please insert some observation:</label>
-                            <textarea id="observation" name="observation" rows=5></textarea>
-                        </div>
-                    </div>
-                    <input type="submit" value="Send your ISO File" class="btn btn-large btn-primmary">
                 </form>
             </div>
-        </div>
+        {% endblock %}</div>
     </div>
 {% endblock %}

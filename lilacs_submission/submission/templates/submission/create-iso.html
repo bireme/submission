@@ -1,0 +1,10 @@
+{% extends "submission/create.html" %}
+
+{% block "form" %}
+    <form name="iso" method="POST" class="form" action="{% url submission.views.create type.id %}" enctype="multipart/form-data">{% csrf_token %}
+        {{ form }}
+        <div class="control-panel">
+            <button type="submit" class="btn btn-large btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock %}

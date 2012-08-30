@@ -41,54 +41,54 @@ def index(request):
         
 
 @login_required
-def create(request):
+def create(request, type=None):
     types = Type.objects.all()
     form = SubmissionForm()
     success = False
 
-    if request.POST:        
-
-        status = Step.objects.filter(type=request.POST['type']).filter(parent=None)[0]
-        submission = Submission(current_status=status)
-        submission.creator = request.user
-        submission.updater = request.user
-
-        form = SubmissionForm(request.POST, request.FILES, instance=submission)
-        if form.is_valid():
-            form.save()  
-            success = True      
-        
-    
     output = {
         'types': types,
         'form': form,
         'success': success,
     }
+    
+    if type:
+        type = get_object_or_404(Type, pk=type)
+        submission = Submission(type=type)
+        status = Step.objects.filter(type=type)
+
+        if type.title.lower() == 'iso':
+            form = SubmissionIsoForm(instance=submission)
+
+        if request.POST:
+            submission.creator = request.user
+            submission.updater = request.user
+            submission.current_status = status.filter(parent=None)[0]
+            submission.save()
+
+            type_submission = TypeSubmission(submission=submission)
+            form = SubmissionIsoForm(request.POST, request.FILES, instance=type_submission)
+
+            if form.is_valid():
+                submission.save()
+                form.save()
+
+                message = "ISO registrada com sucesso!"
+                type = 'success'
+                return redirect(reverse("submission.views.index") + "?message=%s&type=%s" % (message, type))
+
+        output = {
+            'type': type,
+            'form': form,
+        }
+
+        return render_to_response('submission/create-%s.html' % type.title.lower(), output, context_instance=RequestContext(request))        
+    
     return render_to_response('submission/create.html', output, context_instance=RequestContext(request))
 
 @login_required
 def exclude(request, id):
     return
-
-@login_required
-def edit(request, id):
-    
-    submission = Submission.objects.get(id=id)
-    form = SubmissionForm(instance=submission)
-
-    if request.POST:
-        
-        form = SubmissionForm(request.POST, instance=submission)
-        if form.is_valid():            
-            form.save()
-
-    output = {
-        'form': form,
-        'edited': True,
-        'id': id,
-    }
-
-    return render_to_response('submission/create.html', output, context_instance=RequestContext(request))
 
 @login_required
 def show(request, id):
@@ -101,13 +101,14 @@ def show(request, id):
         user_type = 'admin'
 
     submission = get_object_or_404(Submission, pk=id)
+    type_submission = TypeSubmission.objects.get(submission=submission)
 
     if user_type != 'admin' and submission.creator != request.user:
         return Http404
 
     metadata = None
     followup_form = FollowUpForm()
-    followups = FollowUp.objects.filter(submission=id).order_by('-created')
+    followups = FollowUp.objects.filter(submission=id).order_by('created')
     steps = Step.objects.filter(type=submission.type)
     pending = steps.filter(pending=True)[0]
     close = steps.filter(close=True)[0]
@@ -115,16 +116,14 @@ def show(request, id):
     
     if not next_step:
         if submission.current_status.finish:
-            metadata = TypeSubmission.objects.get(submission=submission)
             finish = True
+
         # ele tá em pending
         else:
-            followup = FollowUp.objects.filter(submission=submission).order_by('-created')[0]
+            followup = FollowUp.objects.filter(submission=submission).order_by('-id')[0]
+
             if followup.current_status == pending:
-                start = steps.filter(parent=None)[0]
-                next_step = steps.filter(parent=start)
-            else:
-                next_step = [followup.current_status]
+                next_step = [followup.previous_status]
     
     output = {
         'user_type': user_type,
@@ -135,7 +134,7 @@ def show(request, id):
         'is_finish': finish,
         'close': close,
         'followup_form': followup_form,
-        'metadata': metadata,
+        'type_submission': type_submission,
     }
 
     return render_to_response('submission/show.html', output, context_instance=RequestContext(request))
@@ -154,24 +153,10 @@ def change_status(request, id):
         followup.submission = submission
         followup.previous_status = submission.current_status
         followup.current_status = status
-        
+    
         form = FollowUpForm(request.POST, request.FILES, instance=followup)
+
         if form.is_valid:
-
-            if status.finish:
-                metadata = TypeSubmission()
-                
-                metadata.submission = submission
-                metadata.type = submission.type
-                if request.POST['express'] == 'full':
-                    metadata.full_lilacs_express = True
-                else:
-                    metadata.partial_lilacs_express = True
-                metadata.total_records = request.POST['total_records']
-                metadata.certified = request.POST['certified_records']
-
-                metadata.save()
-
             form.save()
         else:
             pass
@@ -180,6 +165,25 @@ def change_status(request, id):
         submission.save()
 
     return redirect(next)
+
+@login_required
+def edit_type_submission(request, id):
+
+    type_submission = get_object_or_404(TypeSubmission, pk=id)
+    form = SubmissionIsoForm(instance=type_submission)
+
+    if request.POST:
+        form = SubmissionIsoForm(request.POST, instance=type_submission)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('submission.views.show', args=[type_submission.submission.id]))
+
+    output = {
+        'form': form,
+        'type_submission': type_submission,
+    }
+
+    return render_to_response('submission/edit-type-submission.html', output, context_instance=RequestContext(request))
 
 @login_required
 def list(request, type=0, filtr=0):

@@ -10,7 +10,25 @@
         <div class="row">
             <div class="">
                 <h2>Submission #{{ submission.id }}: {{ submission.type }}</h2>
-                <h3>Current status: {{ submission.current_status }} </h3>
+                <h3>
+                    Current status: {{ submission.current_status }}
+                    {% if submission.current_status.finish %}
+                        <small>
+                            <a data-toggle="modal" href="{% url submission.views.edit_type_submission type_submission.id %}" data-target="#editType">Edit register</a>
+                        </small>
+                    {% endif %}
+                </h3>
+
+                {% if submission.current_status.finish %}
+                    <div class="modal hide" id="editType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myModalLabel">Modal header</h3>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer"></div>
+                    </div>
+                {% endif %}
 
                 <table class="table">
                     <tbody>
@@ -30,12 +48,6 @@
                             <th>Last update</th>
                             <td>{{ submission.updated }}</td>
                         </tr>
-                        {% if submission.iso_file %}
-                            <tr>
-                                <th>ISO File</th>
-                                <td><a href="{{ submission.get_iso_url }}" title="ISO File" target="_blank">{{ submission.get_iso_url|slice:"40" }}..</a></td>
-                            </tr>
-                        {% endif %}
                         {% if submission.observation %}
                             <tr>
                                 <th>Observation</th>
@@ -43,31 +55,25 @@
                             </tr>
                         {% endif %}
 
-                        {% if metadata %}
-                            {% if metadata.full_lilacs_express %}
+                        {% if type_submission %}
+                            {% if type_submission.total_records > 0 %}
                                 <tr>
-                                    <th>Full Lilacs Express?</th>
-                                    <td>Yes</td>
+                                    <th>ISO</th>
+                                    <td><a href="{{ type_submission.get_iso_url }}">{{ type_submission.get_iso_url }}</a></td>
                                 </tr>
                             {% endif %}
-
-                            {% if metadata.partial_lilacs_express %}
+                            {% if type_submission.total_records > 0 %}
                                 <tr>
-                                    <th>Partial Lilacs Express?</th>
-                                    <td>Yes</td>
+                                    <th>Total of records</th>
+                                    <td>{{ type_submission.total_records }}</td>
                                 </tr>
                             {% endif %}
-
-                            <tr>
-                                <th>Total of records</th>
-                                <td>{{ metadata.total_records }}</td>
-                            </tr>
-
-                            <tr>
-                                <th>Total of certified records</th>
-                                <td>{{ metadata.certified }}</td>
-                            </tr>
-
+                            {% if type_submission.certified > 0 %}
+                                <tr>
+                                    <th>Total of certified records</th>
+                                    <td>{{ type_submission.certified }}</td>
+                                </tr>
+                            {% endif %}
                         {% endif %}
                     </tbody>
                 </table>
@@ -79,6 +85,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Date</th>
                                 <th>Author</th>
                                 <th>Previous Status</th>
@@ -91,13 +98,14 @@
                             {% if followups %}
                                 {% for item in followups %}
                                     <tr>
-                                        <td><span title="{{ item.created }}">{{ item.created|date:"d/m/Y" }}</span></td>
+                                        <td>{{ item.id }}</td>
+                                        <td><span title="{{ item.created }}">{{ item.created|date:"d/m/y H:i" }}</span></td>
                                         <td>{{ item.creator }}</td>
                                         <td>{{ item.previous_status }}</td>
                                         <td>{{ item.current_status }}</td>
                                         <td>{% if item.message %}
                                             {% if item.message|length > 20 %}
-                                                <span title="{{ item.message }}">{{ item.message|length }}..</span>
+                                                <span title="{{ item.message }}">{{ item.message|slice:":20" }}..</span>
                                             {% else %}
                                                 {{ item.message}}
                                             {% endif %}
