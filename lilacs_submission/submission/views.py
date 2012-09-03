@@ -170,10 +170,10 @@ def change_status(request, id):
 def edit_type_submission(request, id):
 
     type_submission = get_object_or_404(TypeSubmission, pk=id)
-    form = SubmissionIsoForm(instance=type_submission)
+    form = SubmissionIsoFinalForm(instance=type_submission)
 
     if request.POST:
-        form = SubmissionIsoForm(request.POST, instance=type_submission)
+        form = SubmissionIsoFinalForm(request.POST, instance=type_submission)
         if form.is_valid():
             form.save()
             return redirect(reverse('submission.views.show', args=[type_submission.submission.id]))

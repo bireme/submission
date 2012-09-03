@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
 from django.db import models
-import os, md5
 from glob import glob
 
 TYPE_CHOICES = (
