@@ -28,3 +28,4 @@ pip-log.txt
 
 *.db
 settings_local.py
+fabfile.py
