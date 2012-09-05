@@ -14,26 +14,28 @@ def index(request):
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
-    filtr = False
 
     output = {}
     submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True).exclude(current_status__close=True)
     filters = Step.objects.all().exclude(finish=True)
 
-    if 'admins' in user_groups:
-        user_type = 'admin'
-        
-    if user_type == 'user':
-        submissions = submissions.filter(creator=request.user)
+    if 'admins' in user_groups: user_type = 'admin'
+    if user_type == 'user': submissions = submissions.filter(creator=request.user)
 
     order_by = 'id'
     order_type = ''
+    filtr = ""
     if request.POST:
         if 'order_by' in request.POST and request.POST['order_by'] != "":
             order_by = request.POST['order_by']
         
         if 'order_type' in request.POST and request.POST['order_type'] != "":
             order_type = request.POST['order_type']
+
+        if 'filter' in request.POST and request.POST['filter'] != "":
+            filtr = request.POST['filter']
+            filtr = get_object_or_404(Step, pk=filtr)
+            submissions = submissions.filter(current_status=filtr)
 
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
 

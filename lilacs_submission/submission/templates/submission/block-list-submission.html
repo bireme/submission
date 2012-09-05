@@ -1,5 +1,29 @@
+<script>
+    function change_order_by(order) {
+        var form = document.interface;
+        form.order_by.value = order;
+        form.submit();
+    }
+
+    function change_order_type(order) {
+        var form = document.interface;
+        if (form.order_type.value != "") {
+            form.order_type.value = "";
+        } else {
+            form.order_type.value = "-";
+        }
+        form.submit();
+    }
+
+    function change_filter(filter) {
+        var form = document.interface;
+        form.filter.value = filter;
+        form.submit();
+    }
+</script>
+
 <form name="interface" method="POST">{% csrf_token %}
-    <input type="hidden" name="filter" value="">
+    <input type="hidden" name="filter" value="{{ filtr }}">
     <input type="hidden" name="order_type" value="{{ order_type }}">
     <input type="hidden" name="order_by" value="{{ order_by }}">
 </form>
@@ -8,11 +32,11 @@
     <h2>Opened submissions  ({{ submissions|length }})</h2>
     <div class="filters">
         <ul>
-            <li>{% if not filtr %}<b>All</b>{% else %}<a href="?opened_filter=0">All</a>{% endif %}</li>
+            <li>{% if not filtr %}<b>All</b>{% else %}<a href="javascript:change_filter('')">All</a>{% endif %}</li>
             {% for filter in filters %}
                 <li>
                     {% if filtr == filter %}<b>{{ filter }}</b>
-                    {% else %}<a href="?opened_filter={{ filter.id }}">{{ filter }}</a>
+                    {% else %}<a href="javascript:change_filter('{{ filter.id }}')">{{ filter }}</a>
                     {% endif %}
                 </li>
             {% endfor %}

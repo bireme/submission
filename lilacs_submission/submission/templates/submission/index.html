@@ -1,26 +1,6 @@
 {% extends "base.html" %}
 {% load custom_filters %}
 
-{% block extrahead %}
-<script>
-    function change_order_by(order) {
-        var form = document.interface;
-        form.order_by.value = order;
-        form.submit();
-    }
-
-    function change_order_type(order) {
-        var form = document.interface;
-        if (form.order_type.value != "") {
-            form.order_type.value = "";
-        } else {
-            form.order_type.value = "-";
-        }
-        form.submit();
-    }
-</script>
-{% endblock %}
-
 {% block content %}    
     <div class="row">
         <div class="span12 submissions">
