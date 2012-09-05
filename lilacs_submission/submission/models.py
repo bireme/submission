@@ -1,9 +1,10 @@
 from django.template.defaultfilters import slugify
+from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
 from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
 from django.db import models
-from glob import glob
+import os
 
 class Generic(models.Model):
 
@@ -49,9 +50,9 @@ class Type(Generic):
 class TypeSubmission(Generic):
 
     TYPE_CHOICES = (
-        ('r', 'Revista'),
-        ('m', 'Monografia'),
-        ('e', 'LILACS Express'),
+        ('rev', 'Revista'),
+        ('mono', 'Monografia'),
+        ('express', 'LILACS Express'),
     )
 
     class Meta:
@@ -62,12 +63,27 @@ class TypeSubmission(Generic):
 
     # Function that remove spaces and special characters from filenames
     def new_filename(instance, filename):
+        user = get_current_user()
+        request = get_current_request()
         fname, dot, extension = filename.rpartition('.')
-        fname = slugify(fname)        
-        return settings.MEDIA_ROOT + '/attac/' + '%s.%s' % (fname, extension)
+
+        type = request.POST.get('type')        
+
+        dir = os.path.join(settings.MEDIA_ROOT, 'attac')
+        dir = os.path.join(dir, unicode(user))
+        dir = os.path.join(dir, type)
+        try:
+            path, dirs, files = os.walk(dir).next()
+            next_number = len(files) + 1
+        except:
+            next_number = 1
+        fname = slugify("%s-%s-%s" % (user, type, next_number))
+        
+        return os.path.join(dir, '%s.%s' % (fname, extension))
+        
     
     # iso    
-    type = models.CharField("Type of Records", max_length=1, choices=TYPE_CHOICES, default='e', null=True, blank=True)
+    type = models.CharField("Type of Records", max_length=10, choices=TYPE_CHOICES, default='e', null=True, blank=True)
     total_records = models.CharField("total of records", max_length=255, blank=True, null=True, default=0)
     certified = models.CharField("total of certified records", max_length=255, blank=True, null=True, default=0)
     iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)

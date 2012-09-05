@@ -165,6 +165,10 @@ def show(request, id):
     pending = steps.filter(pending=True)[0]
     close = steps.filter(close=True)[0]
     next_step = steps.filter(parent=submission.current_status)
+    is_pre_finish = False
+    if next_step and next_step[0].finish: is_pre_finish = True
+
+    print next_step
     
     if not next_step:
         if submission.current_status.finish:
@@ -178,6 +182,7 @@ def show(request, id):
                 next_step = [followup.previous_status]
     
     output = {
+        'is_pre_finish': is_pre_finish,
         'user_type': user_type,
         'submission': submission,
         'followups': followups,
