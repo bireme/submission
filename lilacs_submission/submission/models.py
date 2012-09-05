@@ -5,17 +5,6 @@ from datetime import datetime
 from django.db import models
 from glob import glob
 
-TYPE_CHOICES = (
-    ('iso', "ISO File"),
-    ('oai', "OAI PMH"),
-)
-
-STATUS_CHOICES = (
-    ('a', 'approved'),
-    ('p', 'pending'),
-    ('d', 'declined'),
-)
-
 class Generic(models.Model):
 
     class Meta:
