@@ -26,14 +26,29 @@ def index(request):
     if user_type == 'user':
         submissions = submissions.filter(creator=request.user)
 
-    if 'opened_filter' in request.GET:
-        try:
-            filtr = Step.objects.get(pk=request.GET['opened_filter'])
-            submissions = submissions.filter(current_status=filtr)
-        except:
-            pass
+    order_by = 'id'
+    order_type = ''
+    if request.POST:
+        if 'order_by' in request.POST and request.POST['order_by'] != "":
+            order_by = request.POST['order_by']
+        
+        if 'order_type' in request.POST and request.POST['order_type'] != "":
+            order_type = request.POST['order_type']
+
+    submissions = submissions.order_by("%s%s" % (order_type, order_by))
+
+    headers = (
+        ('id', '#'),
+        ('created', 'Creation Date'),
+        ('updated', "Last Update"),
+        ('current_status', "Status"),
+    )
+    
             
+    output['headers'] = headers
     output['submissions'] = submissions
+    output['order_by'] = order_by
+    output['order_type'] = order_type
     output['filters'] = filters
     output['filtr'] = filtr
 

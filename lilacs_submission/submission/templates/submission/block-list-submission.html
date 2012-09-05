@@ -1,0 +1,57 @@
+<form name="interface" method="POST">{% csrf_token %}
+    <input type="hidden" name="filter" value="">
+    <input type="hidden" name="order_type" value="{{ order_type }}">
+    <input type="hidden" name="order_by" value="{{ order_by }}">
+</form>
+
+<div class="blockSubmission">
+    <h2>Opened submissions  ({{ submissions|length }})</h2>
+    <div class="filters">
+        <ul>
+            <li>{% if not filtr %}<b>All</b>{% else %}<a href="?opened_filter=0">All</a>{% endif %}</li>
+            {% for filter in filters %}
+                <li>
+                    {% if filtr == filter %}<b>{{ filter }}</b>
+                    {% else %}<a href="?opened_filter={{ filter.id }}">{{ filter }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+            {% for name, title in headers %}
+                <th>
+                    {% if order_by == name %}
+                        <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}
+                            {% if order_type == '-' %}
+                                <i class="icon-chevron-down"></i>
+                            {% else %}
+                                <i class="icon-chevron-up"></i>
+                            {% endif %}
+                        </a>
+                    {% else %}
+                        <a href="javascript:change_order_by('{{ name }}')" title="Order by {{ title }}">{{ title }}</a>
+                    {% endif %}
+                </th>
+            {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% if submissions|length %}
+                {% for sub in submissions %}
+                    <tr>
+                        <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.id }}</a></td>
+                        <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
+                        <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
+                        <td>{{ sub.current_status }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan=6>No matches for your query</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
