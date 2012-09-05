@@ -19,31 +19,52 @@ def index(request):
 
     output = {}
     submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True).exclude(current_status__close=True)
-    filters = Step.objects.all().exclude(finish=True)
+    filters = Step.objects.all().exclude(finish=True).exclude(close=True)
 
     if 'admins' in user_groups: user_type = 'admin'
     if user_type == 'user': submissions = submissions.filter(creator=request.user)
 
+    # submission actions
+    if request.POST:
+        if 'action' in request.POST and request.POST['action'] != "":
+            action = request.POST['action']
+            ids = request.POST.getlist('submissions')
+            if action == 'approve':
+                for item in ids:
+                    item = Submission.objects.get(pk=item)
+                    status = item.current_status
+                    next = Step.objects.filter(parent=status)
+                    if next:
+                        item.current_status = next[0]
+                        item.save()
+            if action == 'decline':
+                for item in ids:
+                    item = Submission.objects.get(pk=item)
+                    close = Step.objects.get(close=True)
+                    item.current_status = close
+                    item.save()
+    
     # requests of interface
     order_by = 'id'
     order_type = ''
     filtr = ""
     page = 1
-    if request.POST:
-        if 'order_by' in request.POST and request.POST['order_by'] != "":
-            order_by = request.POST['order_by']
+    if request.REQUEST:
+        # interface
+        if 'order_by' in request.REQUEST and request.REQUEST['order_by'] != "":
+            order_by = request.REQUEST['order_by']
         
-        if 'order_type' in request.POST and request.POST['order_type'] != "":
-            order_type = request.POST['order_type']
+        if 'order_type' in request.REQUEST and request.REQUEST['order_type'] != "":
+            order_type = request.REQUEST['order_type']
 
-        if 'filter' in request.POST and request.POST['filter'] != "":
-            filtr = request.POST['filter']
+        if 'filter' in request.REQUEST and request.REQUEST['filter'] != "":
+            filtr = request.REQUEST['filter']
             filtr = get_object_or_404(Step, pk=filtr)
             submissions = submissions.filter(current_status=filtr)
         
-        if 'page' in request.POST and request.POST['page'] != "":
-            page = request.POST['page']
-    
+        if 'page' in request.REQUEST and request.REQUEST['page'] != "":
+            page = request.REQUEST['page']
+
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
 
     # pagination
@@ -55,9 +76,9 @@ def index(request):
 
     headers = (
         ('id', '#'),
-        ('created', 'Creation Date'),
+        ('creator', 'Created by'),
         ('updated', "Last Update"),
-        ('current_status', "Status"),
+        ('current_status', "Status"),        
     )
             
     output['headers'] = headers

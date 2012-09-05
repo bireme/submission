@@ -1,4 +1,5 @@
 <script>
+    // interface
     function change_order_by(order) {
         var form = document.interface;
         form.order_by.value = order;
@@ -31,9 +32,25 @@
         // remove o href dos .disables, caso a pessoa clique por engano, para nao dar erro
         $(".disabled").find('a').attr('href', "#");
     });
+
+    // submissions
+    function toggle_all(obj) {
+        if(obj.checked) {
+            $(".checkbox_submission").attr('checked', true);
+        } else {
+            $(".checkbox_submission").attr('checked', false);
+        }
+    }
+
+    function submission_action(action) {
+        var form = document.submissions;
+        form.action.value = action;
+        form.submit();
+    }
+
 </script>
 
-<form name="interface" method="POST">{% csrf_token %}
+<form name="interface" method="GET">{% csrf_token %}
     <input type="hidden" name="filter" value="{{ filtr.id }}">
     <input type="hidden" name="order_type" value="{{ order_type }}">
     <input type="hidden" name="order_by" value="{{ order_by }}">
@@ -54,42 +71,59 @@
             {% endfor %}
         </ul>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-            {% for name, title in headers %}
-                <th>
-                    {% if order_by == name %}
-                        <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}
-                            {% if order_type == '-' %}
-                                <i class="icon-chevron-down"></i>
-                            {% else %}
-                                <i class="icon-chevron-up"></i>
-                            {% endif %}
-                        </a>
-                    {% else %}
-                        <a href="javascript:change_order_by('{{ name }}')" title="Order by {{ title }}">{{ title }}</a>
-                    {% endif %}
-                </th>
-            {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% if submissions|length %}
-                {% for sub in submissions %}
-                    <tr>
-                        <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.id }}</a></td>
-                        <td>{{ sub.created|date:"d/m/Y H:i" }}</td>
-                        <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
-                        <td>{{ sub.current_status }}</td>
-                        
-                    </tr>
+
+    <!-- bulk actions -->
+    {% if filtr and submissions|length > 0 %}
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Bulk actions <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="javascript: submission_action('approve')">Approve to next status</a></li>
+                <li><a href="javascript: submission_action('decline')">Decline</a></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    <form name="submissions" method="POST">{% csrf_token %}
+        <input type="hidden" name="action" value="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" onclick="toggle_all(this);"></th>
+                {% for name, title in headers %}
+                    <th>
+                        {% if order_by == name %}
+                            <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}
+                                {% if order_type == '-' %}
+                                    <i class="icon-chevron-down"></i>
+                                {% else %}
+                                    <i class="icon-chevron-up"></i>
+                                {% endif %}
+                            </a>
+                        {% else %}
+                            <a href="javascript:change_order_by('{{ name }}')" title="Order by {{ title }}">{{ title }}</a>
+                        {% endif %}
+                    </th>                
                 {% endfor %}
-            {% else %}
-                <tr><td colspan=6>No matches for your query</td></tr>
-            {% endif %}
-        </tbody>
-    </table>
+                </tr>
+            </thead>
+            <tbody>
+                {% if submissions|length %}
+                    {% for sub in submissions %}
+                        <tr>
+                            <td><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.id }}</a></td>
+                            <td><span title="{{ sub.created|date:"d/m/Y H:i" }}">{{ sub.creator }}</span></td>
+                            <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
+                            <td>{{ sub.current_status }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan=6>No matches for your query</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </form>
 </div>
 
 <div class="pagination">
