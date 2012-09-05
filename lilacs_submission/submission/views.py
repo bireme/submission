@@ -1,9 +1,11 @@
 #! coding: utf-8
 from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
-from django.template import RequestContext
 from django.contrib.auth.models import Group
+from django.core.urlresolvers import reverse
+from django.core.paginator import Paginator
+from django.template import RequestContext
+from django.conf import settings
 from django.http import Http404
 from models import *
 from forms import *
@@ -22,9 +24,11 @@ def index(request):
     if 'admins' in user_groups: user_type = 'admin'
     if user_type == 'user': submissions = submissions.filter(creator=request.user)
 
+    # requests of interface
     order_by = 'id'
     order_type = ''
     filtr = ""
+    page = 1
     if request.POST:
         if 'order_by' in request.POST and request.POST['order_by'] != "":
             order_by = request.POST['order_by']
@@ -36,8 +40,18 @@ def index(request):
             filtr = request.POST['filter']
             filtr = get_object_or_404(Step, pk=filtr)
             submissions = submissions.filter(current_status=filtr)
-
+        
+        if 'page' in request.POST and request.POST['page'] != "":
+            page = request.POST['page']
+    
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
+
+    # pagination
+    pagination = {}
+    paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
+    pagination['paginator'] = paginator
+    pagination['page'] = paginator.page(page)
+    submissions = pagination['page'].object_list
 
     headers = (
         ('id', '#'),
@@ -45,7 +59,6 @@ def index(request):
         ('updated', "Last Update"),
         ('current_status', "Status"),
     )
-    
             
     output['headers'] = headers
     output['submissions'] = submissions
@@ -53,6 +66,7 @@ def index(request):
     output['order_type'] = order_type
     output['filters'] = filters
     output['filtr'] = filtr
+    output['pagination'] = pagination
 
     return render_to_response('submission/index.html', output, context_instance=RequestContext(request))
         

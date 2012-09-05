@@ -175,6 +175,8 @@ AUTH_PROFILE_MODULE = "account.UserProfile"
 
 AUTHENTICATION_BACKENDS = ('authentication.NMailAuthentication',)
 
+ITEMS_PER_PAGE = 20
+
 try:
     from settings_local import *
 except ImportError:

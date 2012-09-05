@@ -20,12 +20,24 @@
         form.filter.value = filter;
         form.submit();
     }
+    
+    function change_page(page) {
+        var form = document.interface;
+        form.page.value = page;
+        form.submit();
+    }
+
+    $(function(){
+        // remove o href dos .disables, caso a pessoa clique por engano, para nao dar erro
+        $(".disabled").find('a').attr('href', "#");
+    });
 </script>
 
 <form name="interface" method="POST">{% csrf_token %}
-    <input type="hidden" name="filter" value="{{ filtr }}">
+    <input type="hidden" name="filter" value="{{ filtr.id }}">
     <input type="hidden" name="order_type" value="{{ order_type }}">
     <input type="hidden" name="order_by" value="{{ order_by }}">
+    <input type="hidden" name="page" value="{{ pagination.page.number }}">
 </form>
 
 <div class="blockSubmission">
@@ -78,4 +90,22 @@
             {% endif %}
         </tbody>
     </table>
+</div>
+
+<div class="pagination">
+    <ul>
+        <li class="{% if not pagination.page.has_previous %}disabled{% endif %}">
+            <a href="javascript: change_page('{{ pagination.page.previous_page_number }}')">&#171;</a>
+        </li>
+
+        {% for i in pagination.paginator.page_range %}
+            {% if i == pagination.page.number %}<li class="disabled">{% else %}<li>{% endif %}
+            <a href="javascript: change_page('{{ i }}')">{{ i }}</a></li>        
+        {% endfor %}
+
+
+        <li class="{% if not pagination.page.has_next %}disabled{% endif %}">
+            <a href="javascript: change_page('{{ pagination.page.next_page_number }}')">&#187;</a>
+        </li>
+    </ul>
 </div>
