@@ -163,8 +163,11 @@ def show(request, id):
     submission = get_object_or_404(Submission, pk=id)
     type_submission = TypeSubmission.objects.get(submission=submission)
 
-    if user_type != 'admin' and submission.creator != request.user:
-        return Http404
+    if not user_type == 'admin':        
+        if not user.get_profile().is_admin:
+            if not submission.creator == request.user:
+                return Http404
+
 
     metadata = None
     followup_form = FollowUpForm()
@@ -175,8 +178,6 @@ def show(request, id):
     next_step = steps.filter(parent=submission.current_status)
     is_pre_finish = False
     if next_step and next_step[0].finish: is_pre_finish = True
-
-    print next_step
     
     if not next_step:
         if submission.current_status.finish:
