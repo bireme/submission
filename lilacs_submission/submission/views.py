@@ -21,8 +21,15 @@ def index(request):
     submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True).exclude(current_status__close=True)
     filters = Step.objects.all().exclude(finish=True).exclude(close=True)
 
-    if 'admins' in user_groups: user_type = 'admin'
-    if user_type == 'user': submissions = submissions.filter(creator=request.user)
+    if 'admins' in user_groups:
+        user_type = 'admin'
+
+    if user_type == 'user':
+        profile = request.user.get_profile()
+        if profile.is_admin:
+            submissions = submissions.filter(creator__userprofile__center=profile.center)
+        else:
+            submissions = submissions.filter(creator=request.user)
 
     # submission actions
     if request.POST:
@@ -76,6 +83,7 @@ def index(request):
 
     headers = (
         ('id', '#'),
+        ('', 'Center'),
         ('creator', 'Created by'),
         ('updated', "Last Update"),
         ('current_status', "Status"),        

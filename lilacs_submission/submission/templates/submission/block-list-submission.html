@@ -58,7 +58,7 @@
 </form>
 
 <div class="blockSubmission">
-    <h2>Opened submissions  ({{ submissions|length }})</h2>
+    <h2>Opened submissions ({{ submissions|length }})</h2>
     <div class="filters">
         <ul>
             <li>{% if not filtr %}<b>All</b>{% else %}<a href="javascript:change_filter('')">All</a>{% endif %}</li>
@@ -91,16 +91,20 @@
                     <th><input type="checkbox" onclick="toggle_all(this);"></th>
                 {% for name, title in headers %}
                     <th>
-                        {% if order_by == name %}
-                            <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}
-                                {% if order_type == '-' %}
-                                    <i class="icon-chevron-down"></i>
-                                {% else %}
-                                    <i class="icon-chevron-up"></i>
-                                {% endif %}
-                            </a>
+                        {% if name != "" %}
+                            {% if order_by == name %}
+                                <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}
+                                    {% if order_type == '-' %}
+                                        <i class="icon-chevron-down"></i>
+                                    {% else %}
+                                        <i class="icon-chevron-up"></i>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <a href="javascript:change_order_by('{{ name }}')" title="Order by {{ title }}">{{ title }}</a>
+                            {% endif %}
                         {% else %}
-                            <a href="javascript:change_order_by('{{ name }}')" title="Order by {{ title }}">{{ title }}</a>
+                            {{ title }}
                         {% endif %}
                     </th>                
                 {% endfor %}
@@ -112,6 +116,7 @@
                         <tr>
                             <td><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></td>
                             <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.id }}</a></td>
+                            <td>{{ request.user.get_profile.center }}</td>
                             <td><span title="{{ sub.created|date:"d/m/Y H:i" }}">{{ sub.creator }}</span></td>
                             <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
                             <td>{{ sub.current_status }}</td>

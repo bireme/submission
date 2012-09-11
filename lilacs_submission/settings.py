@@ -129,6 +129,7 @@ INSTALLED_APPS = [
 
     'lilacs_submission.account',
     'lilacs_submission.submission',
+    'lilacs_submission.center',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 ]
@@ -173,8 +174,6 @@ TEMPLATE_LOADERS = (
 )
 
 AUTH_PROFILE_MODULE = "account.UserProfile"
-
-AUTHENTICATION_BACKENDS = ('authentication.NMailAuthentication',)
 
 ITEMS_PER_PAGE = 20
 
