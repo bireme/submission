@@ -61,6 +61,9 @@ class TypeSubmission(Generic):
 
     submission = models.ForeignKey("Submission", unique=True)
 
+    def iso_filename(self):
+        return os.path.basename(self.iso_file.name)
+
     # Function that remove spaces and special characters from filenames
     def new_filename(instance, filename):
         user = get_current_user()

@@ -114,13 +114,14 @@
                 {% if submissions|length %}
                     {% for sub in submissions %}
                         <tr>
-                            <td><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></td>
-                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.id }}</a></td>
-                            <td>{{ request.user.get_profile.center }}</td>
-                            <td><span title="{{ sub.created|date:"d/m/Y H:i" }}">{{ sub.creator }}</span></td>
-                            <td>{{ sub.updated|date:"d/m/Y H:i" }}</td>
-                            <td>{{ sub.current_status }}</td>
-                            
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}"><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.created }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.updated }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.creator.get_profile.center.code }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.updater }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.current_status }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.type }}</a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.iso_filename }}</a></td>
                         </tr>
                     {% endfor %}
                 {% else %}

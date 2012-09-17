@@ -18,7 +18,7 @@ def index(request):
     user_type = 'user'
 
     output = {}
-    submissions = Submission.objects.all().order_by('updated').exclude(current_status__finish=True).exclude(current_status__close=True)
+    submissions = TypeSubmission.objects.all().order_by('submission__updated').exclude(submission__current_status__finish=True).exclude(submission__current_status__close=True)
     filters = Step.objects.all().exclude(finish=True).exclude(close=True)
 
     if 'admins' in user_groups:
@@ -27,9 +27,9 @@ def index(request):
     if user_type == 'user':
         profile = request.user.get_profile()
         if profile.is_admin:
-            submissions = submissions.filter(creator__userprofile__center=profile.center)
+            submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
         else:
-            submissions = submissions.filter(creator=request.user)
+            submissions = submissions.filter(submission__creator=request.user)
 
     # submission actions
     if request.POST:
@@ -82,11 +82,13 @@ def index(request):
     submissions = pagination['page'].object_list
 
     headers = (
-        ('id', '#'),
-        ('', 'Center'),
-        ('creator', 'Created by'),
-        ('updated', "Last Update"),
-        ('current_status', "Status"),        
+        ("submission__created", "Creation Date"),        
+        ("submission__updated", "Last Update"),        
+        ("submission__creator__userprofile__center__code", "Center"),        
+        ("submission__updater", "Updated by"),        
+        ("submission__current_status", "Status"),        
+        ("submission__type", "Type"),        
+        ("iso_file", "Filename"),        
     )
             
     output['headers'] = headers
