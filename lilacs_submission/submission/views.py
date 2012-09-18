@@ -47,7 +47,7 @@ def index(request):
         if 'filter' in request.REQUEST and request.REQUEST['filter'] != "":
             filtr = request.REQUEST['filter']
             filtr = get_object_or_404(Step, pk=filtr)
-            submissions = submissions.filter(current_status=filtr)
+            submissions = submissions.filter(submission__current_status=filtr)
         
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']

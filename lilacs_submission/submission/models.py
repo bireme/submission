@@ -1,5 +1,6 @@
-from django.template.defaultfilters import slugify
 from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
+from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
@@ -11,8 +12,8 @@ class Generic(models.Model):
     class Meta:
         abstract = True
 
-    created = models.DateTimeField("created", default=datetime.now())
-    updated = models.DateTimeField("updated", default=datetime.now())
+    created = models.DateTimeField(_("created"), default=datetime.now())
+    updated = models.DateTimeField(_("updated"), default=datetime.now())
     creator = models.ForeignKey(User, null=True, blank=True, related_name="+")
     updater = models.ForeignKey(User, null=True, blank=True, related_name="+")
 
@@ -23,16 +24,16 @@ class Generic(models.Model):
 class Step(Generic):
 
     class Meta:
-        verbose_name = "step"
-        verbose_name_plural = "steps"
+        verbose_name = _("step")
+        verbose_name_plural = _("steps")
 
     type = models.ForeignKey("Type")
-    title = models.CharField("title", max_length=255)
+    title = models.CharField(_("title"), max_length=255)
     parent = models.ForeignKey('Step', blank=True, null=True)
-    finish = models.BooleanField('finish step?')
-    pending = models.BooleanField('pending step?')
-    close = models.BooleanField('close step?')
-    allow_edit = models.BooleanField('allow register edition?')
+    finish = models.BooleanField(_('finish step?'))
+    pending = models.BooleanField(_('pending step?'))
+    close = models.BooleanField(_('close step?'))
+    allow_edit = models.BooleanField(_('allow register edition?'))
 
     def __unicode__(self):
         return unicode(self.title)
@@ -40,10 +41,10 @@ class Step(Generic):
 class Type(Generic):
 
     class Meta:
-        verbose_name = "type"
-        verbose_name_plural = "types"
+        verbose_name = _("type")
+        verbose_name_plural = _("types")
 
-    title = models.CharField("title", max_length=255)
+    title = models.CharField(_("title"), max_length=255)
 
     def __unicode__(self):
         return unicode(self.title)
@@ -51,9 +52,9 @@ class Type(Generic):
 class TypeSubmission(Generic):
 
     TYPE_CHOICES = (
-        ('rev', 'Revista'),
-        ('mono', 'Monografia'),
-        ('express', 'LILACS Express'),
+        ('rev', _('Revista')),
+        ('mono', _('Monografia')),
+        ('express', _('LILACS Express')),
     )
 
     VERSION_CHOICES = (
@@ -65,8 +66,8 @@ class TypeSubmission(Generic):
     )
 
     class Meta:
-        verbose_name = 'type in submission'
-        verbose_name_plural = 'types in submission'
+        verbose_name = _('type in submission')
+        verbose_name_plural = _('types in submission')
 
     submission = models.ForeignKey("Submission", unique=True)
 
@@ -98,11 +99,11 @@ class TypeSubmission(Generic):
         
     
     # iso    
-    type = models.CharField("Type of Records", max_length=10, choices=TYPE_CHOICES, default='e', null=True, blank=True)
-    total_records = models.CharField("total of records", max_length=255, blank=True, null=True, default=0)
-    certified = models.CharField("total of certified records", max_length=255, blank=True, null=True, default=0)
-    iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)
-    lildbi_version = models.CharField("Lildbi version", max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
+    type = models.CharField(_("Type of Records"), max_length=10, choices=TYPE_CHOICES, default='e', null=True, blank=True)
+    total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
+    certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
+    iso_file = models.FileField(_('iso file'), upload_to=new_filename, blank=True, null=True)
+    lildbi_version = models.CharField(_("Lildbi version"), max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
 
     def get_iso_url(self):
         return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
@@ -110,12 +111,12 @@ class TypeSubmission(Generic):
 class Submission(Generic):
 
     class Meta:
-        verbose_name = "submission"
-        verbose_name_plural = "submissions"
+        verbose_name = _("submission")
+        verbose_name_plural = _("submissions")
 
     type = models.ForeignKey("Type")
     current_status = models.ForeignKey("Step", verbose_name="Current Status")
-    observation = models.TextField("observation", blank=True, null=True)
+    observation = models.TextField(_("observation"), blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.type)
@@ -123,8 +124,8 @@ class Submission(Generic):
 class FollowUp(Generic):
 
     class Meta:
-        verbose_name = "follow up"
-        verbose_name_plural = "follow ups"
+        verbose_name = _("follow up")
+        verbose_name_plural = _("follow ups")
 
     # Function that remove spaces and special characters from filenames
     def new_filename(instance, filename):
@@ -135,9 +136,9 @@ class FollowUp(Generic):
     submission = models.ForeignKey('Submission')
     previous_status = models.ForeignKey('Step', related_name="+")
     current_status = models.ForeignKey('Step', related_name="+")
-    message = models.TextField("message", blank=True, null=True)
-    attachment = models.FileField('attachment', upload_to=new_filename, blank=True, null=True)
-    staff_message = models.TextField('staff message', blank=True, null=True)
+    message = models.TextField(_("message"), blank=True, null=True)
+    attachment = models.FileField(_('attachment'), upload_to=new_filename, blank=True, null=True)
+    staff_message = models.TextField(_('staff message'), blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.submission)

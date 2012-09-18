@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 11:54-0300\n"
+"POT-Creation-Date: 2012-09-18 12:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,73 +128,285 @@ msgstr ""
 msgid "%.1f min"
 msgstr ""
 
-#: submission/templates/submission/action-bar.html:10
-#: submission/templates/submission/block-list-submission.html:80
+#: submission/models.py:15
+msgid "created"
+msgstr ""
+
+#: submission/models.py:16
+msgid "updated"
+msgstr ""
+
+#: submission/models.py:27
+msgid "step"
+msgstr ""
+
+#: submission/models.py:28
+msgid "steps"
+msgstr ""
+
+#: submission/models.py:31 submission/models.py:47
+msgid "title"
+msgstr ""
+
+#: submission/models.py:33
+msgid "finish step?"
+msgstr ""
+
+#: submission/models.py:34
+msgid "pending step?"
+msgstr ""
+
+#: submission/models.py:35
+msgid "close step?"
+msgstr ""
+
+#: submission/models.py:36
+msgid "allow register edition?"
+msgstr ""
+
+#: submission/models.py:44
+msgid "type"
+msgstr ""
+
+#: submission/models.py:45
+msgid "types"
+msgstr ""
+
+#: submission/models.py:55
+msgid "Revista"
+msgstr ""
+
+#: submission/models.py:56
+msgid "Monografia"
+msgstr ""
+
+#: submission/models.py:57
+msgid "LILACS Express"
+msgstr ""
+
+#: submission/models.py:69
+msgid "type in submission"
+msgstr ""
+
+#: submission/models.py:70
+msgid "types in submission"
+msgstr ""
+
+#: submission/models.py:102
+msgid "Type of Records"
+msgstr ""
+
+#: submission/models.py:103
+msgid "total of records"
+msgstr ""
+
+#: submission/models.py:104
+msgid "total of certified records"
+msgstr ""
+
+#: submission/models.py:105
+msgid "iso file"
+msgstr ""
+
+#: submission/models.py:106
+msgid "Lildbi version"
+msgstr ""
+
+#: submission/models.py:114
+msgid "submission"
+msgstr ""
+
+#: submission/models.py:115
+msgid "submissions"
+msgstr ""
+
+#: submission/models.py:119
+msgid "observation"
+msgstr ""
+
+#: submission/models.py:127
+msgid "follow up"
+msgstr ""
+
+#: submission/models.py:128
+msgid "follow ups"
+msgstr ""
+
+#: submission/models.py:139
+msgid "message"
+msgstr ""
+
+#: submission/models.py:140
+msgid "attachment"
+msgstr ""
+
+#: submission/models.py:141
+msgid "staff message"
+msgstr ""
+
+#: submission/templates/submission/action-bar.html:11
+#: submission/templates/submission/block-list-submission.html:81
 msgid "Decline"
 msgstr ""
 
-#: submission/templates/submission/action-bar.html:12
+#: submission/templates/submission/action-bar.html:13
+#: submission/templates/submission/show.html:5
+#: submission/templates/submission/show.html:16
 msgid "Submission"
 msgstr ""
 
-#: submission/templates/submission/action-bar.html:14
+#: submission/templates/submission/action-bar.html:15
 msgid "Go to"
 msgstr ""
 
-#: submission/templates/submission/block-list-submission.html:63
+#: submission/templates/submission/block-list-submission.html:64
 msgid "All"
 msgstr ""
 
-#: submission/templates/submission/block-list-submission.html:77
+#: submission/templates/submission/block-list-submission.html:78
 msgid "Bulk actions"
 msgstr ""
 
-#: submission/templates/submission/block-list-submission.html:79
+#: submission/templates/submission/block-list-submission.html:80
 msgid "Approve to next status"
 msgstr ""
 
-#: submission/templates/submission/block-list-submission.html:103
+#: submission/templates/submission/block-list-submission.html:104
 msgid "Order by"
 msgstr ""
 
-#: submission/templates/submission/block-list-submission.html:128
+#: submission/templates/submission/block-list-submission.html:129
 msgid "No matches for your query"
 msgstr ""
 
-#: submission/templates/submission/box-change-status.html:4
+#: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
 msgstr ""
 
-#: submission/templates/submission/box-change-status.html:11
+#: submission/templates/submission/box-change-status.html:12
 msgid "Close"
 msgstr ""
 
-#: submission/templates/submission/box-change-status.html:12
+#: submission/templates/submission/box-change-status.html:13
 msgid "Change Status"
 msgstr ""
 
-#: submission/templates/submission/create-iso.html:7
+#: submission/templates/submission/create-iso.html:8
 msgid "Submit"
 msgstr ""
 
-#: submission/templates/submission/create.html:20
+#: submission/templates/submission/create.html:4
+#: submission/templates/submission/create.html:23
 msgid "New Submission"
 msgstr ""
 
-#: submission/templates/submission/create.html:28
+#: submission/templates/submission/create.html:31
 msgid "Select your submission type"
 msgstr ""
 
-#: submission/templates/submission/edit-type-submission.html:6
+#: submission/templates/submission/edit-type-submission.html:7
 msgid "Save changes"
+msgstr ""
+
+#: submission/templates/submission/index.html:4 templates/menu.html:5
+msgid "Dashboard"
+msgstr ""
+
+#: submission/templates/submission/index.html:14
+msgid "Success!"
+msgstr ""
+
+#: submission/templates/submission/index.html:21
+msgid "Opened submissions"
+msgstr ""
+
+#: submission/templates/submission/list.html:4 templates/menu.html:10
+msgid "Show all submissions"
+msgstr ""
+
+#: submission/templates/submission/list.html:7
+msgid "All submissions"
+msgstr ""
+
+#: submission/templates/submission/show.html:18
+msgid "Current status"
+msgstr ""
+
+#: submission/templates/submission/show.html:21
+#: submission/templates/submission/show.html:30
+msgid "Edit register"
+msgstr ""
+
+#: submission/templates/submission/show.html:40
+msgid "Center"
+msgstr ""
+
+#: submission/templates/submission/show.html:44
+msgid "Creator"
+msgstr ""
+
+#: submission/templates/submission/show.html:48
+msgid "Last updater"
+msgstr ""
+
+#: submission/templates/submission/show.html:52
+msgid "Created at"
+msgstr ""
+
+#: submission/templates/submission/show.html:56
+msgid "Last update"
+msgstr ""
+
+#: submission/templates/submission/show.html:61
+msgid "Observation"
+msgstr ""
+
+#: submission/templates/submission/show.html:75
+msgid "Total of records"
+msgstr ""
+
+#: submission/templates/submission/show.html:81
+msgid "Total of certified records"
+msgstr ""
+
+#: submission/templates/submission/show.html:92
+msgid "Last follow ups"
+msgstr ""
+
+#: submission/templates/submission/show.html:97
+msgid "Date"
+msgstr ""
+
+#: submission/templates/submission/show.html:98
+msgid "Author"
+msgstr ""
+
+#: submission/templates/submission/show.html:99
+msgid "Previous Status"
+msgstr ""
+
+#: submission/templates/submission/show.html:100
+msgid "Change to"
+msgstr ""
+
+#: submission/templates/submission/show.html:101
+msgid "Message"
+msgstr ""
+
+#: submission/templates/submission/show.html:102
+msgid "Staff Message"
+msgstr ""
+
+#: submission/templates/submission/show.html:103
+msgid "Attatchment"
+msgstr ""
+
+#: submission/templates/submission/show.html:141
+msgid "Sorry, there's no follow ups to this submission."
 msgstr ""
 
 #: templates/base.html:13
 msgid "BIREME Submission"
-msgstr ""
-
-#: templates/menu.html:5
-msgid "Dashboard"
 msgstr ""
 
 #: templates/menu.html:7
@@ -203,10 +415,6 @@ msgstr ""
 
 #: templates/menu.html:9
 msgid "New submission"
-msgstr ""
-
-#: templates/menu.html:10
-msgid "Show all submissions"
 msgstr ""
 
 #: templates/menu.html:23
