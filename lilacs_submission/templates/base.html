@@ -15,7 +15,9 @@
         {% block extrahead %}{% endblock %}
     {% endblock %}</head>
     
-    <body>{% block "body" %}
+    <body>
+        {% include "lang.html" %}
+        {% block "body" %}
             {% block top %}
                 <div class="navbar navbar-fixed-top">
                     <div class="navbar-inner">
