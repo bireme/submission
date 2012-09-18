@@ -30,26 +30,6 @@ def index(request):
             submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
         else:
             submissions = submissions.filter(submission__creator=request.user)
-
-    # submission actions
-    if request.POST:
-        if 'action' in request.POST and request.POST['action'] != "":
-            action = request.POST['action']
-            ids = request.POST.getlist('submissions')
-            if action == 'approve':
-                for item in ids:
-                    item = Submission.objects.get(pk=item)
-                    status = item.current_status
-                    next = Step.objects.filter(parent=status)
-                    if next:
-                        item.current_status = next[0]
-                        item.save()
-            if action == 'decline':
-                for item in ids:
-                    item = Submission.objects.get(pk=item)
-                    close = Step.objects.get(close=True)
-                    item.current_status = close
-                    item.save()
     
     # requests of interface
     order_by = 'id'
@@ -82,6 +62,7 @@ def index(request):
     submissions = pagination['page'].object_list
 
     headers = (
+        ("submission__id", "#"),
         ("submission__created", "Creation Date"),        
         ("submission__updated", "Last Update"),        
         ("submission__creator__userprofile__center__code", "Center"),        
@@ -170,7 +151,6 @@ def show(request, id):
             if not submission.creator == request.user:
                 return Http404
 
-
     metadata = None
     followup_form = FollowUpForm()
     followups = FollowUp.objects.filter(submission=id).order_by('created')
@@ -258,9 +238,9 @@ def list(request, type=0, filtr=0):
     if 'admins' in user_groups:
         user_type = 'admin'
 
-    submissions = Submission.objects.all().order_by('updated')
+    submissions = TypeSubmission.objects.all().order_by('updated')
     if not user_type == 'admin':
-        submissions = submissions.filter(creator=request.user)
+        submissions = submissions.filter(creator__userprofile__center=request.user.get_profile().center)
 
     filters = Step.objects.all()
     types = Type.objects.all()
@@ -276,8 +256,53 @@ def list(request, type=0, filtr=0):
         submissions = submissions.filter(current_status=filtr)
         filtr = filtr.id
 
+    # requests of interface
+    order_by = 'id'
+    order_type = ''
+    filtr = ""
+    page = 1
+    if request.REQUEST:
+        # interface
+        if 'order_by' in request.REQUEST and request.REQUEST['order_by'] != "":
+            order_by = request.REQUEST['order_by']
+        
+        if 'order_type' in request.REQUEST and request.REQUEST['order_type'] != "":
+            order_type = request.REQUEST['order_type']
+
+        if 'filter' in request.REQUEST and request.REQUEST['filter'] != "":
+            filtr = request.REQUEST['filter']
+            filtr = get_object_or_404(Step, pk=filtr)
+            submissions = submissions.filter(current_status=filtr)
+        
+        if 'page' in request.REQUEST and request.REQUEST['page'] != "":
+            page = request.REQUEST['page']
+
+    submissions = submissions.order_by("%s%s" % (order_type, order_by))
+
+    # pagination
+    pagination = {}
+    paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
+    pagination['paginator'] = paginator
+    pagination['page'] = paginator.page(page)
+    submissions = pagination['page'].object_list
+
+    headers = (
+        ("submission__id", "#"),        
+        ("submission__created", "Creation Date"),        
+        ("submission__updated", "Last Update"),        
+        ("submission__creator__userprofile__center__code", "Center"),        
+        ("submission__updater", "Updated by"),        
+        ("submission__current_status", "Status"),        
+        ("submission__type", "Type"),        
+        ("iso_file", "Filename"),        
+    )
+
     output = {
+        'headers' : headers,
+        'order_by' : order_by,
+        'order_type' : order_type,
         'submissions': submissions,
+        'pagination': pagination,
         'filters': filters,
         'filtr': filtr,
         'types': types,

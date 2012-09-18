@@ -15,7 +15,8 @@
             {% endif %}
                 
             <div class="relation">
-                {% block relations %}                  
+                {% block relations %}       
+                    <h2>Opened submissions ({{ submissions|length }})</h2>           
                     {% include 'submission/block-list-submission.html' %}
                 {% endblock %}
             </div>

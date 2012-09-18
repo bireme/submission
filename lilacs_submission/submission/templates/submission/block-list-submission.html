@@ -58,7 +58,6 @@
 </form>
 
 <div class="blockSubmission">
-    <h2>Opened submissions ({{ submissions|length }})</h2>
     <div class="filters">
         <ul>
             <li>{% if not filtr %}<b>All</b>{% else %}<a href="javascript:change_filter('')">All</a>{% endif %}</li>
@@ -115,6 +114,7 @@
                     {% for sub in submissions %}
                         <tr>
                             <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}"><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></a></td>
+                            <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}"><b>{{ sub.submission.id }}</b></a></td>
                             <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.created }}</a></td>
                             <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.updated }}</a></td>
                             <td><a href="{% url submission.views.show sub.id %}" title="Go to submission {{ sub.id }}">{{ sub.submission.creator.get_profile.center.code }}</a></td>
