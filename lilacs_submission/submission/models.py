@@ -78,17 +78,20 @@ class TypeSubmission(Generic):
         request = get_current_request()
         fname, dot, extension = filename.rpartition('.')
 
-        type = request.POST.get('type')        
+        type = request.POST.get('type')
+
+        try:
+            submissions = TypeSubmission.objects.all()
+            last = submissions.reverse()[0]
+            id = last.id + 1
+        except:
+            id = 1
 
         dir = os.path.join(settings.MEDIA_ROOT, 'attac')
         dir = os.path.join(dir, unicode(user))
         dir = os.path.join(dir, type)
-        try:
-            path, dirs, files = os.walk(dir).next()
-            next_number = len(files) + 1
-        except:
-            next_number = 1
-        fname = slugify("%s-%s-%s" % (user, type, next_number))
+        fname = slugify("%s-%s" % (type, id))
+        fname = "%s-%s" % (user.get_profile().center.code, fname)
         
         return os.path.join(dir, '%s.%s' % (fname, extension))
         
