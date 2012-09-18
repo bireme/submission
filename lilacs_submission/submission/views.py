@@ -144,12 +144,15 @@ def show(request, id):
         user_type = 'admin'
 
     submission = get_object_or_404(Submission, pk=id)
-    type_submission = TypeSubmission.objects.get(submission=submission)
+    try:
+        type_submission = TypeSubmission.objects.get(submission=submission)
+    except:
+        raise Http404
 
     if not user_type == 'admin':        
         if not user.get_profile().is_admin:
             if not submission.creator == request.user:
-                return Http404
+                raise Http404
 
     metadata = None
     followup_form = FollowUpForm()
