@@ -133,6 +133,7 @@ class FollowUp(Generic):
     current_status = models.ForeignKey('Step', related_name="+")
     message = models.TextField("message", blank=True, null=True)
     attachment = models.FileField('attachment', upload_to=new_filename, blank=True, null=True)
+    staff_message = models.TextField('staff message', blank=True, null=True)
 
     def __unicode__(self):
         return unicode(self.submission)

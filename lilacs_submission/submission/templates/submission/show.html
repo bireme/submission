@@ -91,6 +91,7 @@
                                 <th>Previous Status</th>
                                 <th>Change to</th>
                                 <th>Message</th>
+                                {% if user_type == 'admin' %}<th>Staff Message</th>{% endif %}
                                 <th>Attatchment</th>
                             </tr>
                         </thead>
@@ -112,6 +113,17 @@
                                         {% else %}
                                             -
                                         {% endif %}</td>
+                                        {% if user_type == 'admin' %}
+                                            <td>
+                                                {% if item.staff_message %}
+                                                    {% if item.staff_message|length > 20 %}
+                                                        <span title="{{ item.staff_message }}">{{ item.staff_message|slice:":20" }}..</span>
+                                                    {% else %}
+                                                        {{ item.staff_message }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </td>
+                                        {% endif %}
                                         <td>{% if item.attachment %}<a href="{{ item.get_attachment_url }}"><i class="icon-file"></i></a>{% else %}-{% endif %}</td>
                                     </tr>
                                 {% endfor %}
