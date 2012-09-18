@@ -69,7 +69,7 @@ class ExistingDirValidator(object):
 
         if not abs_path.startswith(self.base_path):
             if settings.DEBUG:
-                msg = _(u"Directory %r is not in base path ('%s')" % (abs_path, self.base_path))
+                msg = _(u"Directory") + abs_path + _("is not in base path") + "('" + self.base_path + "')"
             else:
                 msg = _(u"Directory is not in base path!")
             raise ValidationError(msg)

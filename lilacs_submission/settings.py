@@ -1,3 +1,4 @@
+# coding: utf-8
 # Django settings for lilacs_submission project.
 import os
 
@@ -34,13 +35,19 @@ TIME_ZONE = 'America/Sao_Paulo'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+
+LANGUAGES = (
+    ('en', u'English'),
+    ('pt-BR', u'Português'),
+    ('es', u'Espanhol'),
+)
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
@@ -101,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django_tools.middlewares.ThreadLocal.ThreadLocalMiddleware',
 )
@@ -124,8 +132,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+
+    'rosetta',
 
     'lilacs_submission.account',
     'lilacs_submission.submission',

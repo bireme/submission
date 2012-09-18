@@ -1,14 +1,15 @@
+{% load i18n %}
 <div class="modal hide confirm_change" id="confirmStatusChange">     
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Change submission status</h3>
+        <h3>{% trans "Change submission status" %}</h3>
     </div>
     <div class="modal-body">
         <input type="hidden" name="status" value="" />
         {{ followup_form }}
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-        <input type="submit" value="Change Status" class="btn btn-primary">        
+        <a href="#" class="btn" data-dismiss="modal">{% trans "Close" %}</a>
+        <button class="btn btn-primary">{% trans "Change Status" %}</button>
     </div>
 </div>

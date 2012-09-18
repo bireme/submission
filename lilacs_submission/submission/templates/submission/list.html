@@ -1,6 +1,9 @@
 {% extends "submission/index.html" %}
+{% load i18n %}
+
+{% block "title" %}{% trans "Show all submissions" %} | {{ block.super }}{% endblock %}
 
 {% block relations %}
-	<h2>All submissions ({{ submissions|length }})</h2>
+	<h2>{% trans "All submissions" %} ({{ submissions|length }})</h2>
 	{% include 'submission/block-list-submission.html' %}
 {% endblock %}

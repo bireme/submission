@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-18 11:54-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+#: django_tools/decorators.py:60
+msgid "Permission denied for anonymous user. Please log in."
+msgstr ""
+
+#: django_tools/limit_to_usergroups.py:159
+msgid "anonymous users"
+msgstr ""
+
+#: django_tools/limit_to_usergroups.py:160
+msgid "normal users"
+msgstr ""
+
+#: django_tools/limit_to_usergroups.py:161
+msgid "staff users"
+msgstr ""
+
+#: django_tools/limit_to_usergroups.py:162
+msgid "superusers"
+msgstr ""
+
+#: django_tools/model_utils.py:58
+msgid "and"
+msgstr ""
+
+#: django_tools/model_utils.py:59
+#, python-format
+msgid "%(model_name)s with this %(field_names)s already exists."
+msgstr ""
+
+#: django_tools/validators.py:31
+msgid ""
+"Enter a valid language code (Accept-Language header format, see RFC2616)"
+msgstr ""
+
+#: django_tools/validators.py:72
+msgid "Directory"
+msgstr ""
+
+#: django_tools/validators.py:72
+msgid "is not in base path"
+msgstr ""
+
+#: django_tools/validators.py:74
+msgid "Directory is not in base path!"
+msgstr ""
+
+#: django_tools/validators.py:79
+#, python-format
+msgid "Directory %r doesn't exist!"
+msgstr ""
+
+#: django_tools/validators.py:81
+msgid "Directory doesn't exist!"
+msgstr ""
+
+#: django_tools/validators.py:180
+msgid "Please enter a local URL (without protocol/domain)."
+msgstr ""
+
+#: django_tools/validators.py:184
+msgid "The URL doesn't start with a allowed scheme."
+msgstr ""
+
+#: django_tools/validators.py:187
+msgid "Enter a valid URL without domain."
+msgstr ""
+
+#: django_tools/validators.py:190
+msgid "Enter a valid URL without a query."
+msgstr ""
+
+#: django_tools/validators.py:193
+msgid "Enter a valid URL without a fragment."
+msgstr ""
+
+#: django_tools/template/filters.py:96
+msgid "years"
+msgstr ""
+
+#: django_tools/template/filters.py:97
+msgid "months"
+msgstr ""
+
+#: django_tools/template/filters.py:98
+msgid "weeks"
+msgstr ""
+
+#: django_tools/template/filters.py:99
+msgid "days"
+msgstr ""
+
+#: django_tools/template/filters.py:100
+msgid "hours"
+msgstr ""
+
+#: django_tools/template/filters.py:104
+#, python-format
+msgid "%.1f ms"
+msgstr ""
+
+#: django_tools/template/filters.py:106
+#, python-format
+msgid "%.1f sec"
+msgstr ""
+
+#: django_tools/template/filters.py:108
+#, python-format
+msgid "%.1f min"
+msgstr ""
+
+#: submission/templates/submission/action-bar.html:10
+#: submission/templates/submission/block-list-submission.html:80
+msgid "Decline"
+msgstr ""
+
+#: submission/templates/submission/action-bar.html:12
+msgid "Submission"
+msgstr ""
+
+#: submission/templates/submission/action-bar.html:14
+msgid "Go to"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:63
+msgid "All"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:77
+msgid "Bulk actions"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:79
+msgid "Approve to next status"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:103
+msgid "Order by"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:128
+msgid "No matches for your query"
+msgstr ""
+
+#: submission/templates/submission/box-change-status.html:4
+msgid "Change submission status"
+msgstr ""
+
+#: submission/templates/submission/box-change-status.html:11
+msgid "Close"
+msgstr ""
+
+#: submission/templates/submission/box-change-status.html:12
+msgid "Change Status"
+msgstr ""
+
+#: submission/templates/submission/create-iso.html:7
+msgid "Submit"
+msgstr ""
+
+#: submission/templates/submission/create.html:20
+msgid "New Submission"
+msgstr ""
+
+#: submission/templates/submission/create.html:28
+msgid "Select your submission type"
+msgstr ""
+
+#: submission/templates/submission/edit-type-submission.html:6
+msgid "Save changes"
+msgstr ""
+
+#: templates/base.html:13
+msgid "BIREME Submission"
+msgstr ""
+
+#: templates/menu.html:5
+msgid "Dashboard"
+msgstr ""
+
+#: templates/menu.html:7
+msgid "Submissions"
+msgstr ""
+
+#: templates/menu.html:9
+msgid "New submission"
+msgstr ""
+
+#: templates/menu.html:10
+msgid "Show all submissions"
+msgstr ""
+
+#: templates/menu.html:23
+msgid "Logged as"
+msgstr ""
+
+#: templates/menu.html:24
+msgid "Edit"
+msgstr ""
+
+#: templates/menu.html:25
+msgid "Logout"
+msgstr ""

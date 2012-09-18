@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
+
+{% block "title" %}{% trans "New Submission" %} | {{ block.super }}{% endblock %}
 
 {% block extrahead %}
 <script>
@@ -17,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2>New Submission</h2>
+    <h2>{% trans "New Submission" %}</h2>
     
     <div class="row">
         <div class="span10 offset1">{% block "form" %}
@@ -25,7 +28,7 @@
                 <form class="form-vertical" method="POST" action="{% url submission.views.create %}" enctype="multipart/form-data">{% csrf_token %}
 
                     <div class="block type">
-                        <label for="type">Select your submission type</label>
+                        <label for="type">{% trans "Select your submission type" %}</label>
                         <ul>
                             {% for type in types %}                        
                                 <li><a href="{% url submission.views.create type.id %}" title="{{ type.title }}">{{ type.title }}</a></li>

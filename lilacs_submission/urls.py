@@ -13,10 +13,10 @@ urlpatterns = patterns('',
     (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
 
+    # internationalization
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+
     (r'^/?$', 'submission.views.index'),
-    # (r'^submission/edit/(?P<id>\d+)/?$', 'submission.views.edit'),
-    # (r'^submission/exclude/(?P<id>\d+)/?$', 'submission.views.exclude'),
-    # (r'^submission/approve/(?P<id>\d+)/?$', 'submission.views.approve'),
     (r'^submission/new/?$', 'submission.views.create'),
     (r'^submission/new/(?P<type>\d+)/?$', 'submission.views.create'),
     (r'^submission/show/(?P<id>\d+)/?$', 'submission.views.show'),
@@ -26,6 +26,11 @@ urlpatterns = patterns('',
     (r'^submission/list/(?P<type>\d+)/?$', 'submission.views.list'),
     (r'^submission/list/(?P<type>\d+)/(?P<filtr>\d+)/?$', 'submission.views.list'),
 )
+
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^rosetta/', include('rosetta.urls')),
+    )
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()

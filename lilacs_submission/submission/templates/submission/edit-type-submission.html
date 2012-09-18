@@ -1,9 +1,10 @@
+{% load i18n %}
 <form action="{% url submission.views.edit_type_submission type_submission.id %}" method="post">{% csrf_token %}
     
     {{ form }}
     
     <div class="control-group">
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
     </div>
 </form>
 

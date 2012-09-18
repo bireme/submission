@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if not submission.current_status == close and not is_finish %}
     <!-- Button actions -->
     <form name="change_status" class="form_change_status" action="{% url submission.views.change_status submission.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
@@ -7,11 +8,11 @@
 
         <div class="actions">
             {% if user_type == 'admin' or submission.current_status == pending %}
-                <a data-toggle="modal" action="{{ close.id }}" href="#confirmStatusChange" class="btn btn-danger btn-large" title="Decline submission">Decline</a>
+                <a data-toggle="modal" action="{{ close.id }}" href="#confirmStatusChange" class="btn btn-danger btn-large" title="Decline submission">{% trans "Decline" %}</a>
                 {% if user_type == 'admin' %}
-                    <a data-toggle="modal" action="{{ pending.id }}"href="#confirmStatusChange" class="btn btn-warning btn-large" title="{{ pending.title }} Submission">{{ pending.title }}</a>
+                    <a data-toggle="modal" action="{{ pending.id }}"href="#confirmStatusChange" class="btn btn-warning btn-large" title="{{ pending.title }} {% trans 'Submission' %}">{{ pending.title }}</a>
                 {% endif %}
-                {% for step in next_step %}<a data-toggle="modal" action="{{ step.id }}" href="#confirmStatusChange" class="btn btn-success btn-large" title="Go to {{ step }}">Go to {{ step }}</a>{% endfor %}
+                {% for step in next_step %}<a data-toggle="modal" action="{{ step.id }}" href="#confirmStatusChange" class="btn btn-success btn-large" title="{% trans 'Go to' %} {{ step }}">{% trans "Go to" %} {{ step }}</a>{% endfor %}
             {% endif %}
         </div>
         {% include 'submission/box-change-status.html' %}
