@@ -55,6 +55,14 @@ class TypeSubmission(Generic):
         ('express', 'LILACS Express'),
     )
 
+    VERSION_CHOICES = (
+        ('1.5', '1.5'),
+        ('1.6', '1.6'),
+        ('1.7', '1.7'),
+        ('1.7a', '1.7a'),
+        ('1.7b', '1.7b'),
+    )
+
     class Meta:
         verbose_name = 'type in submission'
         verbose_name_plural = 'types in submission'
@@ -90,6 +98,7 @@ class TypeSubmission(Generic):
     total_records = models.CharField("total of records", max_length=255, blank=True, null=True, default=0)
     certified = models.CharField("total of certified records", max_length=255, blank=True, null=True, default=0)
     iso_file = models.FileField('iso file', upload_to=new_filename, blank=True, null=True)
+    lildbi_version = models.CharField("Lildbi version", max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
 
     def get_iso_url(self):
         return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))

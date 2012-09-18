@@ -14,7 +14,7 @@ class SubmissionIsoForm(forms.ModelForm):
 class SubmissionIsoFinalForm(forms.ModelForm):
     class Meta:
         model = TypeSubmission
-        fields = ('total_records', 'certified')
+        exclude = ('created', 'updated', 'creator', 'updater', 'submission', 'iso_file')
 
 class FollowUpForm(forms.ModelForm):
     class Meta:
