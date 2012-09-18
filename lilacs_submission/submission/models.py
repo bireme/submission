@@ -32,6 +32,7 @@ class Step(Generic):
     finish = models.BooleanField('finish step?')
     pending = models.BooleanField('pending step?')
     close = models.BooleanField('close step?')
+    allow_edit = models.BooleanField('allow register edition?')
 
     def __unicode__(self):
         return unicode(self.title)

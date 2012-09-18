@@ -12,14 +12,14 @@
                 <h2>Submission #{{ submission.id }}: {{ submission.type }}</h2>
                 <h3>
                     Current status: {{ submission.current_status }}
-                    {% if is_pre_finish or is_finish and user_type == 'admin' %}
+                    {% if submission.current_status.allow_edit and user_type == 'admin' %}
                         <small>
                             <a data-toggle="modal" href="{% url submission.views.edit_type_submission type_submission.id %}" data-target="#editType">Edit register</a>
                         </small>
                     {% endif %}
                 </h3>
 
-                {% if is_pre_finish or is_finish and user_type == 'admin' %}
+                {% if submission.current_status.allow_edit and user_type == 'admin' %}
                     <div class="modal hide" id="editType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -121,6 +121,8 @@
                                                     {% else %}
                                                         {{ item.staff_message }}
                                                     {% endif %}
+                                                {% else %}
+                                                    -
                                                 {% endif %}
                                             </td>
                                         {% endif %}
