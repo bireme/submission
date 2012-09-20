@@ -45,8 +45,13 @@
 
     function submission_action(action) {
         var form = document.submissions;
+        var msg = "{% trans 'Do you really change this submission status?' %}";
+
         form.action.value = action;
-        form.submit();
+
+        if(confirm(msg)) {
+            form.submit();
+        }
     }
 
 </script>
