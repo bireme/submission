@@ -81,6 +81,7 @@ class TypeSubmission(Generic):
         fname, dot, extension = filename.rpartition('.')
 
         type = request.POST.get('type')
+        extension = "iso"
 
         try:
             submissions = TypeSubmission.objects.all()
