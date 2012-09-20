@@ -121,7 +121,7 @@
                             <td>{{ sub.submission.creator.get_profile.center.code }}</td>
                             <td>{{ sub.submission.updater }}</td>
                             <td>{{ sub.submission.current_status }}</td>
-                            <td>{{ sub.submission.type }}</td>
+                            <td>{{ sub.type }}</td>
                             <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_filename }}</a></td>
                         </tr>
                     {% endfor %}

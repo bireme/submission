@@ -52,9 +52,9 @@ class Type(Generic):
 class TypeSubmission(Generic):
 
     TYPE_CHOICES = (
-        ('rev', _('Revista')),
-        ('mono', _('Monografia')),
-        ('express', _('LILACS Express')),
+        ('Revista', _('Revista')),
+        ('Monografia', _('Monografia')),
+        ('Express', _('LILACS Express')),
     )
 
     VERSION_CHOICES = (
