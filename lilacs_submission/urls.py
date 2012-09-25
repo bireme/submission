@@ -10,9 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
-    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
-
+    url(r'^accounts/', include('registration.urls')),
+    
     # internationalization
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
