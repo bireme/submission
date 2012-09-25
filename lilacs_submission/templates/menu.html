@@ -14,6 +14,19 @@
     </ul>
 
     <ul class="nav pull-right">
+        {% if request.user.get_profile.is_admin or request.user.get_profile.is_ccn %}
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {% trans "Users" %}
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url registration.views.register %}" title="{% trans "New" %}">{% trans "New" %}</a></li>
+                    <li><a href="{% url registration.views.list %}" title="{% trans "Manage" %}">{% trans "Manage" %}</a></li>
+                </ul>
+            </li>
+        {% endif %}
         <li class="divider-vertical"></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
