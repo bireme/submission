@@ -26,10 +26,8 @@ def index(request):
 
     if user_type == 'user':
         profile = request.user.get_profile()
-        if profile.is_admin:
-            submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
-        else:
-            submissions = submissions.filter(submission__creator=request.user)
+        submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
+        
     
     # requests of interface
     order_by = 'id'
