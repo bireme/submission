@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
 
     'rosetta',
+    'registration',
 
     'lilacs_submission.account',
     'lilacs_submission.submission',

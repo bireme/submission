@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+	<h2>{% trans "New User" %}</h2>
+	<form name="registration" method="POST">{% csrf_token %}
+		{{ form }}
+		<div>
+			<button type="submit" class="btn btn-large btn-primary">{% trans "Create" %}</button>
+		</div>
+	</form>
+{% endblock %}

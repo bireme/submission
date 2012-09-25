@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extrahead %}
+<script>
+	function move_to_trash(id) {
+		var msg = "{% trans "Do you really want to remove this user??" %}";
+		if(confirm(msg)) {
+			location.href = "{% url registration.views.remove 0 %}".replace(0, id);
+		}
+	}
+</script>
+{% endblock %}
+
+{% block "title" %}{% trans "Manage Users" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<h2>{% trans "Manage Users" %}</h2>
+		<div class="span8">
+			<table class="table trable-striped">
+				<thead>
+					<tr>
+						<th>{% trans "#" %}</th>
+						<th>{% trans "Username" %}</th>
+						<th>{% trans "Center" %}</th>
+						<th>{% trans "Actions" %}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if users %}
+						{% for user in users %}
+							<tr>
+								<td>{{ user.id }}</td>
+								<td>{{ user.username }}</td>
+								<td>{{ user.get_profile.center }}</td>
+								<td>
+									<a href="javascript:move_to_trash('{{ user.id }}')" onlick="" title="{% trans "Remove this user" %}"><i class="icon-trash"></i></a>
+								</td>
+							</tr>
+						{% endfor %}
+					{% else %}
+						<tr><td colspan="3">{% trans "No matches for your query" %}</tr>
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
