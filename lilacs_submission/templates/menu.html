@@ -15,8 +15,10 @@
 
     <ul class="nav pull-right">
         <li class="divider-vertical"></li>
-        <form class="navbar-search pull-left">
-          <input type="text" class="search-query" placeholder="{% trans "Search" %}">
+        <!-- ssearch box -->
+        <form class="navbar-search pull-left" action="{% url main.views.search %}">
+          <input type="text" class="search-query" name="q" placeholder="{% trans "Search" %}" 
+          {% if request.GET.q %}value="{{ request.GET.q }}"{% endif %}>
         </form>
         
         {% if request.user.get_profile.is_admin or request.user.get_profile.is_ccn %}
