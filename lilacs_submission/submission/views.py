@@ -207,6 +207,7 @@ def change_status(request, id):
             pass
 
         submission.current_status = status
+        submission.updater = request.user
         submission.save()
 
     return redirect(next)
@@ -220,7 +221,14 @@ def edit_type_submission(request, id):
     if request.POST:
         form = SubmissionIsoFinalForm(request.POST, instance=type_submission)
         if form.is_valid():
-            form.save()
+            item = form.save(commit=False)
+            item.save()
+
+            # alterando o ultimo updater
+            submission = Submission.objects.get(id=item.submission.id)
+            submission.updater = request.user
+            submission.save()
+
             return redirect(reverse('submission.views.show', args=[type_submission.submission.id]))
 
     output = {
