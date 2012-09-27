@@ -140,3 +140,9 @@ class RegistrationFormNoFreeEmail(RegistrationForm):
         if email_domain in self.bad_domains:
             raise forms.ValidationError(_(u'Registration using free email addresses is prohibited. Please supply a different email address.'))
         return self.cleaned_data['email']
+
+class EditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')

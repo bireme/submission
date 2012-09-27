@@ -4,9 +4,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
+from registration.forms import *
 from django.http import Http404
 
-from registration.forms import RegistrationForm
 
 
 @login_required
@@ -69,3 +69,18 @@ def remove(request, id):
     user.save()
 
     return HttpResponseRedirect(reverse('registration.views.list'))
+
+@login_required
+def edit(request):
+    output = {}
+    user = request.user
+
+    form = EditUserForm(instance=user)
+    if request.POST:
+        form = EditUserForm(request.POST, instance=user)
+        if form.is_valid():
+            print form.save()
+
+    output['form'] = form
+    
+    return render_to_response('registration/edit.html', output, context_instance=RequestContext(request))

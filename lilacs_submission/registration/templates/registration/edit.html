@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block "title" %}
+	{% trans "Edit Your Profile" %} |
+	{{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<h2>{% trans "Edit Your Profile" %}</h2>
+
+	<form name="profile" action="{% url registration.views.edit %}" method="POST">{% csrf_token %}
+		{{ form }}
+		<div>
+			<button type="submit" class="btn">Salvar</button>
+		</div>
+	</form>
+{% endblock %}

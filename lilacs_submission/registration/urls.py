@@ -45,4 +45,5 @@ urlpatterns = patterns('',
                            name='registration_complete'),
                         url (r'^list/?$', 'registration.views.list'),
                         url (r'^remove/(?P<id>\d+)/?$', 'registration.views.remove'),
+                        url (r'^edit/?$', 'registration.views.edit'),
                        )
