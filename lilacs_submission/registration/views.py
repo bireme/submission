@@ -4,12 +4,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from django.conf import settings
 from django.http import Http404
-from django.contrib.auth.views import logout
 
 from registration.forms import RegistrationForm
-from registration.models import RegistrationProfile
 
 
 @login_required

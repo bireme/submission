@@ -1,15 +1,10 @@
 import datetime
-import random
-import re
-import sha
 
-from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
+from django_tools.middlewares.ThreadLocal import get_current_user
 from django.conf import settings
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
 from account.models import *
 
 

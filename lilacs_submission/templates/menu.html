@@ -14,6 +14,11 @@
     </ul>
 
     <ul class="nav pull-right">
+        <li class="divider-vertical"></li>
+        <form class="navbar-search pull-left">
+          <input type="text" class="search-query" placeholder="{% trans "Search" %}">
+        </form>
+        
         {% if request.user.get_profile.is_admin or request.user.get_profile.is_ccn %}
             <li class="divider-vertical"></li>
             <li class="dropdown">
