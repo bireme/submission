@@ -307,3 +307,30 @@ def list(request, type=0, filtr=0):
     }
 
     return render_to_response('submission/list.html', output, context_instance=RequestContext(request))
+
+def bulk(request):
+
+    if not request.POST:
+        raise Http404
+
+    try:
+        ids = request.POST.get('submissions')
+    except:
+        ids = []
+
+    if ids:
+        for id in ids:
+            submission = TypeSubmission.objects.get(id=id)
+            try:
+                if request.POST.get('action') == 'approve':
+                    next = Step.objects.filter(parent=submission.submission.current_status)
+                else:
+                    next = Step.objects.filter(close=True)
+                submission.submission.current_status = next[0]
+                submission.submission.updater = request.user
+            except:
+                pass
+
+            submission.submission.save()
+
+    return redirect(request.META['HTTP_REFERER'])

@@ -89,7 +89,7 @@
         </div>
     {% endif %}
 
-    <form name="submissions" method="POST">{% csrf_token %}
+    <form name="submissions" method="POST" action="{% url submission.views.bulk %}">{% csrf_token %}
         <input type="hidden" name="action" value="">
         <table class="table">
             <thead>
