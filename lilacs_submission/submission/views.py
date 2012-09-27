@@ -9,6 +9,17 @@ from django.http import Http404
 from models import *
 from forms import *
 
+HEADERS = (
+        ("submission__id", "#"),
+        ("submission__created", "Creation Date"),        
+        ("submission__updated", "Last Update"),        
+        ("submission__creator__userprofile__center__code", "Center"),        
+        ("submission__updater", "Updated by"),        
+        ("submission__current_status", "Status"),        
+        ("submission__type", "Type"),        
+        ("iso_file", "Filename"),        
+    )
+
 @login_required
 def index(request):
     
@@ -57,19 +68,8 @@ def index(request):
     pagination['paginator'] = paginator
     pagination['page'] = paginator.page(page)
     submissions = pagination['page'].object_list
-
-    headers = (
-        ("submission__id", "#"),
-        ("submission__created", "Creation Date"),        
-        ("submission__updated", "Last Update"),        
-        ("submission__creator__userprofile__center__code", "Center"),        
-        ("submission__updater", "Updated by"),        
-        ("submission__current_status", "Status"),        
-        ("submission__type", "Type"),        
-        ("iso_file", "Filename"),        
-    )
-            
-    output['headers'] = headers
+        
+    output['headers'] = HEADERS
     output['submissions'] = submissions
     output['order_by'] = order_by
     output['order_type'] = order_type
@@ -286,19 +286,8 @@ def list(request, type=0, filtr=0):
     pagination['page'] = paginator.page(page)
     submissions = pagination['page'].object_list
 
-    headers = (
-        ("submission__id", "#"),        
-        ("submission__created", "Creation Date"),        
-        ("submission__updated", "Last Update"),        
-        ("submission__creator__userprofile__center__code", "Center"),        
-        ("submission__updater", "Updated by"),        
-        ("submission__current_status", "Status"),        
-        ("submission__type", "Type"),        
-        ("iso_file", "Filename"),        
-    )
-
     output = {
-        'headers' : headers,
+        'headers' : HEADERS,
         'order_by' : order_by,
         'order_type' : order_type,
         'submissions': submissions,

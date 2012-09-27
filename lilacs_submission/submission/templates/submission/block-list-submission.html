@@ -61,6 +61,7 @@
     <input type="hidden" name="order_type" value="{{ order_type }}">
     <input type="hidden" name="order_by" value="{{ order_by }}">
     <input type="hidden" name="page" value="{{ pagination.page.number }}">
+    {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
 </form>
 
 <div class="blockSubmission">

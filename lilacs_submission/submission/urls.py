@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('',
-
 	(r'^new/?$', 'submission.views.create'),
     (r'^new/(?P<type>\d+)/?$', 'submission.views.create'),
     (r'^show/(?P<id>\d+)/?$', 'submission.views.show'),
