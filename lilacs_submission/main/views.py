@@ -15,7 +15,7 @@ def search(request):
     output['q'] = query
 
     try:
-        submissions = TypeSubmission.objects.filter(id=query)
+        submissions = TypeSubmission.objects.filter(submission_id=query)
     except:
         submissions = TypeSubmission.objects.filter(submission__creator__userprofile__center__code__icontains=query)
 
