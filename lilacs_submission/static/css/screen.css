@@ -72,3 +72,8 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.version {
+    bottom: 0;
+    position: absolute;
+}
