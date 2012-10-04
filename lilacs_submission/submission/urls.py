@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     (r'^list/(?P<type>\d+)/?$', 'submission.views.list'),
     (r'^list/(?P<type>\d+)/(?P<filtr>\d+)/?$', 'submission.views.list'),    
     (r'^bulk/?$', 'submission.views.bulk'),    
+    (r'^download/?$', 'submission.views.download'),    
 )
 

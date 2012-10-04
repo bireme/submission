@@ -1,6 +1,7 @@
 from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
@@ -107,7 +108,7 @@ class TypeSubmission(Generic):
     lildbi_version = models.CharField(_("Lildbi version"), max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
 
     def get_iso_url(self):
-        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
+        return unicode(reverse('submission.views.download') + "?filename=" + self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
 
 class Submission(Generic):
 
