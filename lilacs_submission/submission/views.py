@@ -272,7 +272,7 @@ def list(request, type=0, filtr=0):
     
     if int(filtr) > 0:
         filtr = get_object_or_404(Step, pk=filtr)
-        submissions = submissions.filter(current_status=filtr)
+        submissions = submissions.filter(submission__current_status=filtr)
         filtr = filtr.id
 
     # requests of interface
