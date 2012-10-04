@@ -79,7 +79,7 @@ def edit(request):
     if request.POST:
         form = EditUserForm(request.POST, instance=user)
         if form.is_valid():
-            print form.save()
+            form.save()
 
     output['form'] = form
     
