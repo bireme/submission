@@ -150,7 +150,7 @@ def show(request, id):
 
     if not user_type == 'admin':        
         if not user.get_profile().is_admin:
-            if not submission.creator == request.user:
+            if not submission.creator.get_profile().center == request.user.get_profile().center:
                 raise Http404
 
     metadata = None
