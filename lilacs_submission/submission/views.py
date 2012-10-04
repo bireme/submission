@@ -332,7 +332,7 @@ def bulk(request):
         raise Http404
 
     try:
-        ids = request.POST.get('submissions')
+        ids = request.POST.getlist('submissions')
     except:
         ids = []
 
@@ -344,10 +344,23 @@ def bulk(request):
                     next = Step.objects.filter(parent=submission.submission.current_status)
                 else:
                     next = Step.objects.filter(close=True)
+
+                current_status = submission.submission.current_status
                 submission.submission.current_status = next[0]
                 submission.submission.updater = request.user
-            except:
-                pass
+
+            except Exception as e:
+                print e
+
+            try:
+                followup = FollowUp()
+                followup.creator = request.user
+                followup.previous_status = current_status
+                followup.submission = submission.submission
+                followup.current_status = next[0]
+                followup.save()
+            except Exception as e:
+                print e
 
             submission.submission.save()
 
