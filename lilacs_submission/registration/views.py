@@ -7,8 +7,6 @@ from django.template import RequestContext
 from registration.forms import *
 from django.http import Http404
 
-
-
 @login_required
 def register(request, success_url=None,
              form_class=RegistrationForm, profile_callback=None,

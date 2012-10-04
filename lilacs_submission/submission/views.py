@@ -32,6 +32,7 @@ def index(request):
     output = {}
     submissions = TypeSubmission.objects.all().order_by('submission__updated').exclude(submission__current_status__finish=True).exclude(submission__current_status__close=True)
     filters = Step.objects.all().exclude(finish=True).exclude(close=True)
+    filters_type = TypeSubmission.TYPE_CHOICES
 
     if 'admins' in user_groups:
         user_type = 'admin'
@@ -46,6 +47,7 @@ def index(request):
     order_type = ''
     filtr = ""
     page = 1
+    filtr_type = ""
     if request.REQUEST:
         # interface
         if 'order_by' in request.REQUEST and request.REQUEST['order_by'] != "":
@@ -58,7 +60,11 @@ def index(request):
             filtr = request.REQUEST['filter']
             filtr = get_object_or_404(Step, pk=filtr)
             submissions = submissions.filter(submission__current_status=filtr)
-        
+
+        if 'filtr_type' in request.REQUEST and request.REQUEST['filtr_type'] != "":
+            filtr_type = request.REQUEST['filtr_type']
+            submissions = submissions.filter(type__icontains=filtr_type)
+
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']
 
@@ -77,6 +83,8 @@ def index(request):
     output['order_type'] = order_type
     output['filters'] = filters
     output['filtr'] = filtr
+    output['filters_type'] = filters_type
+    output['filtr_type'] = filtr_type
     output['pagination'] = pagination
 
     return render_to_response('submission/index.html', output, context_instance=RequestContext(request))
@@ -245,6 +253,7 @@ def list(request, type=0, filtr=0):
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
+    filters_type = TypeSubmission.TYPE_CHOICES
     if 'admins' in user_groups:
         user_type = 'admin'
 
@@ -271,6 +280,7 @@ def list(request, type=0, filtr=0):
     order_type = ''
     filtr = ""
     page = 1
+    filtr_type = ""
     if request.REQUEST:
         # interface
         if 'order_by' in request.REQUEST and request.REQUEST['order_by'] != "":
@@ -282,8 +292,12 @@ def list(request, type=0, filtr=0):
         if 'filter' in request.REQUEST and request.REQUEST['filter'] != "":
             filtr = request.REQUEST['filter']
             filtr = get_object_or_404(Step, pk=filtr)
-            submissions = submissions.filter(current_status=filtr)
-        
+            submissions = submissions.filter(submission__current_status=filtr)
+
+        if 'filtr_type' in request.REQUEST and request.REQUEST['filtr_type'] != "":
+            filtr_type = request.REQUEST['filtr_type']
+            submissions = submissions.filter(type__icontains=filtr_type)
+
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']
 
@@ -304,6 +318,8 @@ def list(request, type=0, filtr=0):
         'pagination': pagination,
         'filters': filters,
         'filtr': filtr,
+        'filters_type': filters_type,
+        'filtr_type': filtr_type,
         'types': types,
         'type': type,
     }

@@ -1,3 +1,4 @@
+#! coding: utf-8
 from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
@@ -53,9 +54,9 @@ class Type(Generic):
 class TypeSubmission(Generic):
 
     TYPE_CHOICES = (
-        ('Revista', _('Revista')),
-        ('Monografia', _('Monografia')),
-        ('Express', _('LILACS Express')),
+        ('revista', _('Revista')),
+        ('monografia', _('Monografia')),
+        ('express', _('LILACS Express')),
     )
 
     VERSION_CHOICES = (
