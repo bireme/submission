@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load custom_filters %}
+
 <script>
     // interface
     function change_order_by(order) {
@@ -73,8 +75,10 @@
 
 <div class="blockSubmission">
     <div class="filters">
+        
+        <!-- type -->
         <ul>
-            <li>{% if not filtr_type %}<b>All</b>{% else %}<a href="javascript:change_type('')">{% trans "All" %}</a>{% endif %}</li>
+            <li>{% if not filtr_type %}<b>{% trans "All" %}</b>{% else %}<a href="javascript:change_type('')">{% trans "All" %}</a>{% endif %}</li>
             {% for type in filters_type %}
                 <li>
                     {% if filtr_type == type.0 %}
@@ -84,12 +88,14 @@
                     {% endif %}
             {% endfor %}
         </ul>
+
+        <!-- step -->
         <ul>
-            <li>{% if not filtr %}<b>All</b>{% else %}<a href="javascript:change_filter('')">{% trans "All" %}</a>{% endif %}</li>
+            <li>{% if not filtr %}<b>{% trans "All" %}</b>{% else %}<a href="javascript:change_filter('')">{% trans "All" %}</a>{% endif %}</li>
             {% for filter in filters %}
                 <li>
-                    {% if filtr == filter %}<b>{{ filter }}</b>
-                    {% else %}<a href="javascript:change_filter('{{ filter.id }}')">{{ filter }}</a>
+                    {% if filtr == filter %}<b>{{ filter|translate:request.LANGUAGE_CODE }}</b>
+                    {% else %}<a href="javascript:change_filter('{{ filter.id }}')">{{ filter|translate:request.LANGUAGE_CODE }}</a>
                     {% endif %}
                 </li>
             {% endfor %}

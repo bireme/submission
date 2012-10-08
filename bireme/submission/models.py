@@ -9,6 +9,12 @@ from datetime import datetime
 from django.db import models
 import os
 
+LANGUAGES_CHOICES = (
+    ('en', 'English'),
+    ('pt-br', 'Brazilian Portuguese'),
+    ('es', 'Spanish'),
+) 
+
 class Generic(models.Model):
 
     class Meta:
@@ -37,8 +43,25 @@ class Step(Generic):
     close = models.BooleanField(_('close step?'))
     allow_edit = models.BooleanField(_('allow register edition?'))
 
+    def get_translation(self, lang_code):
+        translation = StepLocal.objects.filter(step=self.id, language=lang_code)
+        if translation:
+            return translation[0].title
+        else:
+            return self.title
+
     def __unicode__(self):
         return unicode(self.title)
+
+class StepLocal(Generic):
+    
+    class Meta:
+        verbose_name = _("step translation")
+        verbose_name_plural = _("step translations")
+
+    step = models.ForeignKey("Step")
+    language = models.CharField(_('language'), max_length=255, choices=LANGUAGES_CHOICES, default="pt-br")
+    title = models.CharField(_("title"), max_length=255)
 
 class Type(Generic):
 

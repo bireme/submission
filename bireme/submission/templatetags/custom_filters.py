@@ -16,3 +16,7 @@ def md5_string(value):
 def in_group(user, groups):
     group_list = unicode(groups).split(',')
     return bool(user.groups.filter(name__in=group_list).values('name'))
+
+@register.filter(name='translate')
+def translate(obj, lang):
+    return obj.get_translation(lang)

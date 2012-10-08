@@ -13,10 +13,16 @@ class GenericAdmin(admin.ModelAdmin):
                 obj.updater = request.user
         obj.save()
 
+class StepLocalAdmin(admin.StackedInline):
+    model = StepLocal
+    extra = 0
+    exclude = ('created', 'creator', 'updated', 'updater')
+
 
 class StepAdmin(GenericAdmin):
     list_display = ('title', 'parent', 'creator', 'created', 'updater', 'updated')
     list_filter = ('type', 'finish', 'pending')
+    inlines = [StepLocalAdmin, ]
 
 class TypeAdmin(GenericAdmin):
     list_display = ('title', 'creator', 'created', 'updater', 'updated')
