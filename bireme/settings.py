@@ -141,6 +141,7 @@ INSTALLED_APPS = [
     'bireme.account',
     'bireme.submission',
     'bireme.center',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 ]
