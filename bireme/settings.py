@@ -1,5 +1,5 @@
 # coding: utf-8
-# Django settings for lilacs_submission project.
+# Django settings for bireme project.
 import os
 
 DEBUG = True
@@ -113,7 +113,7 @@ MIDDLEWARE_CLASSES = (
     'django_tools.middlewares.ThreadLocal.ThreadLocalMiddleware',
 )
 
-ROOT_URLCONF = 'lilacs_submission.urls'
+ROOT_URLCONF = 'bireme.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -138,9 +138,9 @@ INSTALLED_APPS = [
     'rosetta',
     'registration',
 
-    'lilacs_submission.account',
-    'lilacs_submission.submission',
-    'lilacs_submission.center',
+    'bireme.account',
+    'bireme.submission',
+    'bireme.center',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 ]

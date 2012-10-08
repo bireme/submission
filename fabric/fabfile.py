@@ -24,7 +24,7 @@ def update_version_file():
     with cd(env.path):
         run("git describe --tags | cut -f 1,2 -d - > templates/version.txt")
         # traz o arquivo gerado da versão para minha máquina, e implementa a versão localmente
-        get("templates/version.txt", "../lilacs_submission/templates")
+        get("templates/version.txt", "../bireme/templates")
 
 def update():
     """Somente atualiza código (git pull) e restart serviço
