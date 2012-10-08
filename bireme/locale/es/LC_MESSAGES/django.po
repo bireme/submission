@@ -8,24 +8,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-27 16:58-0300\n"
-"PO-Revision-Date: 2012-09-27 15:20\n"
+"POT-Creation-Date: 2012-09-28 10:57-0300\n"
+"PO-Revision-Date: 2012-09-28 10:57\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.6\n"
 
 #: account/models.py:10
 msgid "is center administrator?"
-msgstr ""
+msgstr "es el administrador del Centro Coordenador?"
 
 #: account/models.py:11
 msgid "is national center?"
-msgstr ""
+msgstr "es el Centro Coordenador Nacional?"
 
 #: django_tools/decorators.py:60
 msgid "Permission denied for anonymous user. Please log in."
@@ -33,7 +33,7 @@ msgstr ""
 
 #: django_tools/limit_to_usergroups.py:159
 msgid "anonymous users"
-msgstr ""
+msgstr "usuarios anónimos"
 
 #: django_tools/limit_to_usergroups.py:160
 msgid "normal users"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: django_tools/validators.py:180
 msgid "Please enter a local URL (without protocol/domain)."
-msgstr ""
+msgstr "Por favor, introduzca una URL local (sin protocolo / dominio)."
 
 #: django_tools/validators.py:184
 msgid "The URL doesn't start with a allowed scheme."
@@ -112,15 +112,15 @@ msgstr "meses"
 
 #: django_tools/template/filters.py:98
 msgid "weeks"
-msgstr ""
+msgstr "semanas"
 
 #: django_tools/template/filters.py:99
 msgid "days"
-msgstr ""
+msgstr "días"
 
 #: django_tools/template/filters.py:100
 msgid "hours"
-msgstr ""
+msgstr "horas"
 
 #: django_tools/template/filters.py:104
 #, python-format
@@ -130,7 +130,7 @@ msgstr ""
 #: django_tools/template/filters.py:106
 #, python-format
 msgid "%.1f sec"
-msgstr ""
+msgstr "%.1f segundo"
 
 #: django_tools/template/filters.py:108
 #, python-format
@@ -143,19 +143,19 @@ msgstr ""
 
 #: registration/forms.py:38
 msgid "username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: registration/forms.py:41
 msgid "email address"
-msgstr ""
+msgstr "correo electrónico"
 
 #: registration/forms.py:43
 msgid "password"
-msgstr ""
+msgstr "contraseña"
 
 #: registration/forms.py:45
 msgid "password (again)"
-msgstr ""
+msgstr "contraseña (otra vez)"
 
 #: registration/forms.py:57
 msgid "This username is already taken. Please choose another."
@@ -183,7 +183,7 @@ msgstr ""
 
 #: registration/models.py:34
 msgid "user"
-msgstr ""
+msgstr "ususario"
 
 #: registration/models.py:35
 msgid "activation key"
@@ -213,12 +213,12 @@ msgstr ""
 
 #: registration/templates/registration/list.html:24
 msgid "#"
-msgstr ""
+msgstr "Número"
 
 #: registration/templates/registration/list.html:25
 #: registration/templates/registration/login.html:28
 msgid "Username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: registration/templates/registration/list.html:26
 #: submission/templates/submission/show.html:40
@@ -246,7 +246,7 @@ msgstr "Envío Bireme"
 
 #: registration/templates/registration/login.html:32
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: registration/templates/registration/logout.html:16
 msgid "You are logged out. Please"
@@ -254,11 +254,11 @@ msgstr ""
 
 #: registration/templates/registration/logout.html:17
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: registration/templates/registration/logout.html:17
 msgid "login"
-msgstr ""
+msgstr "login"
 
 #: registration/templates/registration/logout.html:18
 msgid "again clicking below."
@@ -266,7 +266,7 @@ msgstr ""
 
 #: registration/templates/registration/registration_form.html:5
 msgid "New User"
-msgstr ""
+msgstr "Nuevo Usuario"
 
 #: registration/templates/registration/registration_form.html:9
 #, fuzzy
@@ -473,7 +473,7 @@ msgstr "Éxito"
 
 #: submission/templates/submission/index.html:21
 msgid "Opened submissions"
-msgstr "Envíos abiertas"
+msgstr "Envíos en curso"
 
 #: submission/templates/submission/list.html:4 templates/menu.html:10
 msgid "Show all submissions"
@@ -566,15 +566,15 @@ msgstr "Nuevo envío"
 
 #: templates/menu.html:20
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: templates/menu.html:28
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: templates/menu.html:32
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #: templates/menu.html:33
 msgid "Manage"
@@ -582,15 +582,15 @@ msgstr ""
 
 #: templates/menu.html:40 templates/menu.html.py:46
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: templates/menu.html:41 templates/menu.html.py:48
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: templates/menu.html:42 templates/menu.html.py:47
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugués"
 
 #: templates/menu.html:57
 msgid "Logged as"
