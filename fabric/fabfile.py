@@ -9,7 +9,7 @@ def reset_db(app):
     """Realiza reset do app
     """    
     with prefix('. %s/bin/activate' % env.virtualenv):
-        with cd(env.path):   
+        with cd(env.rootpath):   
             run('python manage.py reset %s' % app) 
             run('python manage.py syncdb')
             run('python manage.py loaddata fixtures/%s.json' % app)    
@@ -17,14 +17,15 @@ def reset_db(app):
 def requirements():
     with cd(env.path):
         with prefix('. %s/bin/activate' % env.virtualenv):
-            run('pip install -r requirements.txt')
+            run('pip install -r ../requirements.txt')
 
 def migrate():
     """Realiza migration local
     """    
-    with prefix('. %s/bin/activate' % env.virtualenv):
-       local('python manage.py schemamigration --auto') 
-       local('python manage.py migrate')
+    with cd(env.path):
+        with prefix('. %s/bin/activate' % env.virtualenv):
+            run('python manage.py schemamigration --auto') 
+            run('python manage.py migrate')
 
 def restart_app():
     """Restarts remote wsgi.
@@ -50,6 +51,5 @@ def update():
 def full_update():
 
     requirements()
-    migrate()
     update()
 
