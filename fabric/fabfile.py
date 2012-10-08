@@ -14,6 +14,18 @@ def reset_db(app):
             run('python manage.py syncdb')
             run('python manage.py loaddata fixtures/%s.json' % app)    
 
+def requirements():
+    with cd(env.path):
+        with prefix('. %s/bin/activate' % env.virtualenv):
+            run('pip install -r requirements.txt')
+
+def migrate():
+    """Realiza migration local
+    """    
+    with prefix('. %s/bin/activate' % env.virtualenv):
+       local('python manage.py schemamigration --auto') 
+       local('python manage.py migrate')
+
 def restart_app():
     """Restarts remote wsgi.
     """
@@ -34,3 +46,10 @@ def update():
 
     update_version_file()
     restart_app()
+
+def full_update():
+
+    requirements()
+    migrate()
+    update()
+
