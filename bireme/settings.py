@@ -136,7 +136,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
 
     'rosetta',
-    'registration',
+    'bireme.registration',
 
     'bireme.account',
     'bireme.submission',
