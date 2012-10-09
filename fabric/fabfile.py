@@ -24,7 +24,6 @@ def migrate():
     """    
     with cd(env.path):
         with prefix('. %s/bin/activate' % env.virtualenv):
-            run('python manage.py schemamigration --auto') 
             run('python manage.py migrate')
 
 def restart_app():
@@ -51,5 +50,6 @@ def update():
 def full_update():
 
     requirements()
+    migrate()
     update()
 
