@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from registration.forms import *
 from django.http import Http404
+from account.models import *
 
 @login_required
 def register(request, success_url=None,
@@ -82,3 +83,25 @@ def edit(request):
     output['form'] = form
     
     return render_to_response('registration/edit.html', output, context_instance=RequestContext(request))
+
+@login_required
+def allow_receive_email(request, boolean):
+    user = request.user
+    profile = get_object_or_404(UserProfile, user=user)
+
+    profile.receive_email = True
+    if int(boolean) == 0:
+        profile.receive_email = False
+    
+    try:
+        profile.save()
+    except Exception as e:
+        return HttpResponse(e)
+
+    return HttpResponse(1)
+
+
+
+
+
+

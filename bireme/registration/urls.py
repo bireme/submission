@@ -46,4 +46,5 @@ urlpatterns = patterns('',
                         url (r'^list/?$', 'registration.views.list'),
                         url (r'^remove/(?P<id>\d+)/?$', 'registration.views.remove'),
                         url (r'^edit/?$', 'registration.views.edit'),
+                        url (r'^allow_receive_email/(?P<boolean>\d+)/?$', 'registration.views.allow_receive_email'),
                        )

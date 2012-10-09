@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+from django.db.models import signals
 from django.conf import settings
 from datetime import datetime
 from django.db import models
@@ -96,6 +98,10 @@ class TypeSubmission(Generic):
 
     submission = models.ForeignKey("Submission", unique=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('submission.views.show', [str(self.id)])
+
     def iso_filename(self):
         return os.path.basename(self.iso_file.name)
 
@@ -171,3 +177,24 @@ class FollowUp(Generic):
 
     def get_attachment_url(self):
         return unicode(self.attachment.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
+
+
+def send_email(sender, instance, created, **kwargs):
+    followup = instance
+    user = get_current_user()
+    request = get_current_request()
+    submission = TypeSubmission.objects.get(submission=followup.submission)
+    url = request.META['HTTP_ORIGIN'] +  submission.get_absolute_url()
+
+    EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
+    EMAIL_CONTENT = _("Your submission as been updated from the status <b>%s</b>." % followup.submission.current_status.get_translation(request.LANGUAGE_CODE))
+    EMAIL_CONTENT = EMAIL_CONTENT + "<br><a href='%s'>%s</a>" % (url, url)
+    
+
+    if user.get_profile().receive_email:
+        if user.email:
+            msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [user.email])
+            msg.content_subtype = "html"
+            msg.send()
+            
+signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")

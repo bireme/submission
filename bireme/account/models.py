@@ -9,3 +9,4 @@ class UserProfile(models.Model):
     center = models.ForeignKey(Center, null=True)
     is_admin = models.BooleanField(_("is center administrator?"))
     is_ccn = models.BooleanField(_("is national center?"))
+    receive_email = models.BooleanField(_("Allow to receive emails?"))

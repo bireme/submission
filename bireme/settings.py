@@ -124,6 +124,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT_PATH, 'templates'),
     os.path.join(PROJECT_ROOT_PATH, 'submission/templates'),
     os.path.join(PROJECT_ROOT_PATH, 'main/templates'),
+    os.path.join(PROJECT_ROOT_PATH, 'registration/templates'),
 )
 
 INSTALLED_APPS = [
@@ -188,6 +189,13 @@ TEMPLATE_LOADERS = (
 AUTH_PROFILE_MODULE = "account.UserProfile"
 
 ITEMS_PER_PAGE = 20
+
+# Email
+EMAIL_HOST = 'pombo.bireme.br'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'appupdate'
+EMAIL_HOST_PASSWORD = 'bir@2012#'
+EMAIL_FROM = 'envio@bireme.org'
 
 try:
     from settings_local import *

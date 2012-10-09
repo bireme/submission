@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block extrahead %}
+<script>
+    $(function(){
+        $('#receive_email').click(function(){
+            var url = "{% url registration.views.allow_receive_email 0 %}";
+            if($(this).attr('checked') == 'checked') {
+                url = "{% url registration.views.allow_receive_email 1 %}";
+            }
+            
+            $.get(url, function(data) {
+                if(data != "1") {
+                    alert('{% trans "Error in update your receive email options." %}');
+                } 
+            });
+        });
+    });
+</script>
+{% endblock %}
+
 {% block "title" %}
 	{% trans "Edit Your Profile" %} |
 	{{ block.super }}
@@ -11,6 +30,16 @@
 
 	<form name="profile" action="{% url registration.views.edit %}" method="POST">{% csrf_token %}
 		{{ form }}
+
+        <label for="receive_email">
+            {% if request.user.get_profile.receive_email %}
+                <input type="checkbox" checked="yes" id="receive_email">
+            {% else %}
+                <input type="checkbox" id="receive_email">
+            {% endif %}
+            {% trans "Receive email alerts?" %}
+        </label>
+
 		<div>
 			<button type="submit" class="btn">Salvar</button>
 		</div>
