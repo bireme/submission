@@ -138,7 +138,7 @@ class TypeSubmission(Generic):
     lildbi_version = models.CharField(_("Lildbi version"), max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
 
     def get_iso_url(self):
-        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
+        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, ""))
 
 class Submission(Generic):
 
