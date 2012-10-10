@@ -201,4 +201,4 @@ def send_email(sender, instance, created, **kwargs):
             msg.content_subtype = "html"
             msg.send()
             
-signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
+#signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
