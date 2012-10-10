@@ -184,7 +184,11 @@ def send_email(sender, instance, created, **kwargs):
     user = get_current_user()
     request = get_current_request()
     submission = TypeSubmission.objects.get(submission=followup.submission)
-    url = request.META['HTTP_ORIGIN'] +  submission.get_absolute_url()
+    try:
+        url = request.META['HTTP_ORIGIN'] +  submission.get_absolute_url()
+    except:
+        url = submission.get_absolute_url()
+
 
     EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
     EMAIL_CONTENT = _("Your submission as been updated from the status <b>%s</b>." % followup.submission.current_status.get_translation(request.LANGUAGE_CODE))

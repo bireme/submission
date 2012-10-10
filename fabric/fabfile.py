@@ -53,3 +53,8 @@ def full_update():
     migrate()
     update()
 
+def tag(tag):
+    with cd(env.path):
+        run('git checkout %s' % tag)
+    
+    restart_app()
