@@ -8,3 +8,6 @@ env.virtualenv = env.rootpath + 'submission-env'
 
 def test():
     env.hosts = ['ts01dx']
+
+def homolog():
+    env.hosts = ['hm01dx']
