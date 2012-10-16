@@ -365,24 +365,3 @@ def bulk(request):
             submission.submission.save()
 
     return redirect(request.META['HTTP_REFERER'])
-
-def download(request):
-    
-    filename = ""
-    if not 'filename' in request.GET:
-        raise Http404
-    else:
-        filename = request.GET['filename']
-    filename = settings.PROJECT_ROOT_PATH + filename
-
-    try:
-        file = open(filename, "r")
-    except:
-        raise Http404
-    
-    mimetype = mimetypes.guess_type(filename)[0]
-    if not mimetype: mimetype = "application/octet-stream"
-
-    response = HttpResponse(file.read(), mimetype=mimetype)
-    response["Content-Disposition"]= "attachment; filename=%s" % os.path.split(filename)[1]
-    return response
