@@ -143,7 +143,7 @@ class TypeSubmission(Generic):
         url = filename.replace(settings.MEDIA_ROOT, "")
         
         if not os.path.exists(filename):
-            logger_logins = logging.getLogger('logview.userlogins')  # logger from settings.py
+            logger_logins = logging.getLogger('logview.userlogins')
             logger_logins.error('File %s do not exists.', url)
 
         return unicode(url)
@@ -192,21 +192,20 @@ def send_email(sender, instance, created, **kwargs):
     user = get_current_user()
     request = get_current_request()
     submission = TypeSubmission.objects.get(submission=followup.submission)
-    try:
-        url = request.META['HTTP_ORIGIN'] +  submission.get_absolute_url()
-    except:
-        url = submission.get_absolute_url()
-
+    url = submission.get_absolute_url()
 
     EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
     EMAIL_CONTENT = _("Your submission as been updated from the status <b>%s</b>." % followup.submission.current_status.get_translation(request.LANGUAGE_CODE))
     EMAIL_CONTENT = EMAIL_CONTENT + "<br><a href='%s'>%s</a>" % (url, url)
     
-
     if user.get_profile().receive_email:
         if user.email:
-            msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [user.email])
-            msg.content_subtype = "html"
-            msg.send()
+            try:
+                msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [user.email])
+                msg.content_subtype = "html"
+                msg.send()
+            except Exception as e:
+                logger_logins = logging.getLogger('logview.userlogins')
+                logger_logins.error(e)
             
-#signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
+signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
