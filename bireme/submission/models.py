@@ -9,6 +9,7 @@ from django.db.models import signals
 from django.conf import settings
 from datetime import datetime
 from django.db import models
+import logging
 import os
 
 LANGUAGES_CHOICES = (
@@ -138,7 +139,14 @@ class TypeSubmission(Generic):
     lildbi_version = models.CharField(_("Lildbi version"), max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
 
     def get_iso_url(self):
-        return unicode(self.iso_file.name.replace(settings.MEDIA_ROOT, ""))
+        filename = self.iso_file.name
+        url = filename.replace(settings.MEDIA_ROOT, "")
+        
+        if not os.path.exists(filename):
+            logger_logins = logging.getLogger('logview.userlogins')  # logger from settings.py
+            logger_logins.error('File %s do not exists.', url)
+
+        return unicode(url)
 
 class Submission(Generic):
 
