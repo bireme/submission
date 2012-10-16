@@ -175,10 +175,13 @@ def show(request, id):
 
         # ele tá em pending
         else:
-            followup = FollowUp.objects.filter(submission=submission).order_by('-id')[0]
+            try:
+                followup = FollowUp.objects.filter(submission=submission).order_by('-id')[0]
 
-            if followup.current_status == pending:
-                next_step = [followup.previous_status]
+                if followup.current_status == pending:
+                    next_step = [followup.previous_status]
+                except:
+                    pass
     
     output = {
         'user_type': user_type,
