@@ -7,6 +7,7 @@ admin.site.unregister(User)
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
+    raw_id_fields = ('center',)
     extra = 1
 
 class UserProfileAdmin(UserAdmin):
