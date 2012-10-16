@@ -180,8 +180,8 @@ def show(request, id):
 
                 if followup.current_status == pending:
                     next_step = [followup.previous_status]
-                except:
-                    pass
+            except:
+                pass
     
     output = {
         'user_type': user_type,
