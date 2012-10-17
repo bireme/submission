@@ -35,6 +35,10 @@ class BibliographicTypeAdmin(GenericAdmin):
 class TypeAdmin(GenericAdmin):
     list_display = ('title', 'creator', 'created', 'updater', 'updated')
 
+class LildbiVersionAdmin(GenericAdmin):
+    list_display = ('title', 'creator', 'created', 'updater', 'updated')
+    search_fields = ('title', )    
+
 class SubmissionAdmin(GenericAdmin):
     list_display = ('id', 'type', 'current_status', 'creator')
 
@@ -42,4 +46,5 @@ admin.site.register(Submission, SubmissionAdmin)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Type, TypeAdmin)
 admin.site.register(FollowUp, GenericAdmin)
+admin.site.register(LildbiVersion, LildbiVersionAdmin)
 admin.site.register(BibliographicType, BibliographicTypeAdmin)

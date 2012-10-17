@@ -66,6 +66,17 @@ class StepLocal(Generic):
     language = models.CharField(_('language'), max_length=255, choices=LANGUAGES_CHOICES, default="pt-br")
     title = models.CharField(_("title"), max_length=255)
 
+class LildbiVersion(Generic):
+
+    class Meta:
+        verbose_name = _("lildbi version")
+        verbose_name_plural = _("lildbi versions")
+
+    title = models.CharField(_("title"), max_length=255)
+
+    def __unicode__(self):
+        return unicode(self.title)
+
 class Type(Generic):
 
     class Meta:
@@ -156,8 +167,7 @@ class TypeSubmission(Generic):
             id = 1
 
         dir = settings.MEDIA_ROOT
-        dir = os.path.join(dir, unicode(user))
-        dir = os.path.join(dir, bibliographic_type)
+        dir = os.path.join(dir, unicode(user.get_profile().center.code))
         fname = slugify("%s-%s" % (bibliographic_type, id))
         fname = "%s-%s" % (user.get_profile().center.code, fname)
         
@@ -169,7 +179,7 @@ class TypeSubmission(Generic):
     total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
     certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
     iso_file = models.FileField(_('iso file'), upload_to=new_filename, blank=True, null=True)
-    lildbi_version = models.CharField(_("Lildbi version"), max_length=255, choices=VERSION_CHOICES, blank=True, null=True)
+    lildbi_version = models.ForeignKey('LildbiVersion', null=True, blank=True)
 
     def get_iso_url(self):
         filename = self.iso_file.name
