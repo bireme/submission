@@ -23,11 +23,15 @@
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
+.blockSubmission .filters .filter {
+    margin: 10px 0;
+
+}
 .blockSubmission .filters ul {
     margin: 0 0 25px 0;
 }
 .blockSubmission .filters ul li {
-    display: inline;
+    list-style: none;
     padding: 0 10px;
 }
 .confirm_change textarea {

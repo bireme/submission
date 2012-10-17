@@ -4,8 +4,8 @@
 {% block "title" %}{% trans "Dashboard" %} | {{ block.super }}{% endblock %}
 
 {% block content %}    
-    <div class="row">
-        <div class="span12 submissions">
+    <div class="row-fluid">
+        <div class="submissions">
             
             <!-- block alert -->
             {% if request.GET.message and request.GET.type %}
