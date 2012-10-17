@@ -97,7 +97,7 @@ class BibliographicType(Generic):
     title = models.CharField(_("title"), max_length=255)
 
     def get_translation(self, lang_code):
-        translation = BibliographicTypeLocal.objects.filter(step=self.id, language=lang_code)
+        translation = BibliographicTypeLocal.objects.filter(bibliographic_type=self.id, language=lang_code)
         if translation:
             return translation[0].title
         else:
