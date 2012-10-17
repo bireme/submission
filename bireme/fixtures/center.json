@@ -6,5 +6,125 @@
       "code": "BR1.1", 
       "name": "BIREME/OPAS/OMS"
     }
+  }, 
+  {
+    "pk": 2, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1.2", 
+      "name": "Biblioteca Central da UNIFESP"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CL1.1", 
+      "name": "CCN Chile"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "center.center", 
+    "fields": {
+      "code": "EC1.1", 
+      "name": "Universidad Central del Ecuador"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR33.1", 
+      "name": "Universidade Estadual Paulista - Campus de Botucatu"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO55.1", 
+      "name": "Universidad de Antioquia"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BO2.1", 
+      "name": "Representaci\u00f3n de la OPS/OMS Bolivia"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR21.1", 
+      "name": "Universidade Federal de Minas Gerais - UFMG"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR44.1", 
+      "name": "Instituto do Cora\u00e7\u00e3o INCOR"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR526.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR513.1", 
+      "name": "Universidade Estadual de Maring\u00e1 UEM"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR59.2", 
+      "name": "Prefeitura do Municipio de S\u00e3o Paulo - PMSP"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR546.1", 
+      "name": "Universidade Federal do Rio Grande do Sul - UFRGS"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR433.1", 
+      "name": "Universidade do Estado do Rio de Janeiro - UERJ"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO176.1", 
+      "name": "Ministerio de Salud y Protecci\u00f3n Social"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "center.center", 
+    "fields": {
+      "code": "PE18.1", 
+      "name": "Ministerio de Salud de Per\u00fa"
+    }
   }
 ]

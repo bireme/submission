@@ -1,0 +1,288 @@
+[
+  {
+    "pk": 1, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 2, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 3, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 5, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 1, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 4, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 7, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 6, 
+      "center": 1
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 8, 
+      "center": 2
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": true, 
+      "is_admin": true, 
+      "user": 9, 
+      "center": 3
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 10, 
+      "center": 2
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 11, 
+      "center": 3
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 12, 
+      "center": 3
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 13, 
+      "center": 4
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 14, 
+      "center": 5
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 15, 
+      "center": 6
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 16, 
+      "center": 7
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 17, 
+      "center": 8
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 18, 
+      "center": 9
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 19, 
+      "center": 10
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 20, 
+      "center": 11
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 21, 
+      "center": 12
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 22, 
+      "center": 13
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 23, 
+      "center": 14
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 24, 
+      "center": 15
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": true, 
+      "user": 25, 
+      "center": 16
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "account.userprofile", 
+    "fields": {
+      "receive_email": false, 
+      "is_ccn": false, 
+      "is_admin": false, 
+      "user": 26, 
+      "center": 1
+    }
+  }
+]

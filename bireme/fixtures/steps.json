@@ -3,7 +3,8 @@
     "pk": 1, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-22 14:15:07", 
+      "allow_edit": false, 
+      "updated": "2012-10-10 16:03:45", 
       "finish": false, 
       "parent": null, 
       "creator": 1, 
@@ -19,7 +20,8 @@
     "pk": 2, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-22 14:15:41", 
+      "allow_edit": true, 
+      "updated": "2012-10-10 16:02:51", 
       "finish": false, 
       "parent": 1, 
       "creator": 1, 
@@ -35,13 +37,14 @@
     "pk": 3, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-22 14:16:24", 
+      "allow_edit": true, 
+      "updated": "2012-09-20 15:04:43", 
       "finish": false, 
       "parent": 2, 
       "creator": 1, 
       "title": "Format validated", 
       "created": "2012-08-22 14:14:43", 
-      "updater": 1, 
+      "updater": 2, 
       "close": false, 
       "type": 1, 
       "pending": false
@@ -51,7 +54,8 @@
     "pk": 4, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-22 14:16:35", 
+      "allow_edit": true, 
+      "updated": "2012-10-10 14:59:55", 
       "finish": false, 
       "parent": 3, 
       "creator": 1, 
@@ -67,13 +71,14 @@
     "pk": 5, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-22 14:17:23", 
+      "allow_edit": true, 
+      "updated": "2012-09-20 15:04:08", 
       "finish": false, 
       "parent": 4, 
       "creator": 1, 
       "title": "Certified (waiting publish)", 
       "created": "2012-08-22 14:14:43", 
-      "updater": 1, 
+      "updater": 2, 
       "close": false, 
       "type": 1, 
       "pending": false
@@ -83,13 +88,14 @@
     "pk": 6, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-23 18:19:08", 
+      "allow_edit": true, 
+      "updated": "2012-09-20 15:03:47", 
       "finish": true, 
       "parent": 5, 
       "creator": 1, 
       "title": "Published", 
       "created": "2012-08-22 14:14:43", 
-      "updater": 1, 
+      "updater": 2, 
       "close": false, 
       "type": 1, 
       "pending": false
@@ -99,13 +105,14 @@
     "pk": 7, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-23 18:15:56", 
+      "allow_edit": true, 
+      "updated": "2012-09-20 15:03:43", 
       "finish": false, 
       "parent": null, 
       "creator": 1, 
       "title": "Pending", 
       "created": "2012-08-23 18:15:13", 
-      "updater": 1, 
+      "updater": 2, 
       "close": false, 
       "type": 1, 
       "pending": true
@@ -115,13 +122,14 @@
     "pk": 8, 
     "model": "submission.step", 
     "fields": {
-      "updated": "2012-08-27 11:06:56", 
+      "allow_edit": false, 
+      "updated": "2012-10-17 15:30:50", 
       "finish": false, 
       "parent": null, 
       "creator": 1, 
       "title": "Close", 
       "created": "2012-08-27 10:53:32", 
-      "updater": 3, 
+      "updater": 1, 
       "close": true, 
       "type": 1, 
       "pending": false
@@ -129,13 +137,54 @@
   }, 
   {
     "pk": 1, 
-    "model": "submission.type", 
+    "model": "submission.steplocal", 
     "fields": {
-      "title": "ISO File", 
-      "updated": "2012-08-22 14:14:52", 
-      "creator": 1, 
-      "updater": 1, 
-      "created": "2012-08-22 14:14:43"
+      "updated": "2012-10-10 11:10:15", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-09 18:09:31", 
+      "step": 6, 
+      "updater": null, 
+      "title": "Publicado"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-10 11:18:41", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-09 18:09:31", 
+      "step": 4, 
+      "updater": null, 
+      "title": "Validando Conte\u00fado"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-10 16:03:45", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-10 15:07:49", 
+      "step": 1, 
+      "updater": null, 
+      "title": "Nuevo"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-10 16:04:43", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-10 15:07:49", 
+      "step": 8, 
+      "updater": null, 
+      "title": "Fechar"
     }
   }
 ]
