@@ -1,0 +1,57 @@
+[
+  {
+    "pk": 1, 
+    "model": "submission.lildbiversion", 
+    "fields": {
+      "title": "1.5", 
+      "updated": "2012-10-17 18:36:58", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:36:47"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.lildbiversion", 
+    "fields": {
+      "title": "1.6", 
+      "updated": "2012-10-17 18:37:01", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:36:47"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "submission.lildbiversion", 
+    "fields": {
+      "title": "1.7", 
+      "updated": "2012-10-17 18:37:03", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:36:47"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "submission.lildbiversion", 
+    "fields": {
+      "title": "1.7a", 
+      "updated": "2012-10-17 18:37:07", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:36:47"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "submission.lildbiversion", 
+    "fields": {
+      "title": "1.7b", 
+      "updated": "2012-10-17 18:37:13", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:36:47"
+    }
+  }
+]
