@@ -1,0 +1,63 @@
+[ 
+  {
+    "pk": 1, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "Journal", 
+      "updated": "2012-10-17 18:28:47", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:08:41"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "Monography", 
+      "updated": "2012-10-17 18:28:59", 
+      "creator": 1, 
+      "updater": 1, 
+      "created": "2012-10-17 18:08:41"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "submission.bibliographictypelocal", 
+    "fields": {
+      "updated": "2012-10-17 18:28:47", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 18:08:41", 
+      "bibliographic_type": 1, 
+      "updater": null, 
+      "title": "Revista"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.bibliographictypelocal", 
+    "fields": {
+      "updated": "2012-10-17 18:28:47", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 18:08:41", 
+      "bibliographic_type": 1, 
+      "updater": null, 
+      "title": "Peri\u00f3dico"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "submission.bibliographictypelocal", 
+    "fields": {
+      "updated": "2012-10-17 18:28:59", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 18:08:41", 
+      "bibliographic_type": 2, 
+      "updater": null, 
+      "title": "Monografia"
+    }
+  }
+]
