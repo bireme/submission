@@ -164,7 +164,7 @@ def show(request, id):
     metadata = None
     followup_form = FollowUpForm()
     followups = FollowUp.objects.filter(submission=id).order_by('created')
-    steps = Step.objects.filter(type=submission.type)
+    steps = Step.objects.filter(type=submission.bibliographic_type)
     pending = steps.filter(pending=True)[0]
     close = steps.filter(close=True)[0]
     next_step = steps.filter(parent=submission.current_status)

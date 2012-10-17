@@ -77,6 +77,37 @@ class Type(Generic):
     def __unicode__(self):
         return unicode(self.title)
 
+class BibliographicType(Generic):
+
+    class Meta:
+        verbose_name = _("bibliographic type")
+        verbose_name_plural = _("bibliographic types")
+
+    title = models.CharField(_("title"), max_length=255)
+
+    def get_translation(self, lang_code):
+        translation = BibliographicTypeLocal.objects.filter(step=self.id, language=lang_code)
+        if translation:
+            return translation[0].title
+        else:
+            return self.title
+
+    def __unicode__(self):
+        return unicode(self.title)
+
+class BibliographicTypeLocal(Generic):
+
+    class Meta:
+        verbose_name = _("bibliographic type translation")
+        verbose_name_plural = _("bibliographic types translations")
+
+    bibliographic_type = models.ForeignKey(BibliographicType)
+    language = models.CharField(_('language'), max_length=255, choices=LANGUAGES_CHOICES, default="pt-br")
+    title = models.CharField(_("title"), max_length=255)
+
+    def __unicode__(self):
+        return unicode(self.title)    
+
 class TypeSubmission(Generic):
 
     TYPE_CHOICES = (
@@ -112,7 +143,9 @@ class TypeSubmission(Generic):
         request = get_current_request()
         fname, dot, extension = filename.rpartition('.')
 
-        type = request.POST.get('type')
+        bibliographic_type = request.POST.get('bibliographic_type')
+        bibliographic_type = BibliographicType.objects.get(pk=bibliographic_type)
+        bibliographic_type = bibliographic_type.title
         extension = "iso"
 
         try:
@@ -122,17 +155,17 @@ class TypeSubmission(Generic):
         except:
             id = 1
 
-        dir = os.path.join(settings.MEDIA_ROOT, 'attac')
+        dir = settings.MEDIA_ROOT
         dir = os.path.join(dir, unicode(user))
-        dir = os.path.join(dir, type)
-        fname = slugify("%s-%s" % (type, id))
+        dir = os.path.join(dir, bibliographic_type)
+        fname = slugify("%s-%s" % (bibliographic_type, id))
         fname = "%s-%s" % (user.get_profile().center.code, fname)
         
         return os.path.join(dir, '%s.%s' % (fname, extension))
         
     
     # iso    
-    type = models.CharField(_("Type of Records"), max_length=10, choices=TYPE_CHOICES, default='e', null=True, blank=True)
+    bibliographic_type = models.ForeignKey(BibliographicType, null=True)
     total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
     certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
     iso_file = models.FileField(_('iso file'), upload_to=new_filename, blank=True, null=True)

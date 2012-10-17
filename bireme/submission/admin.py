@@ -18,11 +18,19 @@ class StepLocalAdmin(admin.StackedInline):
     extra = 0
     exclude = ('created', 'creator', 'updated', 'updater')
 
+class BibliographicTypeLocalAdmin(admin.StackedInline):
+    model = BibliographicTypeLocal
+    extra = 0
+    exclude = ('created', 'creator', 'updated', 'updater')
 
 class StepAdmin(GenericAdmin):
     list_display = ('title', 'parent', 'creator', 'created', 'updater', 'updated')
     list_filter = ('type', 'finish', 'pending')
     inlines = [StepLocalAdmin, ]
+
+class BibliographicTypeAdmin(GenericAdmin):
+    list_display = ('title', 'creator', 'created', 'updater', 'updated')
+    inlines = [BibliographicTypeLocalAdmin, ]
 
 class TypeAdmin(GenericAdmin):
     list_display = ('title', 'creator', 'created', 'updater', 'updated')
@@ -31,7 +39,7 @@ class SubmissionAdmin(GenericAdmin):
     list_display = ('id', 'type', 'current_status', 'creator')
 
 admin.site.register(Submission, SubmissionAdmin)
-# admin.site.register(SubmissionHistory)
 admin.site.register(Step, StepAdmin)
 admin.site.register(Type, TypeAdmin)
 admin.site.register(FollowUp, GenericAdmin)
+admin.site.register(BibliographicType, BibliographicTypeAdmin)
