@@ -4,6 +4,19 @@ from fabric.api import env, local, settings, abort, run, cd
 from fabric.operations import local, put, sudo, get
 from fabric.context_managers import prefix
 from environment import *
+
+def fixtures(app=None):
+    if app:
+        with prefix('. %s/bin/activate' % env.virtualenv):
+            with cd(env.rootpath):
+                run('python manage.py dumpdata %s --indent=2 > /tmp/%s.json' % (app, app))
+        get('/tmp/%s.json' % app, '../bireme/fixtures')
+
+    else:
+        with prefix('. %s/bin/activate' % env.virtualenv):
+            with cd(env.rootpath):
+                run('python manage.py dumpdata --indent=2 > /tmp/submission.json')
+        get('/tmp/submission.json', '../bireme/fixtures')
  
 def reset_db(app):
     """Realiza reset do app
