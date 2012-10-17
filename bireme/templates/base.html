@@ -35,6 +35,17 @@
                 {% block content %}{% endblock %}
             </div>
     {% endblock %}
-    <div class="version">{% include "version.txt" %}</div>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="footer">
+                    <strong class="bireme">2012 - BIREME/OPAS/OMS</strong>
+                    <div class="version">
+                        Bireme Submission - <strong>v{% include "version.txt" %}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>
