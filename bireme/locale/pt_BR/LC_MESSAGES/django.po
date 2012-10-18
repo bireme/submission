@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 09:40-0300\n"
-"PO-Revision-Date: 2012-10-18 10:29\n"
+"PO-Revision-Date: 2012-10-18 15:25\n"
 "Last-Translator:   <moa@moa.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -237,7 +237,7 @@ msgstr "Apague este usuário"
 #: registration/templates/registration/list.html:43
 #: submission/templates/submission/block-list-submission.html:135
 msgid "No matches for your query"
-msgstr ""
+msgstr "Não há resultados"
 
 #: registration/templates/registration/login.html:18
 #: registration/templates/registration/logout.html:11 templates/base.html:13
@@ -269,13 +269,12 @@ msgid "New User"
 msgstr "Novo usuário"
 
 #: registration/templates/registration/registration_form.html:9
-#, fuzzy
 msgid "Create"
-msgstr "Documentalista\\Criador"
+msgstr "Criador"
 
 #: submission/models.py:15
 msgid "created"
-msgstr "Documentalista\\Criador"
+msgstr "Criado em"
 
 #: submission/models.py:16
 msgid "updated"
@@ -371,11 +370,11 @@ msgstr "observação"
 
 #: submission/models.py:128
 msgid "follow up"
-msgstr ""
+msgstr "atualização"
 
 #: submission/models.py:129
 msgid "follow ups"
-msgstr ""
+msgstr "atualizações"
 
 #: submission/models.py:140
 msgid "message"
@@ -419,7 +418,7 @@ msgstr "Ação em bloco"
 
 #: submission/templates/submission/block-list-submission.html:86
 msgid "Approve to next status"
-msgstr ""
+msgstr "Mudar para próximo status"
 
 #: submission/templates/submission/block-list-submission.html:110
 msgid "Order by"
@@ -432,7 +431,7 @@ msgstr "envio"
 
 #: submission/templates/submission/block-list-submission.html:131
 msgid "Download file"
-msgstr ""
+msgstr "Baixar arquivo"
 
 #: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
@@ -578,7 +577,7 @@ msgstr "Novo"
 
 #: templates/menu.html:33
 msgid "Manage"
-msgstr ""
+msgstr "Gerenciar"
 
 #: templates/menu.html:40 templates/menu.html.py:46
 msgid "English"
