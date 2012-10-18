@@ -32,7 +32,7 @@ def index(request):
     output = {}
     submissions = TypeSubmission.objects.all().order_by('submission__updated').exclude(submission__current_status__finish=True).exclude(submission__current_status__close=True)
     filters = Step.objects.all().exclude(finish=True).exclude(close=True)
-    filters_type = TypeSubmission.TYPE_CHOICES
+    filters_type = BibliographicType.objects.all()
 
     if 'admins' in user_groups:
         user_type = 'admin'
@@ -62,8 +62,8 @@ def index(request):
             submissions = submissions.filter(submission__current_status=filtr)
 
         if 'filtr_type' in request.REQUEST and request.REQUEST['filtr_type'] != "":
-            filtr_type = request.REQUEST['filtr_type']
-            submissions = submissions.filter(type__icontains=filtr_type)
+            filtr_type = int(request.REQUEST['filtr_type'])
+            submissions = submissions.filter(bibliographic_type=filtr_type)
 
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']

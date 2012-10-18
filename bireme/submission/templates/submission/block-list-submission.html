@@ -66,7 +66,7 @@
 
 <form name="interface" method="GET">{% csrf_token %}
     <input type="hidden" name="filter" value="{{ filtr.id }}">
-    <input type="hidden" name="filtr_type" value="{{ filtr_type.0 }}">
+    <input type="hidden" name="filtr_type" value="{{ filtr_type }}">
     <input type="hidden" name="order_type" value="{{ order_type }}">
     <input type="hidden" name="order_by" value="{{ order_by }}">
     <input type="hidden" name="page" value="{{ pagination.page.number }}">
@@ -167,10 +167,10 @@
                         <li>{% if not filtr_type %}<b>{% trans "All" %}</b>{% else %}<a href="javascript:change_type('')">{% trans "All" %}</a>{% endif %}</li>
                         {% for type in filters_type %}
                             <li>
-                                {% if filtr_type == type.0 %}
-                                    <b>{{ type.0 }}</b>
+                                {% if filtr_type == type.id %}
+                                    <b>{{ type|translate:request.LANGUAGE_CODE }}</b>
                                 {% else %}
-                                    <a href="javascript:change_type('{{ type.0 }}')" title="{% trans "Filter by type " %}{{ type.1 }}">{{ type.0 }}</a></li>
+                                    <a href="javascript:change_type('{{ type.id }}')" title="{% trans "Filter by type " %}{{ type|translate:request.LANGUAGE_CODE }}">{{ type|translate:request.LANGUAGE_CODE }}</a></li>
                                 {% endif %}
                         {% endfor %}
                     </ul>
