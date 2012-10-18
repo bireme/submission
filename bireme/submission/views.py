@@ -1,6 +1,7 @@
 #! coding: utf-8
 from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator
 from django.template import RequestContext
@@ -13,13 +14,13 @@ import os
 
 HEADERS = (
         ("submission__id", "#"),
-        ("submission__created", "Creation Date"),        
-        ("submission__updated", "Last Update"),        
-        ("submission__creator__userprofile__center__code", "Center"),        
-        ("submission__updater", "Updated by"),        
-        ("submission__current_status", "Status"),        
-        ("submission__type", "Type"),        
-        ("iso_file", "Filename"),        
+        ("submission__created", _("Creation Date")),
+        ("submission__updated", _("Last Update")),
+        ("submission__creator__userprofile__center__code", _("Center")), 
+        ("submission__updater", _("Updated by")),
+        ("submission__current_status", _("Status")),
+        ("submission__type", _("Type")),
+        ("iso_file", _("Filename")),
     )
 
 @login_required
