@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 10:57-0300\n"
-"PO-Revision-Date: 2012-09-28 10:57\n"
-"Last-Translator:   <>\n"
+"PO-Revision-Date: 2012-10-10 15:58\n"
+"Last-Translator:   <moa@moa.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,7 +242,7 @@ msgstr ""
 #: registration/templates/registration/login.html:18
 #: registration/templates/registration/logout.html:11 templates/base.html:13
 msgid "BIREME Submission"
-msgstr "Envío Bireme"
+msgstr "Sumisión Bireme"
 
 #: registration/templates/registration/login.html:32
 msgid "Password"
