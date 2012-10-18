@@ -183,7 +183,7 @@ class TypeSubmission(Generic):
 
     def get_iso_url(self):
         filename = self.iso_file.name
-        url = filename.replace(settings.MEDIA_ROOT, "")
+        url = filename.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
         
         if not os.path.exists(filename):
             logger_logins = logging.getLogger('logview.userlogins')
