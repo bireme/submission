@@ -54,6 +54,15 @@ def migrate():
         with prefix('. %s/bin/activate' % env.virtualenv):
             run('python manage.py migrate')
 
+def compilemessages():
+    """
+        Compile translations from server
+    """
+    with prefix('. %s/bin/activate' % env.virtualenv):
+        with cd(env.rootpath):
+            run('python manage.py compilemessages')
+    restart_app()
+
 def restart_app():
     """
         Restarts remote wsgi.
