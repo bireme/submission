@@ -252,11 +252,11 @@ def edit_type_submission(request, id):
     return render_to_response('submission/edit-type-submission.html', output, context_instance=RequestContext(request))
 
 @login_required
-def list(request, type=0, filtr=0):
+def list(request):
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
-    filters_type = TypeSubmission.TYPE_CHOICES
+    filters_type = BibliographicType.objects.all()
     if 'admins' in user_groups:
         user_type = 'admin'
 
@@ -266,17 +266,6 @@ def list(request, type=0, filtr=0):
 
     filters = Step.objects.all()
     types = Type.objects.all()
-
-    if int(type) > 0:
-        type = get_object_or_404(Type, pk=type)
-        submissions = submissions.filter(type=type)
-        filters = filters.filter(type=type) 
-        type = type.id
-    
-    if int(filtr) > 0:
-        filtr = get_object_or_404(Step, pk=filtr)
-        submissions = submissions.filter(submission__current_status=filtr)
-        filtr = filtr.id
 
     # requests of interface
     order_by = 'id'
@@ -298,8 +287,8 @@ def list(request, type=0, filtr=0):
             submissions = submissions.filter(submission__current_status=filtr)
 
         if 'filtr_type' in request.REQUEST and request.REQUEST['filtr_type'] != "":
-            filtr_type = request.REQUEST['filtr_type']
-            submissions = submissions.filter(type__icontains=filtr_type)
+            filtr_type = int(request.REQUEST['filtr_type'])
+            submissions = submissions.filter(bibliographic_type=filtr_type)
 
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']
@@ -324,7 +313,6 @@ def list(request, type=0, filtr=0):
         'filters_type': filters_type,
         'filtr_type': filtr_type,
         'types': types,
-        'type': type,
     }
 
     return render_to_response('submission/list.html', output, context_instance=RequestContext(request))

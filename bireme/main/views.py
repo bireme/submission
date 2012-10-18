@@ -15,7 +15,7 @@ def search(request):
     query = request.GET.get('q')
     output['q'] = query
     filters = Step.objects.all().exclude(finish=True).exclude(close=True)
-    filters_type = TypeSubmission.TYPE_CHOICES
+    filters_type = BibliographicType.objects.all()
 
     try:
         submissions = TypeSubmission.objects.filter(submission__id=query)
@@ -42,8 +42,8 @@ def search(request):
             submissions = submissions.filter(submission__current_status=filtr)
 
         if 'filtr_type' in request.REQUEST and request.REQUEST['filtr_type'] != "":
-            filtr_type = request.REQUEST['filtr_type']
-            submissions = submissions.filter(type__icontains=filtr_type)
+            filtr_type = int(request.REQUEST['filtr_type'])
+            submissions = submissions.filter(bibliographic_type=filtr_type)
 
         if 'page' in request.REQUEST and request.REQUEST['page'] != "":
             page = request.REQUEST['page']

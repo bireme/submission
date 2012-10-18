@@ -15,35 +15,34 @@
 {% block "title" %}{% trans "Manage Users" %} | {{ block.super }}{% endblock %}
 
 {% block content %}
-	<div class="row">
+	<div class="row-fluid">
 		<h2>{% trans "Manage Users" %}</h2>
-		<div class="span8">
-			<table class="table trable-striped">
-				<thead>
-					<tr>
-						<th>{% trans "#" %}</th>
-						<th>{% trans "Username" %}</th>
-						<th>{% trans "Center" %}</th>
-						<th>{% trans "Actions" %}</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% if users %}
-						{% for user in users %}
-							<tr>
-								<td>{{ user.id }}</td>
-								<td>{{ user.username }}</td>
-								<td>{{ user.get_profile.center }}</td>
-								<td>
-									<a href="javascript:move_to_trash('{{ user.id }}')" onlick="" title="{% trans "Remove this user" %}"><i class="icon-trash"></i></a>
-								</td>
-							</tr>
-						{% endfor %}
-					{% else %}
-						<tr><td colspan="3">{% trans "No matches for your query" %}</tr>
-					{% endif %}
-				</tbody>
-			</table>
-		</div>
+		<table class="table trable-striped">
+			<thead>
+				<tr>
+					<th>{% trans "#" %}</th>
+					<th>{% trans "Username" %}</th>
+					<th>{% trans "Center" %}</th>
+					<th>{% trans "Actions" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if users %}
+					{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.username }}</td>
+							<td>{{ user.get_profile.center }}</td>
+							<td>
+								<a href="javascript:move_to_trash('{{ user.id }}')" onlick="" title="{% trans "Remove this user" %}"><i class="icon-trash"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr><td colspan="3">{% trans "No matches for your query" %}</tr>
+				{% endif %}
+			</tbody>
+		</table>
+		
 	</div>
 {% endblock %}
