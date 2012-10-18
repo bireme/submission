@@ -62,7 +62,7 @@ def restart_app():
         run("touch application.wsgi")
 
 def update_version_file():
-    with cd(env.path):
+    with cd(env.rootpath):
         run("git describe --tags | cut -f 1,2 -d - > templates/version.txt")
         # traz o arquivo gerado da versão para minha máquina, e implementa a versão localmente
         get("templates/version.txt", "../bireme/templates")
