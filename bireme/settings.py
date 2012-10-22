@@ -1,6 +1,6 @@
 # coding: utf-8
 # Django settings for bireme project.
-import os
+import os, re
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -192,6 +192,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'bireme.settings.settings_context',
 )
 
 # List of callables that know how to import templates from various sources.
@@ -217,3 +218,13 @@ try:
     from settings_local import *
 except ImportError:
     pass
+
+# this adding the constants of settings to template context
+_context = {} 
+local_context = locals()
+for (k,v) in local_context.items():
+    if re.search('^[A-Z0-9_]+$',k):
+        _context[k] = str(v)
+
+def settings_context(context):
+    return _context
