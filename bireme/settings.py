@@ -204,6 +204,8 @@ AUTH_PROFILE_MODULE = "account.UserProfile"
 
 ITEMS_PER_PAGE = 20
 
+GOOGLE_ANALYTICS_ID = "UA-35768216-1"
+
 # Email
 EMAIL_HOST = 'pombo.bireme.br'
 EMAIL_PORT = 25
