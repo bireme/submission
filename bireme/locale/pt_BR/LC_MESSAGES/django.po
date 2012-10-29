@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-18 15:29-0300\n"
-"PO-Revision-Date: 2012-10-18 15:35\n"
+"POT-Creation-Date: 2012-09-28 09:40-0300\n"
+"PO-Revision-Date: 2012-10-26 10:18\n"
 "Last-Translator:   <moa@moa.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,10 +26,6 @@ msgstr "é o centro administrador?"
 #: account/models.py:11
 msgid "is national center?"
 msgstr "é o Centro Coordenador Nacional?"
-
-#: account/models.py:12
-msgid "Allow to receive emails?"
-msgstr ""
 
 #: django_tools/decorators.py:60
 msgid "Permission denied for anonymous user. Please log in."
@@ -143,7 +139,7 @@ msgstr "%.1f min"
 
 #: main/templates/main/search.html:5 main/templates/main/search.html.py:10
 msgid "Results for:"
-msgstr "Resultados para:"
+msgstr ""
 
 #: registration/forms.py:38
 msgid "username"
@@ -163,7 +159,7 @@ msgstr "senha (novamente)"
 
 #: registration/forms.py:57
 msgid "This username is already taken. Please choose another."
-msgstr "Este nome de usuário já existe, por favor escolha outro."
+msgstr ""
 
 #: registration/forms.py:69
 msgid "You must type the same password each time"
@@ -171,14 +167,13 @@ msgstr ""
 
 #: registration/forms.py:98
 msgid "I have read and agree to the Terms of Service"
-msgstr "Li e concordo com os termos de serviço"
+msgstr ""
 
 #: registration/forms.py:115
 msgid ""
 "This email address is already in use. Please supply a different email "
 "address."
 msgstr ""
-"Este email já está em uso. Por favor, preencha com um email diferente."
 
 #: registration/forms.py:141
 msgid ""
@@ -202,17 +197,9 @@ msgstr ""
 msgid "registration profiles"
 msgstr ""
 
-#: registration/templates/registration/edit.html:15
-msgid "Error in update your receive email options."
-msgstr ""
-
-#: registration/templates/registration/edit.html:24
-#: registration/templates/registration/edit.html:29
+#: registration/templates/registration/edit.html:5
+#: registration/templates/registration/edit.html:10
 msgid "Edit Your Profile"
-msgstr ""
-
-#: registration/templates/registration/edit.html:40
-msgid "Receive email alerts?"
 msgstr ""
 
 #: registration/templates/registration/list.html:7
@@ -222,41 +209,42 @@ msgstr ""
 #: registration/templates/registration/list.html:15
 #: registration/templates/registration/list.html:19
 msgid "Manage Users"
-msgstr "Gerenciar Usuários"
-
-#: registration/templates/registration/list.html:23
-msgid "#"
-msgstr "#"
+msgstr "Administrador"
 
 #: registration/templates/registration/list.html:24
-#: registration/templates/registration/login.html:30
+msgid "#"
+msgstr ""
+
+#: registration/templates/registration/list.html:25
+#: registration/templates/registration/login.html:28
 msgid "Username"
 msgstr "Nome do usuário"
 
-#: registration/templates/registration/list.html:25 submission/views.py:19
-#: submission/templates/submission/show.html:41
+#: registration/templates/registration/list.html:26
+#: submission/templates/submission/show.html:40
 msgid "Center"
 msgstr "Centro"
 
-#: registration/templates/registration/list.html:26
+#: registration/templates/registration/list.html:27
+#, fuzzy
 msgid "Actions"
-msgstr "Ações"
+msgstr "Ação em bloco"
 
-#: registration/templates/registration/list.html:37
+#: registration/templates/registration/list.html:38
 msgid "Remove this user"
 msgstr "Apague este usuário"
 
-#: registration/templates/registration/list.html:42
-#: submission/templates/submission/block-list-submission.html:134
+#: registration/templates/registration/list.html:43
+#: submission/templates/submission/block-list-submission.html:135
 msgid "No matches for your query"
-msgstr "Não há resultados"
+msgstr ""
 
-#: registration/templates/registration/login.html:19
-#: registration/templates/registration/logout.html:11 templates/base.html:15
+#: registration/templates/registration/login.html:18
+#: registration/templates/registration/logout.html:11 templates/base.html:13
 msgid "BIREME Submission"
 msgstr "Submissão Bireme"
 
-#: registration/templates/registration/login.html:34
+#: registration/templates/registration/login.html:32
 msgid "Password"
 msgstr "Senha"
 
@@ -266,11 +254,11 @@ msgstr ""
 
 #: registration/templates/registration/logout.html:17
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: registration/templates/registration/logout.html:17
 msgid "login"
-msgstr ""
+msgstr "login"
 
 #: registration/templates/registration/logout.html:18
 msgid "again clicking below."
@@ -281,244 +269,170 @@ msgid "New User"
 msgstr "Novo usuário"
 
 #: registration/templates/registration/registration_form.html:9
+#, fuzzy
 msgid "Create"
-msgstr "Criador"
+msgstr "Documentalista\\Criador"
 
-#: submission/models.py:26
+#: submission/models.py:15
 msgid "created"
-msgstr "Criado em"
+msgstr "Documentalista\\Criador"
+
+#: submission/models.py:16
+msgid "updated"
+msgstr "Atualizado por"
 
 #: submission/models.py:27
-msgid "updated"
-msgstr "atualização"
-
-#: submission/models.py:38
 msgid "step"
 msgstr "passo"
 
-#: submission/models.py:39
+#: submission/models.py:28
 msgid "steps"
 msgstr "passos"
 
-#: submission/models.py:42 submission/models.py:67 submission/models.py:75
-#: submission/models.py:86 submission/models.py:97 submission/models.py:117
+#: submission/models.py:31 submission/models.py:47
 msgid "title"
 msgstr "título"
 
-#: submission/models.py:44
+#: submission/models.py:33
 msgid "finish step?"
 msgstr "finalizar passo?"
 
-#: submission/models.py:45
+#: submission/models.py:34
 msgid "pending step?"
 msgstr "passo pendente?"
 
-#: submission/models.py:46
+#: submission/models.py:35
 msgid "close step?"
 msgstr "passo fechado?"
 
-#: submission/models.py:47
+#: submission/models.py:36
 msgid "allow register edition?"
 msgstr "permitir registrar edição?"
 
-#: submission/models.py:62
-msgid "step translation"
-msgstr "Tradução de etapa"
-
-#: submission/models.py:63
-msgid "step translations"
-msgstr "Traduções de etapa"
-
-#: submission/models.py:66 submission/models.py:116
-msgid "language"
-msgstr "Linguagem"
-
-#: submission/models.py:72
-msgid "lildbi version"
-msgstr "versão do LILDBI"
-
-#: submission/models.py:73
-msgid "lildbi versions"
-msgstr "versões do LILDBI"
-
-#: submission/models.py:83
+#: submission/models.py:44
 msgid "type"
 msgstr "tipo"
 
-#: submission/models.py:84
+#: submission/models.py:45
 msgid "types"
 msgstr "tipos"
 
-#: submission/models.py:94
-msgid "bibliographic type"
-msgstr "tipo bibliográfico"
-
-#: submission/models.py:95
-msgid "bibliographic types"
-msgstr "tipos bibliográfico"
-
-#: submission/models.py:112
-msgid "bibliographic type translation"
-msgstr "Tradução de Tipo Bibliográfico"
-
-#: submission/models.py:113
-msgid "bibliographic types translations"
-msgstr "Traduções de Tipo Bibliográfico"
-
-#: submission/models.py:125
+#: submission/models.py:55
 msgid "Revista"
 msgstr "Artigos de periódicos não LILACS-Express"
 
-#: submission/models.py:126
+#: submission/models.py:56
 msgid "Monografia"
 msgstr "Registros de Monografia, Tese e Não Convencional (excluindo Revista)"
 
-#: submission/models.py:127
+#: submission/models.py:57
 msgid "LILACS Express"
 msgstr "Artigos de periódicos que participam do LILACS-Express"
 
-#: submission/models.py:139
+#: submission/models.py:69
 msgid "type in submission"
 msgstr "tipo de submissão"
 
-#: submission/models.py:140
+#: submission/models.py:70
 msgid "types in submission"
 msgstr "tipos de submissões"
 
-#: submission/models.py:179
+#: submission/models.py:103
+msgid "Type of Records"
+msgstr "Tipos de Registros"
+
+#: submission/models.py:104
 msgid "total of records"
 msgstr "total de registros"
 
-#: submission/models.py:180
+#: submission/models.py:105
 msgid "total of certified records"
 msgstr "total de registros certificados"
 
-#: submission/models.py:181
+#: submission/models.py:106
 msgid "iso file"
 msgstr "arquivo iso"
 
-#: submission/models.py:197
+#: submission/models.py:107
+msgid "Lildbi version"
+msgstr "versão do LILDBI"
+
+#: submission/models.py:115
 msgid "submission"
 msgstr "submissão"
 
-#: submission/models.py:198
+#: submission/models.py:116
 msgid "submissions"
 msgstr "submissões"
 
-#: submission/models.py:202
+#: submission/models.py:120
 msgid "observation"
 msgstr "observação"
 
-#: submission/models.py:210
+#: submission/models.py:128
 msgid "follow up"
-msgstr "atualização"
+msgstr ""
 
-#: submission/models.py:211
+#: submission/models.py:129
 msgid "follow ups"
-msgstr "atualizações"
+msgstr ""
 
-#: submission/models.py:222
+#: submission/models.py:140
 msgid "message"
 msgstr "mensagem"
 
-#: submission/models.py:223
+#: submission/models.py:141
 msgid "attachment"
 msgstr "anexo"
 
-#: submission/models.py:224
+#: submission/models.py:142
 msgid "staff message"
 msgstr "Mensagem administrativa"
 
-#: submission/models.py:240
-#, python-format
-msgid "Update in submission #%s"
-msgstr "Atualização no envio #%s"
-
-#: submission/models.py:241
-#, python-format
-msgid "Your submission as been updated from the status <b>%s</b>."
-msgstr "Seu envio foi atualizado. (status anterior: <b>%s</b>)"
-
-#: submission/views.py:17
-msgid "Creation Date"
-msgstr "Criado em"
-
-#: submission/views.py:18
-msgid "Last Update"
-msgstr "Útima atualização"
-
-#: submission/views.py:20
-msgid "Updated by"
-msgstr "atualização"
-
-#: submission/views.py:21
-msgid "Status"
-msgstr "Mudança de Status"
-
-#: submission/views.py:22
-#: submission/templates/submission/block-list-submission.html:165
-msgid "Type"
-msgstr "Tipo"
-
-#: submission/views.py:23
-msgid "Filename"
-msgstr "usuário"
-
-#: submission/templates/submission/action-bar.html:13
-#: submission/templates/submission/block-list-submission.html:86
+#: submission/templates/submission/action-bar.html:11
+#: submission/templates/submission/block-list-submission.html:87
 msgid "Decline"
 msgstr "Rejeitar"
 
-#: submission/templates/submission/action-bar.html:15
-#: submission/templates/submission/show.html:6
-#: submission/templates/submission/show.html:17
+#: submission/templates/submission/action-bar.html:13
+#: submission/templates/submission/show.html:5
+#: submission/templates/submission/show.html:16
 msgid "Submission"
 msgstr "Submissão"
 
-#: submission/templates/submission/action-bar.html:17
+#: submission/templates/submission/action-bar.html:15
 msgid "Go to"
 msgstr "Mudar para"
 
-#: submission/templates/submission/block-list-submission.html:56
+#: submission/templates/submission/block-list-submission.html:48
+#, fuzzy
 msgid "Do you really change this submission status?"
-msgstr "Você realmente quer alterar o status destes envios?"
+msgstr "Mudança de status de envio"
 
-#: submission/templates/submission/block-list-submission.html:83
-msgid "Bulk actions"
-msgstr "Ação em bloco"
-
-#: submission/templates/submission/block-list-submission.html:85
-msgid "Approve to next status"
-msgstr "Mudar para próximo status"
-
-#: submission/templates/submission/block-list-submission.html:109
-msgid "Order by"
-msgstr "Ordenado por"
-
-#: submission/templates/submission/block-list-submission.html:123
-msgid "Go to submission"
-msgstr "Ir até envio"
-
-#: submission/templates/submission/block-list-submission.html:130
-msgid "Download file"
-msgstr "Baixar arquivo"
-
-#: submission/templates/submission/block-list-submission.html:161
-msgid "Filters"
-msgstr "Filtros"
-
-#: submission/templates/submission/block-list-submission.html:167
-#: submission/templates/submission/block-list-submission.html:183
+#: submission/templates/submission/block-list-submission.html:70
 msgid "All"
 msgstr "Tudo"
 
-#: submission/templates/submission/block-list-submission.html:173
-msgid "Filter by type "
-msgstr "Filtrar por tipo"
+#: submission/templates/submission/block-list-submission.html:84
+msgid "Bulk actions"
+msgstr "Ação em bloco"
 
-#: submission/templates/submission/block-list-submission.html:181
-msgid "Steps"
-msgstr "Etapas"
+#: submission/templates/submission/block-list-submission.html:86
+msgid "Approve to next status"
+msgstr ""
+
+#: submission/templates/submission/block-list-submission.html:110
+msgid "Order by"
+msgstr "Ordenado por"
+
+#: submission/templates/submission/block-list-submission.html:124
+#, fuzzy
+msgid "Go to submission"
+msgstr "envio"
+
+#: submission/templates/submission/block-list-submission.html:131
+msgid "Download file"
+msgstr ""
 
 #: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
@@ -569,82 +483,78 @@ msgstr "Mostre todas submissões"
 msgid "All submissions"
 msgstr "Todas as submissões"
 
-#: submission/templates/submission/show.html:19
+#: submission/templates/submission/show.html:18
 msgid "Current status"
 msgstr "Status corrente"
 
-#: submission/templates/submission/show.html:22
-#: submission/templates/submission/show.html:31
+#: submission/templates/submission/show.html:21
+#: submission/templates/submission/show.html:30
 msgid "Edit register"
 msgstr "Editar o registro"
 
-#: submission/templates/submission/show.html:45
+#: submission/templates/submission/show.html:44
 msgid "Creator"
 msgstr "Criador"
 
-#: submission/templates/submission/show.html:49
+#: submission/templates/submission/show.html:48
 msgid "Last updater"
 msgstr "Atualizado por"
 
-#: submission/templates/submission/show.html:53
+#: submission/templates/submission/show.html:52
 msgid "Created at"
 msgstr "Criado em"
 
-#: submission/templates/submission/show.html:57
+#: submission/templates/submission/show.html:56
 msgid "Last update"
 msgstr "Útima atualização"
 
-#: submission/templates/submission/show.html:62
+#: submission/templates/submission/show.html:61
 msgid "Observation"
 msgstr "Observação"
 
-#: submission/templates/submission/show.html:76
+#: submission/templates/submission/show.html:75
 msgid "Total of records"
 msgstr "Total de registros"
 
-#: submission/templates/submission/show.html:82
+#: submission/templates/submission/show.html:81
 msgid "Total of certified records"
 msgstr "Total de registros certificados"
 
-#: submission/templates/submission/show.html:93
+#: submission/templates/submission/show.html:92
 msgid "Last follow ups"
 msgstr "Útimas ocorrências"
 
-#: submission/templates/submission/show.html:98
+#: submission/templates/submission/show.html:97
 msgid "Date"
 msgstr "Data"
 
-#: submission/templates/submission/show.html:99
+#: submission/templates/submission/show.html:98
 msgid "Author"
 msgstr "Autor"
 
-#: submission/templates/submission/show.html:100
+#: submission/templates/submission/show.html:99
 msgid "Previous Status"
 msgstr "Status Anterior"
 
-#: submission/templates/submission/show.html:101
+#: submission/templates/submission/show.html:100
 msgid "Change to"
 msgstr "Status Atual"
 
-#: submission/templates/submission/show.html:102
+#: submission/templates/submission/show.html:101
 msgid "Message"
 msgstr "Mensagem"
 
-#: submission/templates/submission/show.html:103
+#: submission/templates/submission/show.html:102
 msgid "Staff Message"
 msgstr "Mensagem Administrativa (interna)"
 
-#: submission/templates/submission/show.html:104
+#: submission/templates/submission/show.html:103
 msgid "Attatchment"
 msgstr "Anexo"
 
-#: submission/templates/submission/show.html:142
+#: submission/templates/submission/show.html:141
 msgid "Sorry, there's no follow ups to this submission."
 msgstr "Desculpa, envio sem ocorrência"
-
-#: templates/404.html:5
-msgid "Sorry, this page cannot be found!"
-msgstr "Desculpe, mas essa página não pode ser encontrada."
 
 #: templates/menu.html:7
 msgid "Submissions"
@@ -668,7 +578,7 @@ msgstr "Novo"
 
 #: templates/menu.html:33
 msgid "Manage"
-msgstr "Gerenciar"
+msgstr ""
 
 #: templates/menu.html:40 templates/menu.html.py:46
 msgid "English"
@@ -691,12 +601,5 @@ msgid "Edit"
 msgstr "Editar"
 
 #: templates/menu.html:59
-msgid "Change Password"
-msgstr "Trocar Senha"
-
-#: templates/menu.html:60
 msgid "Logout"
 msgstr "Sair"
-
-#~ msgid "Type of Records"
-#~ msgstr "Tipos de Registros"

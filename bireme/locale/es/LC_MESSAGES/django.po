@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 10:57-0300\n"
-"PO-Revision-Date: 2012-10-10 15:58\n"
+"PO-Revision-Date: 2012-10-23 09:33\n"
 "Last-Translator:   <moa@moa.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -398,7 +398,7 @@ msgstr "Rechazar"
 #: submission/templates/submission/show.html:5
 #: submission/templates/submission/show.html:16
 msgid "Submission"
-msgstr "Envío"
+msgstr "Sumisión"
 
 #: submission/templates/submission/action-bar.html:15
 msgid "Go to"
@@ -436,7 +436,7 @@ msgstr ""
 
 #: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
-msgstr "Cambiar situación del envío"
+msgstr "Cambiar situación del sumisión"
 
 #: submission/templates/submission/box-change-status.html:12
 msgid "Close"
@@ -453,7 +453,7 @@ msgstr "Enviar"
 #: submission/templates/submission/create.html:4
 #: submission/templates/submission/create.html:23
 msgid "New Submission"
-msgstr "Nuevo Envío"
+msgstr "Nuevo sumisión"
 
 #: submission/templates/submission/create.html:31
 msgid "Select your submission type"
@@ -473,15 +473,15 @@ msgstr "Éxito"
 
 #: submission/templates/submission/index.html:21
 msgid "Opened submissions"
-msgstr "Envíos en curso"
+msgstr "Sumisión en curso"
 
 #: submission/templates/submission/list.html:4 templates/menu.html:10
 msgid "Show all submissions"
-msgstr "Mostrar todos los envíos"
+msgstr "Mostrar todos las sumisión"
 
 #: submission/templates/submission/list.html:7
 msgid "All submissions"
-msgstr "Todos los envíos"
+msgstr "Todos las sumisión"
 
 #: submission/templates/submission/show.html:18
 msgid "Current status"
@@ -558,11 +558,11 @@ msgstr ""
 
 #: templates/menu.html:7
 msgid "Submissions"
-msgstr "Envíos"
+msgstr "Sumisión"
 
 #: templates/menu.html:9
 msgid "New submission"
-msgstr "Nuevo envío"
+msgstr "Nueva sumisión"
 
 #: templates/menu.html:20
 msgid "Search"
