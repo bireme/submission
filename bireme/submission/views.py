@@ -2,11 +2,12 @@
 from django.shortcuts import redirect, render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
+from django.http import Http404, HttpResponse
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator
 from django.template import RequestContext
 from django.conf import settings
-from django.http import Http404, HttpResponse
+from datetime import datetime
 from models import *
 from forms import *
 import mimetypes
@@ -112,6 +113,7 @@ def create(request, type=None):
             form = SubmissionIsoForm(instance=submission)
 
         if request.POST:
+            submission.created = datetime.now()
             submission.creator = request.user
             submission.updater = request.user
             submission.current_status = status.filter(parent=None)[0]
