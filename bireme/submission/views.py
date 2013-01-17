@@ -260,12 +260,15 @@ def list(request):
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
     filters_type = BibliographicType.objects.all()
+    
     if 'admins' in user_groups:
         user_type = 'admin'
 
     submissions = TypeSubmission.objects.all().order_by('updated')
     if not user_type == 'admin':
-        submissions = submissions.filter(creator__userprofile__center=request.user.get_profile().center)
+        profile = request.user.get_profile()
+        submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
+
 
     filters = Step.objects.all()
     types = Type.objects.all()
