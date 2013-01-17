@@ -39,10 +39,15 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="footer">
-                    <strong class="bireme">2012 - BIREME/OPAS/OMS</strong>
-                    <div class="version">
-                        Bireme Submission - <strong>v{% include "version.txt" %}</strong>
-                    </div>
+                    <p>
+                        <img src="{{ STATIC_URL }}/image/logo_bir.png" title="BIREME/OPAS/OMS" />
+
+                        <b class="bireme">BIREME - OPAS - OMS</b><br>
+                        {% trans "Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde" %}<br>
+                        {% trans "Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800 | Fax: (55 11) 5575-8868 " %}<br>
+                        <a href="http://new.paho.org/bireme" title="{% trans 'Site Institucional da Bireme' %}">http://new.paho.org/bireme</a><br>
+                        v{% include "version.txt" %}
+                    </p>
                 </div>
             </div>
         </div>

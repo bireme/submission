@@ -85,6 +85,11 @@
 .footer .bireme {
     font-size: 110%;
 }
+.footer img {
+    float: left;
+    margin: 5px 20px 0 0;
+}
+
 .footer .bireme .version {
     font-size: 80%;
 }
