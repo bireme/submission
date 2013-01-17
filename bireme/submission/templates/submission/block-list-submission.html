@@ -22,12 +22,14 @@
     function change_filter(filter) {
         var form = document.interface;
         form.filter.value = filter;
+        form.page.value = 1;
         form.submit();
     }
 
     function change_type(type) {
         var form = document.interface;
         form.filtr_type.value = type;
+        form.page.value = 1;
         form.submit();
     }
     
