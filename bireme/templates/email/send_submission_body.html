@@ -1,0 +1,12 @@
+{% extends "email/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <p>
+        {% trans "Your submission as been updated from the status" %}
+        {{ previous_status }} {% trans "to" %} {{ current_status }}.
+        <br>
+        {% trans "Follow your submission in:" %} <br>
+        <a href="{{ url }}">{{ url }}</a>
+    </p>
+{% endblock %}

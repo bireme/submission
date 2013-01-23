@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, serif;
+                color: #333;
+            }
+
+            h1 {
+                font-size: 18pt;
+            }
+
+            .container {
+                margin: 0 auto;
+                width: 80%;
+                background: #f9f9f9;
+            }
+
+            .header .logo img {
+                float: left;
+                margin: 1px 10px 0 0;
+            }
+
+            .header .header-text {
+                margin: 20px 0 0 0;
+                float: left;
+            }
+
+            .thanks {
+                float: right;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <img src="http://modelo.bvsalud.org/wp-content/plugins/bvs-site/bvs-themes/bvs-modelo_2012/images/pt/logo_bir.png">
+                </div>
+                
+                <div class="header-text">
+                    <h1>BIREME Submission</h1>
+                </div>
+            </div>
+            
+            <div class="content">
+                {% block content %}{% endblock %}
+                <p class="thanks">
+                    Thanks,<br><br>Staff
+                </p>
+            </div>
+
+            <div class="footer"></div>
+        </div>
+    </body>
+</html>

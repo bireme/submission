@@ -1,9 +1,11 @@
 #! coding: utf-8
 from django_tools.middlewares.ThreadLocal import get_current_user, get_current_request
 from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.template import RequestContext
 from django.core.mail import EmailMessage
 from django.db.models import signals
 from django.conf import settings
@@ -231,15 +233,21 @@ class FollowUp(Generic):
 
 
 def send_email(sender, instance, created, **kwargs):
+
     followup = instance
-    user = get_current_user()
+    user = instance.submission.creator
     request = get_current_request()
     submission = TypeSubmission.objects.get(submission=followup.submission)
     url = submission.get_absolute_url()
 
+    output = {
+        'url': url,
+        'previous_status': followup.previous_status,
+        'current_status': followup.current_status,
+    }
+
     EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
-    EMAIL_CONTENT = _("Your submission as been updated from the status <b>%s</b>." % followup.submission.current_status.get_translation(request.LANGUAGE_CODE))
-    EMAIL_CONTENT = EMAIL_CONTENT + "<br><a href='%s'>%s</a>" % (url, url)
+    EMAIL_CONTENT = render_to_string('email/send_submission_body.html', output, context_instance=RequestContext(request))
     
     if user.get_profile().receive_email:
         if user.email:
