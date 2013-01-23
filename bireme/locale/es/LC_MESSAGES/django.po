@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-08 07:39-0200\n"
-"PO-Revision-Date: 2012-11-08 15:23\n"
+"PO-Revision-Date: 2013-01-23 17:43\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,35 +21,35 @@ msgstr ""
 
 #: account/models.py:10
 msgid "is center administrator?"
-msgstr "¿es el administrador del Centro Coordinador?"
+msgstr "¿es usted el administrador del Centro Coordinador?"
 
 #: account/models.py:11
 msgid "is national center?"
-msgstr "¿es el Centro Coordinador Nacional?"
+msgstr "¿es usted el Centro Coordinador Nacional?"
 
 #: account/models.py:12
 msgid "Allow to receive emails?"
-msgstr ""
+msgstr "¿Permite recibir mensajes de correo electrónico?"
 
 #: django_tools/decorators.py:60
 msgid "Permission denied for anonymous user. Please log in."
-msgstr "No se permite usuarios anónimos. Por favor haga el login."
+msgstr "No se permite usuarios anónimos. Hagas el favor de identificarse."
 
 #: django_tools/limit_to_usergroups.py:159
 msgid "anonymous users"
-msgstr "Usuarios anónimos"
+msgstr "usuarios anónimos"
 
 #: django_tools/limit_to_usergroups.py:160
 msgid "normal users"
-msgstr "Usuarios normales"
+msgstr "usuarios normales"
 
 #: django_tools/limit_to_usergroups.py:161
 msgid "staff users"
-msgstr "Usuario administrador"
+msgstr "usuario administrador"
 
 #: django_tools/limit_to_usergroups.py:162
 msgid "superusers"
-msgstr "Super usuarios"
+msgstr "super usuarios"
 
 #: django_tools/model_utils.py:58
 msgid "and"
@@ -63,7 +63,7 @@ msgstr "%(model_name)s con ese %(field_names)s ya existe."
 #: django_tools/validators.py:31
 msgid ""
 "Enter a valid language code (Accept-Language header format, see RFC2616)"
-msgstr "Entre un código de idioma válido (Vea la norma RFC2616)"
+msgstr "Entre un código de idioma válido (vea la norma RFC2616)"
 
 #: django_tools/validators.py:72
 msgid "Directory"
@@ -71,7 +71,7 @@ msgstr "Directorio"
 
 #: django_tools/validators.py:72
 msgid "is not in base path"
-msgstr "Ese no es el camino de la base"
+msgstr "ese no es el camino de la base"
 
 #: django_tools/validators.py:74
 msgid "Directory is not in base path!"
@@ -88,7 +88,7 @@ msgstr "Ese directorio no existe"
 
 #: django_tools/validators.py:180
 msgid "Please enter a local URL (without protocol/domain)."
-msgstr "Por favor, introduzca una URL local (sin protocolo/dominio)."
+msgstr "Por favor, introduzca un enlace (URL) local (sin protocolo/dominio)."
 
 #: django_tools/validators.py:184
 msgid "The URL doesn't start with a allowed scheme."
@@ -96,15 +96,15 @@ msgstr "El enlace no empieza con un esquema permitido."
 
 #: django_tools/validators.py:187
 msgid "Enter a valid URL without domain."
-msgstr "Introduzca un enlace (URL) válida sin un dominio."
+msgstr "Introduzca un enlace (URL) válido sin un dominio."
 
 #: django_tools/validators.py:190
 msgid "Enter a valid URL without a query."
-msgstr "Introduzca un enlace (URL) válida sin una consulta."
+msgstr "Introduzca un enlace (URL) válido sin una consulta."
 
 #: django_tools/validators.py:193
 msgid "Enter a valid URL without a fragment."
-msgstr "Introduzca un enlace (URL) válida sin un fragmento."
+msgstr "Introduzca un enlace (URL) válido sin un fragmento."
 
 #: django_tools/template/filters.py:96
 msgid "years"
@@ -147,7 +147,7 @@ msgstr "Resultados para:"
 
 #: registration/forms.py:38
 msgid "username"
-msgstr "Nombre de usuario"
+msgstr "nombre del usuario"
 
 #: registration/forms.py:41
 msgid "email address"
@@ -195,19 +195,19 @@ msgstr "usuario"
 
 #: registration/models.py:35
 msgid "activation key"
-msgstr "Clave de activación"
+msgstr "clave de activación"
 
 #: registration/models.py:40
 msgid "registration profile"
-msgstr "Perfil de registro"
+msgstr "perfil de registro"
 
 #: registration/models.py:41
 msgid "registration profiles"
-msgstr "Perfiles de registro"
+msgstr "perfiles de registro"
 
 #: registration/templates/registration/edit.html:15
 msgid "Error in update your receive email options."
-msgstr ""
+msgstr "Error al actualizar sus opciones correos electrónicos recibidos."
 
 #: registration/templates/registration/edit.html:24
 #: registration/templates/registration/edit.html:29
@@ -216,7 +216,7 @@ msgstr "Edite su perfil"
 
 #: registration/templates/registration/edit.html:40
 msgid "Receive email alerts?"
-msgstr ""
+msgstr "Desea recibir correos electrónicos de alertas?"
 
 #: registration/templates/registration/list.html:7
 msgid "Do you really want to remove this user??"
@@ -265,9 +265,7 @@ msgstr "Contraseña"
 
 #: registration/templates/registration/logout.html:16
 msgid "You are logged out. Please"
-msgstr ""
-"Ustedes se han desconectado. Por favor, haga clic en el login para entrar "
-"nuevamente."
+msgstr "Usted se ha desconectado. Por favor, haga clic en"
 
 #: registration/templates/registration/logout.html:17
 msgid "Login"
@@ -279,7 +277,7 @@ msgstr "logar"
 
 #: registration/templates/registration/logout.html:18
 msgid "again clicking below."
-msgstr "Haga clic otra vez."
+msgstr "haga clic otra vez."
 
 #: registration/templates/registration/registration_form.html:5
 msgid "New User"
@@ -291,7 +289,7 @@ msgstr "Crear"
 
 #: submission/models.py:26
 msgid "created"
-msgstr "Documentalista\\Creador"
+msgstr "creado"
 
 #: submission/models.py:27
 msgid "updated"
@@ -316,7 +314,7 @@ msgstr "¿finalizar el paso?"
 
 #: submission/models.py:45
 msgid "pending step?"
-msgstr "¿Paso pendiente?"
+msgstr "¿paso pendiente?"
 
 #: submission/models.py:46
 msgid "close step?"
@@ -324,27 +322,27 @@ msgstr "¿cerrar el paso?"
 
 #: submission/models.py:47
 msgid "allow register edition?"
-msgstr "Permitir registrar edición?"
+msgstr "¿permitir registrar edición?"
 
 #: submission/models.py:62
 msgid "step translation"
-msgstr ""
+msgstr "traducción por etapas"
 
 #: submission/models.py:63
 msgid "step translations"
-msgstr ""
+msgstr "traducciones por etapas"
 
 #: submission/models.py:66 submission/models.py:116
 msgid "language"
-msgstr "Administrar"
+msgstr "idioma"
 
 #: submission/models.py:72
 msgid "lildbi version"
-msgstr "Versión del LILDBI"
+msgstr "versión del LILDBI"
 
 #: submission/models.py:73
 msgid "lildbi versions"
-msgstr "Versión del LILDBI"
+msgstr "versiones del LILDBI"
 
 #: submission/models.py:83
 msgid "type"
@@ -356,19 +354,19 @@ msgstr "tipos"
 
 #: submission/models.py:94
 msgid "bibliographic type"
-msgstr "Tipo Bibliográfico"
+msgstr "tipo bibliográfico"
 
 #: submission/models.py:95
 msgid "bibliographic types"
-msgstr "Tipos Bibliográficos"
+msgstr "tipos bibliográficos"
 
 #: submission/models.py:112
 msgid "bibliographic type translation"
-msgstr "Traducción de los Tipos Bibliográficos"
+msgstr "traducción de los tipos bibliográficos"
 
 #: submission/models.py:113
 msgid "bibliographic types translations"
-msgstr "Traducciones de los Tipos Bibliográficos"
+msgstr "traducciones de los tipos bibliográficos"
 
 #: submission/models.py:125
 msgid "Revista"
@@ -396,19 +394,19 @@ msgstr "total de registros"
 
 #: submission/models.py:180
 msgid "total of certified records"
-msgstr "Total de registros certificados"
+msgstr "total de registros certificados"
 
 #: submission/models.py:181
 msgid "iso file"
-msgstr "archivo iso"
+msgstr "archivo ISO"
 
 #: submission/models.py:197
 msgid "submission"
-msgstr "envío"
+msgstr "sumisión"
 
 #: submission/models.py:198
 msgid "submissions"
-msgstr "envíos"
+msgstr "sumisiones"
 
 #: submission/models.py:202
 msgid "observation"
@@ -416,11 +414,11 @@ msgstr "observación"
 
 #: submission/models.py:210
 msgid "follow up"
-msgstr "Acompañamiento"
+msgstr "acompañamiento"
 
 #: submission/models.py:211
 msgid "follow ups"
-msgstr "Acompañamientos"
+msgstr "acompañamientos"
 
 #: submission/models.py:222
 msgid "message"
@@ -432,17 +430,17 @@ msgstr "anejo"
 
 #: submission/models.py:224
 msgid "staff message"
-msgstr "Mensaje administrativa"
+msgstr "mensaje administrativa"
 
 #: submission/models.py:240
 #, python-format
 msgid "Update in submission #%s"
-msgstr "tipo de envío"
+msgstr "tipo de envío #%s"
 
 #: submission/models.py:241
 #, python-format
 msgid "Your submission as been updated from the status <b>%s</b>."
-msgstr ""
+msgstr "Su sumisión fue actualizada al estatus <b>%s</b>"
 
 #: submission/views.py:17
 msgid "Creation Date"
@@ -454,20 +452,20 @@ msgstr "Última actualización"
 
 #: submission/views.py:20
 msgid "Updated by"
-msgstr "actualización"
+msgstr "Actualizado por"
 
 #: submission/views.py:21
 msgid "Status"
-msgstr "Cambiar Estatus"
+msgstr "Estatus"
 
 #: submission/views.py:22
 #: submission/templates/submission/block-list-submission.html:165
 msgid "Type"
-msgstr "tipo"
+msgstr "Tipo"
 
 #: submission/views.py:23
 msgid "Filename"
-msgstr "Nombre de usuario"
+msgstr "Nombre del archivo"
 
 #: submission/templates/submission/action-bar.html:13
 #: submission/templates/submission/block-list-submission.html:86
@@ -482,11 +480,11 @@ msgstr "Sumisión"
 
 #: submission/templates/submission/action-bar.html:17
 msgid "Go to"
-msgstr "Cambiar para"
+msgstr "Ir para"
 
 #: submission/templates/submission/block-list-submission.html:56
 msgid "Do you really change this submission status?"
-msgstr "¿Usted quiere realmente cambiar el estatus de envío?"
+msgstr "¿Usted quiere realmente cambiar el estatus de la sumisión?"
 
 #: submission/templates/submission/block-list-submission.html:83
 msgid "Bulk actions"
@@ -502,7 +500,7 @@ msgstr "Ordenar por"
 
 #: submission/templates/submission/block-list-submission.html:123
 msgid "Go to submission"
-msgstr "Envío"
+msgstr "Ir para sumisión"
 
 #: submission/templates/submission/block-list-submission.html:130
 msgid "Download file"
@@ -510,7 +508,7 @@ msgstr "Bajar archivo"
 
 #: submission/templates/submission/block-list-submission.html:161
 msgid "Filters"
-msgstr ""
+msgstr "Filtros"
 
 #: submission/templates/submission/block-list-submission.html:167
 #: submission/templates/submission/block-list-submission.html:183
@@ -519,11 +517,11 @@ msgstr "Todo"
 
 #: submission/templates/submission/block-list-submission.html:173
 msgid "Filter by type "
-msgstr ""
+msgstr "Filtrar por tipo"
 
 #: submission/templates/submission/block-list-submission.html:181
 msgid "Steps"
-msgstr "pasos"
+msgstr "Pasos"
 
 #: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
@@ -544,7 +542,7 @@ msgstr "Enviar"
 #: submission/templates/submission/create.html:4
 #: submission/templates/submission/create.html:23
 msgid "New Submission"
-msgstr "Nueva sumisión"
+msgstr "Nueva Sumisión"
 
 #: submission/templates/submission/create.html:31
 msgid "Select your submission type"
@@ -572,7 +570,7 @@ msgstr "Mostrar todas las sumisiones"
 
 #: submission/templates/submission/list.html:7
 msgid "All submissions"
-msgstr "Todos las sumisiones"
+msgstr "Todas las sumisiones"
 
 #: submission/templates/submission/show.html:19
 msgid "Current status"
@@ -585,7 +583,7 @@ msgstr "Editar registro"
 
 #: submission/templates/submission/show.html:45
 msgid "Creator"
-msgstr "Documentalista\\Creador"
+msgstr "Enviado por"
 
 #: submission/templates/submission/show.html:49
 msgid "Last updater"
@@ -629,7 +627,7 @@ msgstr "Estatus anterior"
 
 #: submission/templates/submission/show.html:101
 msgid "Change to"
-msgstr "Cambie para"
+msgstr "Cambiar para"
 
 #: submission/templates/submission/show.html:102
 msgid "Message"
@@ -649,11 +647,11 @@ msgstr "Lo sentimos, no hay seguimientos para esta sumisión."
 
 #: templates/404.html:5
 msgid "Sorry, this page cannot be found!"
-msgstr ""
+msgstr "Lo sentimos ¡esa página no se puede encontrar!"
 
 #: templates/menu.html:7
 msgid "Submissions"
-msgstr "Sumisión"
+msgstr "Sumisiones"
 
 #: templates/menu.html:9
 msgid "New submission"
@@ -689,7 +687,7 @@ msgstr "Portugués"
 
 #: templates/menu.html:57
 msgid "Logged as"
-msgstr "Logeado como"
+msgstr "Conectado como"
 
 #: templates/menu.html:58
 msgid "Edit"
@@ -697,7 +695,7 @@ msgstr "Editar"
 
 #: templates/menu.html:59
 msgid "Change Password"
-msgstr "Contraseña"
+msgstr "Cambiar contraseña"
 
 #: templates/menu.html:60
 msgid "Logout"
