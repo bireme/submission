@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-08 07:35-0200\n"
-"PO-Revision-Date: 2013-01-23 09:27\n"
+"PO-Revision-Date: 2013-01-24 11:33\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: account/models.py:10
 msgid "is center administrator?"
-msgstr "Administrador do Centro Cooperante?"
+msgstr "administrador de Centro Cooperante?"
 
 #: account/models.py:11
 msgid "is national center?"
-msgstr "Centro Coordenador Nacional?"
+msgstr "centro coordenador nacional?"
 
 #: account/models.py:12
 msgid "Allow to receive emails?"
@@ -147,19 +147,19 @@ msgstr "Resultados para:"
 
 #: registration/forms.py:38
 msgid "username"
-msgstr "Login"
+msgstr "login"
 
 #: registration/forms.py:41
 msgid "email address"
-msgstr "E-mail"
+msgstr "e-mail"
 
 #: registration/forms.py:43
 msgid "password"
-msgstr "Senha"
+msgstr "senha"
 
 #: registration/forms.py:45
 msgid "password (again)"
-msgstr "Senha (novamente)"
+msgstr "senha (novamente)"
 
 #: registration/forms.py:57
 msgid "This username is already taken. Please choose another."
@@ -191,19 +191,19 @@ msgstr ""
 
 #: registration/models.py:34
 msgid "user"
-msgstr "Usuário"
+msgstr "usuário"
 
 #: registration/models.py:35
 msgid "activation key"
-msgstr "Chave de ativação"
+msgstr "chave de ativação"
 
 #: registration/models.py:40
 msgid "registration profile"
-msgstr "Perfil do usuário"
+msgstr "perfil do usuário"
 
 #: registration/models.py:41
 msgid "registration profiles"
-msgstr "Perfis de usuários"
+msgstr "perfis de usuários"
 
 #: registration/templates/registration/edit.html:15
 msgid "Error in update your receive email options."
@@ -289,11 +289,11 @@ msgstr "Criar"
 
 #: submission/models.py:26
 msgid "created"
-msgstr "Criado"
+msgstr "criado"
 
 #: submission/models.py:27
 msgid "updated"
-msgstr "Atualizado"
+msgstr "atualizado"
 
 #: submission/models.py:38
 msgid "step"
@@ -326,11 +326,11 @@ msgstr "permitir registrar edição?"
 
 #: submission/models.py:62
 msgid "step translation"
-msgstr "Tradução da etapa"
+msgstr "tradução da etapa"
 
 #: submission/models.py:63
 msgid "step translations"
-msgstr "Traduções das etapas"
+msgstr "traduções das etapas"
 
 #: submission/models.py:66 submission/models.py:116
 msgid "language"
@@ -354,19 +354,19 @@ msgstr "tipos"
 
 #: submission/models.py:94
 msgid "bibliographic type"
-msgstr "Tipo Bibliográfico"
+msgstr "tipo bibliográfico"
 
 #: submission/models.py:95
 msgid "bibliographic types"
-msgstr "Tipos Bibliográficos"
+msgstr "tipos bibliográficos"
 
 #: submission/models.py:112
 msgid "bibliographic type translation"
-msgstr "Tradução de Tipo Bibliográfico"
+msgstr "tradução de tipo bibliográfico"
 
 #: submission/models.py:113
 msgid "bibliographic types translations"
-msgstr "Traduções de Tipos Bibliográficos"
+msgstr "traduções de tipos bibliográficos"
 
 #: submission/models.py:125
 msgid "Revista"
@@ -374,7 +374,7 @@ msgstr "Artigos de periódicos não LILACS-Express"
 
 #: submission/models.py:126
 msgid "Monografia"
-msgstr "Registros de Monografia, Tese e Não Convencional (excluindo Revista)"
+msgstr "Monografia, Tese e Não Convencional (excluindo revista)"
 
 #: submission/models.py:127
 msgid "LILACS Express"
@@ -382,11 +382,11 @@ msgstr "Artigos de periódicos que participam do LILACS-Express"
 
 #: submission/models.py:139
 msgid "type in submission"
-msgstr "tipo de envio"
+msgstr "tipo de submissão"
 
 #: submission/models.py:140
 msgid "types in submission"
-msgstr "tipos de envios"
+msgstr "tipos de submissões"
 
 #: submission/models.py:179
 msgid "total of records"
@@ -402,11 +402,11 @@ msgstr "arquivo iso"
 
 #: submission/models.py:197
 msgid "submission"
-msgstr "envio"
+msgstr "submissão"
 
 #: submission/models.py:198
 msgid "submissions"
-msgstr "envios"
+msgstr "submissões"
 
 #: submission/models.py:202
 msgid "observation"
@@ -414,11 +414,11 @@ msgstr "observação"
 
 #: submission/models.py:210
 msgid "follow up"
-msgstr "Atualização"
+msgstr "atualização"
 
 #: submission/models.py:211
 msgid "follow ups"
-msgstr "Atualizações"
+msgstr "atualizações"
 
 #: submission/models.py:222
 msgid "message"
@@ -430,21 +430,21 @@ msgstr "anexo"
 
 #: submission/models.py:224
 msgid "staff message"
-msgstr "Mensagem administrativa"
+msgstr "mensagem administrativa"
 
 #: submission/models.py:240
 #, python-format
 msgid "Update in submission #%s"
-msgstr "tipo de envio #%s"
+msgstr "Atualização na submissão #%s"
 
 #: submission/models.py:241
 #, python-format
 msgid "Your submission as been updated from the status <b>%s</b>."
-msgstr "Seu envio foi atualizado do status <b>%s</b>"
+msgstr "Sua submissão foi atualizada do status <b>%s</b>"
 
 #: submission/views.py:17
 msgid "Creation Date"
-msgstr "Data de envio"
+msgstr "Data de submissão"
 
 #: submission/views.py:18
 msgid "Last Update"
@@ -476,7 +476,7 @@ msgstr "Rejeitar"
 #: submission/templates/submission/show.html:6
 #: submission/templates/submission/show.html:17
 msgid "Submission"
-msgstr "Envio"
+msgstr "Submissão"
 
 #: submission/templates/submission/action-bar.html:17
 msgid "Go to"
@@ -484,7 +484,7 @@ msgstr "Ir para"
 
 #: submission/templates/submission/block-list-submission.html:56
 msgid "Do you really change this submission status?"
-msgstr "Você deseja realmente alterar o status de envio?"
+msgstr "Você deseja realmente alterar o status de submissão?"
 
 #: submission/templates/submission/block-list-submission.html:83
 msgid "Bulk actions"
@@ -500,7 +500,7 @@ msgstr "Ordem por"
 
 #: submission/templates/submission/block-list-submission.html:123
 msgid "Go to submission"
-msgstr "Ir até envio"
+msgstr "Ir até submissão"
 
 #: submission/templates/submission/block-list-submission.html:130
 msgid "Download file"
@@ -525,7 +525,7 @@ msgstr "Etapas"
 
 #: submission/templates/submission/box-change-status.html:5
 msgid "Change submission status"
-msgstr "Mudar status do envio"
+msgstr "Mudar status da submissão"
 
 #: submission/templates/submission/box-change-status.html:12
 msgid "Close"
@@ -537,16 +537,16 @@ msgstr "Mudar Status"
 
 #: submission/templates/submission/create-iso.html:8
 msgid "Submit"
-msgstr "Enviar"
+msgstr "Submeter"
 
 #: submission/templates/submission/create.html:4
 #: submission/templates/submission/create.html:23
 msgid "New Submission"
-msgstr "Novo envio"
+msgstr "Nova submissão"
 
 #: submission/templates/submission/create.html:31
 msgid "Select your submission type"
-msgstr "Selecione o tipo de envio"
+msgstr "Selecione o tipo de submissão"
 
 #: submission/templates/submission/edit-type-submission.html:7
 msgid "Save changes"
@@ -562,15 +562,15 @@ msgstr "Sucesso!"
 
 #: submission/templates/submission/index.html:21
 msgid "Opened submissions"
-msgstr "Envios em aberto"
+msgstr "Submissões em aberto"
 
 #: submission/templates/submission/list.html:4 templates/menu.html:10
 msgid "Show all submissions"
-msgstr "Mostrar todos os envios"
+msgstr "Mostrar todos as submissões"
 
 #: submission/templates/submission/list.html:7
 msgid "All submissions"
-msgstr "Todos os envios"
+msgstr "Todos as submissões"
 
 #: submission/templates/submission/show.html:19
 msgid "Current status"
@@ -643,7 +643,7 @@ msgstr "Anexo"
 
 #: submission/templates/submission/show.html:142
 msgid "Sorry, there's no follow ups to this submission."
-msgstr "Envio sem ocorrência"
+msgstr "Submissão sem ocorrência"
 
 #: templates/404.html:5
 msgid "Sorry, this page cannot be found!"
@@ -651,11 +651,11 @@ msgstr "Desculpe, esta página não pode ser encontrada!"
 
 #: templates/menu.html:7
 msgid "Submissions"
-msgstr "Envios"
+msgstr "Submissões"
 
 #: templates/menu.html:9
 msgid "New submission"
-msgstr "Novo envio"
+msgstr "Nova submissão"
 
 #: templates/menu.html:20
 msgid "Search"
