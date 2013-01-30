@@ -239,6 +239,10 @@ def send_email(sender, instance, created, **kwargs):
     request = get_current_request()
     submission = TypeSubmission.objects.get(submission=followup.submission)
     url = submission.get_absolute_url()
+    try:
+        profile = user.get_profile() 
+    except:
+        profile = None
 
     output = {
         'url': url,
@@ -248,8 +252,8 @@ def send_email(sender, instance, created, **kwargs):
 
     EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
     EMAIL_CONTENT = render_to_string('email/send_submission_body.html', output, context_instance=RequestContext(request))
-    
-    if user.get_profile().receive_email:
+
+    if profile and profile.receive_email:
         if user.email:
             try:
                 msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [user.email])
