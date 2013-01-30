@@ -1,0 +1,210 @@
+[
+  {
+    "pk": 1, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:48:20", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-09 18:09:31", 
+      "step": 6, 
+      "updater": null, 
+      "title": "Dispon\u00edvel na LILACS"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:40:00", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-09 18:09:31", 
+      "step": 4, 
+      "updater": null, 
+      "title": "Valida\u00e7\u00e3o do Conte\u00fado"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:50:04", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-10 15:07:49", 
+      "step": 1, 
+      "updater": null, 
+      "title": "Nuevo"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:37:39", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-10 15:07:49", 
+      "step": 8, 
+      "updater": null, 
+      "title": "Fechado"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:27:43", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 7, 
+      "updater": null, 
+      "title": "Pendente"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:30:15", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 5, 
+      "updater": null, 
+      "title": "Certificado"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:41:59", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 2, 
+      "updater": null, 
+      "title": "Verificaci\u00f3n del Formato"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 07:47:27", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 3, 
+      "updater": null, 
+      "title": "Formato Verificado"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:37:06", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 6, 
+      "updater": null, 
+      "title": "Disponible en LILACS"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:37:39", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 8, 
+      "updater": null, 
+      "title": "Cerrado"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:37:56", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 7, 
+      "updater": null, 
+      "title": "Pendiente"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:38:34", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 5, 
+      "updater": null, 
+      "title": "Certificado"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:40:19", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 4, 
+      "updater": null, 
+      "title": "Validaci\u00f3n de Contenido"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:41:30", 
+      "language": "es", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 3, 
+      "updater": null, 
+      "title": "Formato Verificado"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:41:59", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 2, 
+      "updater": null, 
+      "title": "Verifica\u00e7\u00e3o do Formato"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "submission.steplocal", 
+    "fields": {
+      "updated": "2012-10-18 10:42:08", 
+      "language": "pt-br", 
+      "creator": null, 
+      "created": "2012-10-17 15:42:20", 
+      "step": 1, 
+      "updater": null, 
+      "title": "Novo"
+    }
+  }
+]

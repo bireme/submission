@@ -1,0 +1,46 @@
+[
+  {
+    "pk": 1, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "Journal", 
+      "updated": "2013-01-15 17:43:43", 
+      "creator": 1, 
+      "updater": 2, 
+      "created": "2012-10-17 18:08:41"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "Monograph, Thesis and Non-conventional", 
+      "updated": "2013-01-15 17:42:20", 
+      "creator": 1, 
+      "updater": 2, 
+      "created": "2012-10-17 18:08:41"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "Indexed and reviewed records - LILACS Express", 
+      "updated": "2013-01-15 17:32:25", 
+      "creator": 1, 
+      "updater": 2, 
+      "created": "2012-10-23 14:39:56"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "submission.bibliographictype", 
+    "fields": {
+      "title": "LILACS-Express", 
+      "updated": "2013-01-15 17:32:21", 
+      "creator": 1, 
+      "updater": 2, 
+      "created": "2012-10-23 14:39:56"
+    }
+  }
+]

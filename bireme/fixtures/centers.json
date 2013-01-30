@@ -1,0 +1,770 @@
+[
+  {
+    "pk": 1, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1.1", 
+      "name": "BIREME/OPAS/OMS"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1.2", 
+      "name": "Biblioteca Central da UNIFESP"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CL1.1", 
+      "name": "CCN Chile"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "center.center", 
+    "fields": {
+      "code": "EC1.1", 
+      "name": "Universidad Central del Ecuador"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR33.1", 
+      "name": "Universidade Estadual Paulista - Campus de Botucatu"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO55.1", 
+      "name": "Universidad de Antioquia"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BO2.1", 
+      "name": "Representaci\u00f3n de la OPS/OMS Bolivia. Centro de Informaci\u00f3n y Documentaci\u00f3n"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR21.1", 
+      "name": "Universidade Federal de Minas Gerais - UFMG"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR44.1", 
+      "name": "Instituto do Cora\u00e7\u00e3o INCOR"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR526.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR513.1", 
+      "name": "Universidade Estadual de Maring\u00e1 UEM"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR59.2", 
+      "name": "Prefeitura do Municipio de S\u00e3o Paulo - PMSP"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR546.1", 
+      "name": "Universidade Federal do Rio Grande do Sul - UFRGS"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR433.1", 
+      "name": "Universidade do Estado do Rio de Janeiro - UERJ"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO176.1", 
+      "name": "Ministerio de Salud y Protecci\u00f3n Social"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "center.center", 
+    "fields": {
+      "code": "PE18.1", 
+      "name": "Ministerio de Salud de Per\u00fa"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR392.1", 
+      "name": "Universidad Maimonides"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR40.1", 
+      "name": "Universidad Nacional de Cuyo - UNCu"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR489.1", 
+      "name": "Asociaci\u00f3n Argentina de Dietistas y Nutricionistas Dietistas"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR494.1", 
+      "name": "Secretar\u00eda de Salud Gobierno de la Ciudad de Buenos Aires"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1273.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ - Casa de Oswaldo Cruz COC - Biblioteca de Hist\u00f3ria das Ci\u00eancias e da Sa\u00fade"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR15.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ - Biblioteca de Ci\u00eancias Biom\u00e9dicas"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1719.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ - Centro de Pesquisas Ren\u00e9 Rachou CPqRR - Biblioteca do CPqRR"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR440.1", 
+      "name": "Instituto Nacional de C\u00e2ncer - INCA - Coordena\u00e7\u00e3o de Educa\u00e7\u00e3o e Divulga\u00e7\u00e3o Cient\u00edfica - Biblioteca do Hospital do C\u00e2ncer I"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR68.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Faculdade de Medicina Veterinaria e Zootecnia - Biblioteca Virginie Buff"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO103.1", 
+      "name": "Universidad de Antioquia - Facultad de Enfermer\u00eda - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO149.1", 
+      "name": "Universidad de La Salle - Facultad Ciencias de La Salud - Programa Optometria - Ciencia y Tecnolog\u00eda para la Salud Visual y Ocular"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO279.1", 
+      "name": "Universidad del Manizales - Centro de Biblioteca e Informaci\u00f3n"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO56.1", 
+      "name": "Universidad de Antioquia - Facultad de Quimica Farmaceutica - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO83.1", 
+      "name": "Universidad CES - Biblioteca Fundadores"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "center.center", 
+    "fields": {
+      "code": "VE1.1", 
+      "name": "Universidad Central de Venezuela - UCV - Instituto de Medicina Experimental / Facultad de Medicina - IME - Fundaci\u00f3n Sistema Nacional de Documentaci\u00f3n e Informaci\u00f3n - Biblioteca Humberto Garcia Arocha"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO149.2", 
+      "name": "Universidad de La Salle - Facultad Ciencias de La Salud - Programa Optometria - Ciencia y Tecnolog\u00eda para la Salud Visual y Ocular"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO56.3", 
+      "name": "Universidad de Antioquia - Facultad de Quimica Farmaceutica - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR275.1", 
+      "name": "Minist\u00e9rio da Sa\u00fade - Secretaria de Vigil\u00e2ncia em Sa\u00fade - SVS - Instituto Evandro Chagas - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR29.1", 
+      "name": "Asociacion Odontologica Argentina - Centro Regional Cooperante Salud Bucal - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CU1.1", 
+      "name": "Ministerio de Salud Publica - MINSAP - Centro Nacional de Informacion de Ciencias Medicas - INFOMED - Biblioteca M\u00e9dica Nacional"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "center.center", 
+    "fields": {
+      "code": "MX1.1", 
+      "name": "Instituto Nacional de Salud P\u00fablica - Centro de Informaci\u00f3n para Decisiones en Salud P\u00fablica - CENIDSP"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR926.1", 
+      "name": "Homeopatia"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1366.1", 
+      "name": "Universidade do Estado do Rio de Janeiro UERJ - Servico de Bibliotecas Biom\u00e9dicas B - Odontologia e Enfermagem"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR14.1", 
+      "name": "Universidade Federal do Rio de Janeiro - UFRJ - Centro de Ci\u00eancias da Sa\u00fade - Biblioteca Central - BIBC"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR305.1", 
+      "name": "Funda\u00e7\u00e3o Oswaldo Cruz - FIOCRUZ - Centro de Pesquisas Aggeu Magalh\u00e3es CPqAM - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR495.1", 
+      "name": "Pontif\u00edcia Universidade Cat\u00f3lica do Paran\u00e1 - PUCPR - Associa\u00e7\u00e3o Paranaense de Cultura - Biblioteca Central"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR13.3", 
+      "name": "Universidade Federal Fluminense UFF - Biblioteca das Faculdades de Odontologia e Nutri\u00e7\u00e3o"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR26.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Faculdade de Medicina de Ribeir\u00e3o Preto - Biblioteca Central"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR40.1", 
+      "name": "Universidade de S\u00e3o Paulo USP - Divis\u00e3o de Biblioteca e Documentac\u00e3o do Conjunto de Qu\u00edmicas - DBD"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR85.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Instituto de Psicologia - Biblioteca Dante Moreira Leite"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR512.1", 
+      "name": "Universidade Estadual de Londrina - UEL - Hospital Universit\u00e1rio - Biblioteca Setorial do Centro de Ci\u00eancias da Sa\u00fade"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR556.1", 
+      "name": "Universidade Federal do Rio Grande do Sul - UFRGS - Departamento de Psiquiatria e Medicina Legal - Centro de Estudos Luis Guedes - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR574.2", 
+      "name": "Universidade Federal do Rio Grande do Sul - UFRGS - Instituto de Psicologia - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR734.1", 
+      "name": "Universidade Estadual de Campinas UNICAMP - Biblioteca Central Cesar Lattes"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR81.4", 
+      "name": "Universidad de Buenos Aires - Facultad de Psicologia - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR218.1", 
+      "name": "Universidade Estadual de Campinas - UNICAMP - Faculdade de Odontologia de Piracicaba FOP - Biblioteca Carlos Henrique Robertson Liberalli"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR243.1", 
+      "name": "Universidade Estadual Paulista - UNESP - Campus de S\u00e3o Jos\u00e9 dos Campos - Faculdade de Odontologia de S\u00e3o Jos\u00e9 dos Campos UNESP - Servi\u00e7o T\u00e9cnico de Biblioteca e Documenta\u00e7\u00e3o"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR501.1", 
+      "name": "Universidade Federal do Paran\u00e1 UFPR - Biblioteca de Ci\u00eancias da Sa\u00fade / Sede Bot\u00e2nico"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR66.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Faculdade de Medicina - Divis\u00e3o de Biblioteca e Documenta\u00e7\u00e3o"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR97.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Faculdade de Odontologia - Servi\u00e7o de Documenta\u00e7\u00e3o Odontol\u00f3gica"
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1365.1", 
+      "name": "Universidade do Estado do Rio de Janeiro - UERJ - Medicina e Biologia Humana -CB/A - Biblioteca Biom\u00e9dica A"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR442.1", 
+      "name": "Universidade Federal do Rio de Janeiro - UFRJ - Centro de Ci\u00eancias da Sa\u00fade - Escola de Enfermagem Anna Nery - Biblioteca Setorial de P\u00f3s-Gradua\u00e7\u00e3o"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR1.1", 
+      "name": "Academia Nacional de Medicina de Buenos Aires - Biblioteca Rafael Herrera Vegas"
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO76", 
+      "name": "Federaci\u00f3n Colombiana de Asociaciones de Obstetricia y Ginecolog\u00eda - Sociedad Colombiana de Obstetricia y Ginecologia"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "center.center", 
+    "fields": {
+      "code": "GT5.3", 
+      "name": "Universidad de San Carlos de Guatemala - Facultad de Ciencias Qu\u00edmicas y Farmacia - Centro de Documentaci\u00f3n y Biblioteca de Farmacia - CEDOBF"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR67.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Faculdade de Sa\u00fade P\u00fablica FSP - Biblioteca - Centro de Informa\u00e7\u00e3o e Refer\u00eancia - CIR"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR91.2", 
+      "name": "Secretaria de Estado da Sa\u00fade de S\u00e3o Paulo - Coordenadoria de Controle de Doen\u00e7as - Centro de Documenta\u00e7\u00e3o"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR144.1", 
+      "name": "Ministerio de Salud Publica y Accion Social - Centro de Informacion Biomedica del Chaco - CIBCHACO"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO5.1", 
+      "name": "Organizaci\u00f3n Panamericana de la Salud - OPS - OPS - Representaci\u00f3n de la OPS/OMS -Centro de Documentaci\u00f3n y Comunicaci\u00f3n"
+    }
+  }, 
+  {
+    "pk": 66, 
+    "model": "center.center", 
+    "fields": {
+      "code": "PE1.1", 
+      "name": "Centro Coordinador Nacional Red Peruana de Bibliotecas en Salud - REPEBIS - Universidad Peruana Cayetano Heredia UPCH - Direcci\u00f3n Universitaria de Gesti\u00f3n de la Informaci\u00f3n Cient\u00edfica - DUGIC"
+    }
+  }, 
+  {
+    "pk": 67, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR423.1", 
+      "name": "Instituto Universitario Ciencias de la Salud Fundaci\u00f3n Barcel\u00f3 - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 68, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1323.1", 
+      "name": "Pontif\u00edcia Universidade Cat\u00f3lica do Rio Grande do Sul PUCRS - Biblioteca Central Irm\u00e3o Jos\u00e9 Ot\u00e3o"
+    }
+  }, 
+  {
+    "pk": 69, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR30.1", 
+      "name": "Funda\u00e7\u00e3o Antonio Prudente - Instituto Central - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 70, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR500.1", 
+      "name": "Liga Paranaense de Combate ao C\u00e2ncer - Hospital Erasto Gaertner - Centro de Projeto de Ensino e Pesquisa - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 71, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR408.1", 
+      "name": "Universidade Federal Fluminense - UFF - Faculdade de Medicina - Biblioteca Setorial"
+    }
+  }, 
+  {
+    "pk": 72, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1249.1", 
+      "name": "Universidade de S\u00e3o Francisco USF - Coordenadoria do Sistema de Bibliotecas"
+    }
+  }, 
+  {
+    "pk": 73, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR32.1", 
+      "name": "Universidade de S\u00e3o Paulo - USP - Instituto de Ci\u00eancias Biom\u00e9dicas - Servi\u00e7o de Biblioteca e Informa\u00e7\u00e3o Biom\u00e9dica - SBIB"
+    }
+  }, 
+  {
+    "pk": 74, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO241.1", 
+      "name": "PROFAMILIA - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 75, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO371.9", 
+      "name": "Asociaci\u00f3n Colombiana de Radiologia ACR"
+    }
+  }, 
+  {
+    "pk": 76, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CU2.1", 
+      "name": "Organizaci\u00f3n Mundial de la Salud - OMS - Organizaci\u00f3n Panamericana de la Salud - OPS - Representaci\u00f3n de la OPS/OMS - Centro de Gesti\u00f3n de la Informaci\u00f3n y el Conocimiento Dr. Luis Ernesto Giraldo"
+    }
+  }, 
+  {
+    "pk": 77, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1194.1", 
+      "name": "Universidade Federal do Rio de Janeiro - UFRJ - Centro de Filosofia e Ci\u00eancias Humanas - Biblioteca - UFRJ"
+    }
+  }, 
+  {
+    "pk": 78, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR12.1", 
+      "name": "Universidade Federal do Espirito Santo FAHUCAM - Biblioteca Setorial da Ci\u00eancias da Sa\u00fade"
+    }
+  }, 
+  {
+    "pk": 79, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR13.2", 
+      "name": "Universidade Federal Fluminense - UFF - Biblioteca Central de Gragoat\u00e1"
+    }
+  }, 
+  {
+    "pk": 80, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR8.1", 
+      "name": "Universidade Federal da Para\u00edba UFPB - Biblioteca Central"
+    }
+  }, 
+  {
+    "pk": 81, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR16.1", 
+      "name": "Universidade Federal do Paran\u00e1 UFPR - Biblioteca de Ci\u00eancias da Sa\u00fade"
+    }
+  }, 
+  {
+    "pk": 82, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1342.1", 
+      "name": "Universidade Federal Fluminense - UFF - Faculdade de Enfermagem - Biblioteca Setorial de Enfermagem"
+    }
+  }, 
+  {
+    "pk": 83, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR584.1", 
+      "name": "Funda\u00e7\u00e3o de Apoio a Pesquisa \u2013 FUNAPE/BC - Universidade Federal de Goi\u00e1s UFG - Biblioteca Central"
+    }
+  }, 
+  {
+    "pk": 84, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR337.1", 
+      "name": "Universidade Federal da Bahia - UFBA - N\u00facleo Nacional de Informa\u00e7\u00e3o em Ci\u00eancias da Sa\u00fade Oral - Faculdade de Odontologia - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 85, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR430.1", 
+      "name": "Associa\u00e7\u00e3o Brasileira de Educa\u00e7\u00e3o M\u00e9dica - ABEM - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 86, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR1274.1", 
+      "name": "Universidade Federal do Rio Grande do Norte UFRN - Biblioteca Central Zila Mamede"
+    }
+  }, 
+  {
+    "pk": 87, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR2.1", 
+      "name": "Hospital Italiano de Buenos Aires - Biblioteca Central"
+    }
+  }, 
+  {
+    "pk": 88, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR408.1", 
+      "name": "Sociedad Argentina de Ortodoncia S\u00c3O - Biblioteca"
+    }
+  }, 
+  {
+    "pk": 89, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR195.3", 
+      "name": "Pontificia Universidade Cat\u00f3lica de S\u00e3o Paulo PUC-SP - Biblioteca Nadir Gouv\u00eaa Kfouri"
+    }
+  }, 
+  {
+    "pk": 90, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO335.1", 
+      "name": "Universidad de Manizales - Centro de Estudios Avanzados en Ni\u00f1ez y Juventud de la Alianza CINDE"
+    }
+  }, 
+  {
+    "pk": 91, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO54.1", 
+      "name": "Universidad de Caldas - Facultad de Medicina - Centro de Biblioteca e Informaci\u00f3n Cientifica"
+    }
+  }, 
+  {
+    "pk": 92, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR441.1", 
+      "name": "Hospital de Ni\u00f1os Ricardo Gutierrez"
+    }
+  }, 
+  {
+    "pk": 93, 
+    "model": "center.center", 
+    "fields": {
+      "code": "UY1.1", 
+      "name": "Biblioteca Nacional de Medicina - BINAME. Centro Nacional de Documentacion e Informacion en Medicina y Ciencias de la Salud - CENDIM"
+    }
+  }, 
+  {
+    "pk": 94, 
+    "model": "center.center", 
+    "fields": {
+      "code": "CO40.1", 
+      "name": "Instituto Nacional de Cancerologia. Biblioteca Medica"
+    }
+  }, 
+  {
+    "pk": 95, 
+    "model": "center.center", 
+    "fields": {
+      "code": "BR344.1", 
+      "name": "FIOCRUZ. Centro de Pesquisas Gon\u00e7alo Moniz. Biblioteca de Ci\u00eancias Biom\u00e9dicas Eurydice Pires de Sant'Anna"
+    }
+  }, 
+  {
+    "pk": 96, 
+    "model": "center.center", 
+    "fields": {
+      "code": "AR381.1", 
+      "name": "Ministerio de Salud de la Provincia de Buenos Aires. Subsecretaria de Planificaci\u00f3n de la Salud. Centro de Documentaci\u00f3n de Excelencia en Salud"
+    }
+  }
+]
