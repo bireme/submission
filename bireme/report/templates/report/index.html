@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load i18n attr %}
+
+{% block extrahead %}
+<script>
+    function check_all(attr) {
+        fields = $("." + attr)
+        fields.attr('checked', 'checked')
+    }
+    function show_options() {
+        $(".options").toggle();
+    }
+    function output(attr) {
+        var form = document.q
+        form.output.value = attr
+        form.submit()
+    }
+
+    $(function(){
+        $("#searchButton").click(function(){
+            var form = document.q
+            form.output.value = "screen"
+        });
+    });
+</script>
+
+<style>
+    fieldset div input[type=checkbox]{
+        margin: 0 0 0 5px;
+    }
+
+    .options {
+        margin: 20px 0 0 0;
+        display: none;
+    }
+
+    .checkboxes {
+        margin: 15px 0;
+    }
+
+    .table {
+        margin: 10px 0 0 0;
+    }
+
+    h2 {
+        margin: 0 0 30px 0;
+    }
+
+    .help {
+        font-size: 9pt;
+        color: #666;
+    }
+
+    .export {
+        float: right;
+        margin: -20px 5px 0 0;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+    
+    <h2>{% trans "Reports" %}</h2>
+
+    <div class="row-fluid">
+        <form name="q" method="get" class="form-inline">
+
+            <input type="hidden" name="output" value="screen">
+
+            <fieldset>
+
+                <div class="input-append">
+                    <input type="text" class="input-xxlarge" name="q" id="q" value="{{ request.GET.q }}" placeholder="{% trans "type here your query" %}">
+                    
+                    <button type="submit" id="searchButton" class="btn">{% trans "Search" %}</button>
+                    <a href="javascript:show_options();" title="{% trans "Show Options" %}" class="btn">{% trans "Show Options" %}</a>
+                </div>
+
+                    <div class="help"><i>
+                        {% trans "If you wanna learn how to search, check this" %} 
+                        <a href="http://packages.python.org/Whoosh/querylang.html" target="_blank" title="{% trans "link" %}">{% trans "link" %}</a>
+                    </i></div>
+
+                <div class="options">
+                    <div>
+                        <label>{% trans "Order by" %}:</label>
+                        <select name="order_by">
+                            <option value=""></option>
+                            {% for field in fields %}
+                                <option value="{{ field }}" {% if request.GET.order_by == field %}selected{% endif %}>{{ field }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="checkboxes">
+                        <label>
+                            {% trans "Columns to show" %}: 
+                            <a href="javascript:check_all('check-fields')" title="{% trans "Check All" %}">{% trans "Check All" %}</a>
+                        </label>
+                        <div>
+                            {% for field in fields %}
+                                <input type="checkbox" class="check-fields" name="fields" value="{{ field }}" {% if field in checked_fields %}checked{% endif %}>
+                                {{ field }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+
+    {% if request.GET.q %}
+        <div class="row-fluid">
+
+            <h3>{% trans "Searching for" %} "{{ request.GET.q }}" ({{ results|length }})</h3>
+
+            <div class="export">
+                <a href="javascript:output('csv')" title="{% trans "Export to CSV" %}">
+                    <img src="{{ STATIC_URL }}/image/export_csv.png" title="{% trans "Export to CSV" %}">
+                </a>
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        {% for field in checked_fields %}
+                            <th>{{ field }}</th>
+                        {% endfor %}
+                    </tr>
+
+                    {% for result in results %}
+                        <tr>
+                            {% for field in checked_fields %}
+                                <td>{{ result|attr:field }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

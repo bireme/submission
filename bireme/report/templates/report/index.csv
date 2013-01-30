@@ -1,0 +1,4 @@
+{% load attr %}
+{% for field in checked_fields %}"{{ field }}"{% if not forloop.last %};{% endif %}{% endfor %}
+{% for result in results %}
+{% for field in checked_fields %}"{{ result|attr:field }}"{% if not forloop.last %};{% endif %}{% endfor %}{% endfor %}

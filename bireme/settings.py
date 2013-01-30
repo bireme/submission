@@ -125,6 +125,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT_PATH, 'submission/templates'),
     os.path.join(PROJECT_ROOT_PATH, 'main/templates'),
     os.path.join(PROJECT_ROOT_PATH, 'registration/templates'),
+    os.path.join(PROJECT_ROOT_PATH, 'report/templates'),
 )
 
 INSTALLED_APPS = [
@@ -138,11 +139,13 @@ INSTALLED_APPS = [
 
     'rosetta',
     'bireme.registration',
+    'south',
+    'whoosh',
 
     'bireme.account',
     'bireme.submission',
     'bireme.center',
-    'south',
+    'bireme.report',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 ]
@@ -213,6 +216,9 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'appupdate'
 EMAIL_HOST_PASSWORD = 'bir@2012#'
 EMAIL_FROM = 'envio@bireme.org'
+
+# Whoosh
+WHOOSH_INDEX = os.path.join(PROJECT_ROOT_PATH, 'whoosh')
 
 try:
     from settings_local import *
