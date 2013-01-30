@@ -47,7 +47,11 @@ def index(request):
         'checked_fields': checked_fields,
     }
 
+    if request.GET.get('output') == 'print':
+        output['print'] = True
+    
     if request.GET.get('output') == 'csv':
         return render_to_response('report/index.csv', output, context_instance=RequestContext(request), mimetype="application/csv")
-        
+    
+
     return render_to_response('report/index.html', output, context_instance=RequestContext(request))

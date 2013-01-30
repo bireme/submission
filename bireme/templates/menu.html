@@ -1,70 +1,73 @@
 {% load i18n %}
-{% if request.user.is_authenticated %}
 
-    <ul class="nav pull-left">
-        <li class=""><a href="{% url submission.views.index %}" title="Dashboard">{% trans 'Dashboard' %}</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Submissions' %}<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="{% url submission.views.create %}" title="New submission">{% trans "New submission" %}</a></li>
-                <li><a href="{% url submission.views.list %}" title="Show all submissions">{% trans "Show all submissions" %}</a></li>
-            </ul>
-        </li>
-        <li class="divider-vertical"></li>
-    </ul>
+{% block menu %}
+    {% if request.user.is_authenticated %}
 
-    <ul class="nav pull-right">
-        <li class="divider-vertical"></li>
-        <!-- ssearch box -->
-        <form class="navbar-search pull-left" action="{% url main.views.search %}">
-          <input type="text" class="search-query" name="q" placeholder="{% trans "Search" %}" 
-          {% if request.GET.q %}value="{{ request.GET.q }}"{% endif %}>
-        </form>
-        
-        {% if request.user.get_profile.is_admin or request.user.get_profile.is_ccn %}
+        <ul class="nav pull-left">
+            <li class=""><a href="{% url submission.views.index %}" title="Dashboard">{% trans 'Dashboard' %}</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Submissions' %}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url submission.views.create %}" title="New submission">{% trans "New submission" %}</a></li>
+                    <li><a href="{% url submission.views.list %}" title="Show all submissions">{% trans "Show all submissions" %}</a></li>
+                </ul>
+            </li>
             <li class="divider-vertical"></li>
+        </ul>
+
+        <ul class="nav pull-right">
+            <li class="divider-vertical"></li>
+            <!-- ssearch box -->
+            <form class="navbar-search pull-left" action="{% url main.views.search %}">
+              <input type="text" class="search-query" name="q" placeholder="{% trans "Search" %}" 
+              {% if request.GET.q %}value="{{ request.GET.q }}"{% endif %}>
+            </form>
+            
+            {% if request.user.get_profile.is_admin or request.user.get_profile.is_ccn %}
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {% trans "Users" %}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url registration.views.register %}" title="{% trans "New" %}">{% trans "New" %}</a></li>
+                        <li><a href="{% url registration.views.list %}" title="{% trans "Manage" %}">{% trans "Manage" %}</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
+            <li class="divider-vertical"></li>
+            {% if request.user.get_profile.is_admin %}            
+                <li><a href="{% url report.views.index %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
+            {% endif %}
+            <li class="divider-vertical"></li>
+
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    {% trans "Users" %}
+                    {% if request.LANGUAGE_CODE == 'en' %}{% trans "English"|capfirst %}{% endif %}
+                    {% if request.LANGUAGE_CODE == 'es' %}{% trans "Spanish"|capfirst %}{% endif %}
+                    {% if request.LANGUAGE_CODE == 'pt-br' %}{% trans "Portuguese"|capfirst %}{% endif %}
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{% url registration.views.register %}" title="{% trans "New" %}">{% trans "New" %}</a></li>
-                    <li><a href="{% url registration.views.list %}" title="{% trans "Manage" %}">{% trans "Manage" %}</a></li>
+                    {% if request.LANGUAGE_CODE != "en" %}<li><a href="javascript: change_language('en')" title="{% trans 'English' %}">{% trans 'English'|capfirst %}</a></li>{% endif %}
+                    {% if request.LANGUAGE_CODE != "pt-br" %}<li><a href="javascript: change_language('pt-BR')" title="{% trans 'Portuguese' %}">{% trans 'Portuguese'|capfirst %}</a></li>{% endif %}
+                    {% if request.LANGUAGE_CODE != "es" %}<li><a href="javascript: change_language('es')" title="{% trans 'Spanish' %}">{% trans 'Spanish'|capfirst %}</a></li>{% endif %}
                 </ul>
             </li>
-        {% endif %}
-
-        <li class="divider-vertical"></li>
-        {% if request.user.get_profile.is_admin %}            
-            <li><a href="{% url report.views.index %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
-        {% endif %}
-        <li class="divider-vertical"></li>
-
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {% if request.LANGUAGE_CODE == 'en' %}{% trans "English"|capfirst %}{% endif %}
-                {% if request.LANGUAGE_CODE == 'es' %}{% trans "Spanish"|capfirst %}{% endif %}
-                {% if request.LANGUAGE_CODE == 'pt-br' %}{% trans "Portuguese"|capfirst %}{% endif %}
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                {% if request.LANGUAGE_CODE != "en" %}<li><a href="javascript: change_language('en')" title="{% trans 'English' %}">{% trans 'English'|capfirst %}</a></li>{% endif %}
-                {% if request.LANGUAGE_CODE != "pt-br" %}<li><a href="javascript: change_language('pt-BR')" title="{% trans 'Portuguese' %}">{% trans 'Portuguese'|capfirst %}</a></li>{% endif %}
-                {% if request.LANGUAGE_CODE != "es" %}<li><a href="javascript: change_language('es')" title="{% trans 'Spanish' %}">{% trans 'Spanish'|capfirst %}</a></li>{% endif %}
-            </ul>
-        </li>
-        <li class="divider-vertical"></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class=" icon-user icon-white"></i><b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="logged">{% trans "Logged as" %} {{ request.user }}</li>
-                <li><a href="{% url registration.views.edit %}" title="{% trans "Edit" %}">{% trans "Edit" %}</a></li>
-                <li><a href="{% url django.contrib.auth.views.password_change  %}" title="{% trans "Change Password" %}">{% trans "Change Password" %}</a></li>
-                <li><a href="{% url django.contrib.auth.views.logout %}" title="Logout">{% trans "Logout" %}</a></li>
-            </ul>
-        </li>
-    </ul>
-{% endif %}
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class=" icon-user icon-white"></i><b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="logged">{% trans "Logged as" %} {{ request.user }}</li>
+                    <li><a href="{% url registration.views.edit %}" title="{% trans "Edit" %}">{% trans "Edit" %}</a></li>
+                    <li><a href="{% url django.contrib.auth.views.password_change  %}" title="{% trans "Change Password" %}">{% trans "Change Password" %}</a></li>
+                    <li><a href="{% url django.contrib.auth.views.logout %}" title="Logout">{% trans "Logout" %}</a></li>
+                </ul>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}

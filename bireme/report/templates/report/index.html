@@ -25,6 +25,16 @@
 </script>
 
 <style>
+    
+    {% if print %}
+        .navbar, .result-top  {
+            display:none;
+        }   
+        .row-fluid {
+            margin: -100px 0 0 0;
+        }     
+    {% endif %}
+
     fieldset div input[type=checkbox]{
         margin: 0 0 0 5px;
     }
@@ -62,67 +72,75 @@
 
 {% block content %}
     
-    <h2>{% trans "Reports" %}</h2>
+    {% if not print %}    
+        <h2>{% trans "Reports" %}</h2>
 
-    <div class="row-fluid">
-        <form name="q" method="get" class="form-inline">
+        <div class="row-fluid">
+            <form name="q" method="get" class="form-inline">
 
-            <input type="hidden" name="output" value="screen">
+                <input type="hidden" name="output" value="screen">
 
-            <fieldset>
+                <fieldset>
 
-                <div class="input-append">
-                    <input type="text" class="input-xxlarge" name="q" id="q" value="{{ request.GET.q }}" placeholder="{% trans "type here your query" %}">
-                    
-                    <button type="submit" id="searchButton" class="btn">{% trans "Search" %}</button>
-                    <a href="javascript:show_options();" title="{% trans "Show Options" %}" class="btn">{% trans "Show Options" %}</a>
-                </div>
-
-                    <div class="help"><i>
-                        {% trans "If you wanna learn how to search, check this" %} 
-                        <a href="http://packages.python.org/Whoosh/querylang.html" target="_blank" title="{% trans "link" %}">{% trans "link" %}</a>
-                    </i></div>
-
-                <div class="options">
-                    <div>
-                        <label>{% trans "Order by" %}:</label>
-                        <select name="order_by">
-                            <option value=""></option>
-                            {% for field in fields %}
-                                <option value="{{ field }}" {% if request.GET.order_by == field %}selected{% endif %}>{{ field }}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="input-append">
+                        <input type="text" class="input-xxlarge" name="q" id="q" value="{{ request.GET.q }}" placeholder="{% trans "type here your query" %}">
+                        
+                        <button type="submit" id="searchButton" class="btn">{% trans "Search" %}</button>
+                        <a href="javascript:show_options();" title="{% trans "Show Options" %}" class="btn">{% trans "Show Options" %}</a>
                     </div>
 
-                    <div class="checkboxes">
-                        <label>
-                            {% trans "Columns to show" %}: 
-                            <a href="javascript:check_all('check-fields')" title="{% trans "Check All" %}">{% trans "Check All" %}</a>
-                        </label>
+                        <div class="help"><i>
+                            {% trans "If you wanna learn how to search, check this" %} 
+                            <a href="http://packages.python.org/Whoosh/querylang.html" target="_blank" title="{% trans "link" %}">{% trans "link" %}</a>
+                        </i></div>
+
+                    <div class="options">
                         <div>
-                            {% for field in fields %}
-                                <input type="checkbox" class="check-fields" name="fields" value="{{ field }}" {% if field in checked_fields %}checked{% endif %}>
-                                {{ field }}
-                            {% endfor %}
+                            <label>{% trans "Order by" %}:</label>
+                            <select name="order_by">
+                                <option value=""></option>
+                                {% for field in fields %}
+                                    <option value="{{ field }}" {% if request.GET.order_by == field %}selected{% endif %}>{{ field }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="checkboxes">
+                            <label>
+                                {% trans "Columns to show" %}: 
+                                <a href="javascript:check_all('check-fields')" title="{% trans "Check All" %}">{% trans "Check All" %}</a>
+                            </label>
+                            <div>
+                                {% for field in fields %}
+                                    <input type="checkbox" class="check-fields" name="fields" value="{{ field }}" {% if field in checked_fields %}checked{% endif %}>
+                                    {{ field }}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
 
-        </form>
-    </div>
+            </form>
+        </div>
+    {% endif %}
 
     {% if request.GET.q %}
         <div class="row-fluid">
 
-            <h3>{% trans "Searching for" %} "{{ request.GET.q }}" ({{ results|length }})</h3>
+            <div class="result-top">
+                <h3>{% trans "Searching for" %} "{{ request.GET.q }}" ({{ results|length }})</h3>
 
-            <div class="export">
-                <a href="javascript:output('csv')" title="{% trans "Export to CSV" %}">
-                    <img src="{{ STATIC_URL }}/image/export_csv.png" title="{% trans "Export to CSV" %}">
-                </a>
+                <div class="export">
+                    <a href="javascript:output('csv')" title="{% trans "Export to CSV" %}">
+                        <img src="{{ STATIC_URL }}/image/export_csv.png" title="{% trans "Export to CSV" %}">
+                    </a>
+                    <a href="javascript:output('print')" title="{% trans "Print" %}">
+                        <img src="{{ STATIC_URL }}/image/printer.png" title="{% trans "Print" %}">
+                    </a>
+                </div>
             </div>
-            <table class="table table-striped">
+
+            <table class="table results table-striped">
                 <tbody>
                     <tr>
                         {% for field in checked_fields %}
