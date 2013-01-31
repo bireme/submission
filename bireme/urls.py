@@ -14,8 +14,6 @@ urlpatterns = patterns('',
     url(r'^submission/', include('submission.urls')),
     url(r'^report', include('report.urls')),
     url(r'^', include('main.urls')),
-    
-    (r'^/?$', 'submission.views.index'),
 )
 
 if 'rosetta' in settings.INSTALLED_APPS:
