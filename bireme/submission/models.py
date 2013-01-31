@@ -180,7 +180,7 @@ class TypeSubmission(Generic):
     bibliographic_type = models.ForeignKey(BibliographicType, null=True)
     total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
     certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
-    iso_file = models.FileField(_('iso file'), max_length=510, upload_to=new_filename, blank=True, null=True)
+    iso_file = models.FileField(_('iso file'), upload_to=new_filename, blank=True, null=True)
     lildbi_version = models.ForeignKey('LildbiVersion', null=True, blank=True)
 
     def get_iso_url(self):
