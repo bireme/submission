@@ -26,9 +26,9 @@ def requirements():
     """
         Install the requirements
     """
-    with cd(env.path):
+    with cd(env.gitpath):
         with prefix('. %s/bin/activate' % env.virtualenv):
-            run('pip install -r ../requirements.txt')
+            run('pip install -r requirements.txt')
 
 def fixtures(app=None):
     """
@@ -90,9 +90,9 @@ def full_update():
     """
         Install requirements, update source and make migrations and update 
     """
+    update()
     requirements()
     migrate()
-    update()
 
 def tag(tag):
     """
