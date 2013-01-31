@@ -14,7 +14,7 @@ import os
 from submission.index import search, WHOOSH_SCHEMA
 
 @login_required
-def index(request):
+def search(request):
 
     user = request.user
     user_groups = [group.name for group in user.groups.all()]
