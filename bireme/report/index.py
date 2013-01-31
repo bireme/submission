@@ -1,3 +1,4 @@
+#! coding: utf-8
 import os
 from django.db.models import signals
 from django.conf import settings
@@ -47,65 +48,46 @@ def update_index(sender, instance, created, **kwargs):
 
     type = instance.__class__.__name__
     
-    submission = instance
+    submission = instance.submission
+    current_status = submission.current_status
+    type_submission = instance
+    
     if type == "FollowUp":
-        submission = instance.submission
+        current_status = instance.current_status
 
-    type_submission = TypeSubmission.objects.filter(submission=submission)
+    document = {
+        "id": unicode(submission.id),
+        "created": submission.created,
+        "creator": submission.creator.username,
+        "updated": submission.updated,
+        "updater": submission.updater.username,
+        
+        "type": unicode(submission.type),
+        "current_status": unicode(current_status),
+        "observation": submission.observation,
+        "center": unicode(submission.creator.get_profile().center.code),
 
-    if type_submission:
-        type_submission = type_submission[0]
+        "bibliographic_type": unicode(type_submission.bibliographic_type),
+    }
 
+    if type_submission.total_records:
+        document["total_records"] = type_submission.total_records,
+
+    if type_submission.certified:
+        document["certified"] = type_submission.certified,
+
+    if type_submission.certified:
+        document["lildbi_version"] = type_submission.lildbi_version,    
+
+    # Daqui para baixo é padrão, não necessita alterar nada    
     # reading the index
     ix = index.open_dir(settings.WHOOSH_INDEX)
     
     # creating the writer object
     writer = ix.writer()
+    writer.update_document(**document)
 
-    is_update = False
-    if len(search(submission.id, field="id")) > 0:
-        is_update = True
-
-    if not is_update:
-        writer.add_document(
-            id=unicode(submission.id),
-            created=submission.created,
-            creator=submission.creator.username,
-            updated=submission.updated,
-            updater=submission.updater.username,
-            
-            type=unicode(submission.type),
-            current_status=unicode(instance.current_status),
-            observation=submission.observation,
-            center=unicode(submission.creator.get_profile().center.code),
-
-            bibliographic_type=unicode(type_submission.bibliographic_type),
-            total_records=type_submission.total_records,
-            certified=type_submission.certified,
-            lildbi_version=unicode(type_submission.lildbi_version),
-        )
-
-    else:
-        writer.update_document(
-            id=unicode(submission.id),
-            created=submission.created,
-            creator=submission.creator.username,
-            updated=submission.updated,
-            updater=submission.updater.username,
-            
-            type=unicode(submission.type),
-            current_status=unicode(instance.current_status),
-            observation=submission.observation,
-            
-            center=unicode(submission.creator.get_profile().center.code),
-            
-            bibliographic_type=unicode(type_submission.bibliographic_type),
-            total_records=type_submission.total_records,
-            certified=type_submission.certified,
-            lildbi_version=unicode(type_submission.lildbi_version),
-        )
-
-    writer.commit()
+    writer.commit() 
 
 signals.post_save.connect(update_index, sender=FollowUp)
-signals.post_save.connect(update_index, sender=Submission)
+signals.post_save.connect(update_index, sender=TypeSubmission)
