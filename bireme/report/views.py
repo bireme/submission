@@ -11,7 +11,7 @@ from datetime import datetime
 from models import *
 import mimetypes
 import os
-from submission.index import search, WHOOSH_SCHEMA
+from report.index import search, WHOOSH_SCHEMA
 
 @login_required
 def search(request):
