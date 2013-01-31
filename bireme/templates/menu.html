@@ -39,7 +39,7 @@
 
             <li class="divider-vertical"></li>
             {% if request.user.get_profile.is_admin %}            
-                <li><a href="{% url report.views.index %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
+                <li><a href="{% url report.views.search %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
             {% endif %}
             <li class="divider-vertical"></li>
 
