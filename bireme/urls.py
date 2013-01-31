@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('bireme.registration.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^submission/', include('submission.urls')),
-    url(r'^report', include('report.urls')),
+    url(r'^report/', include('report.urls')),
     url(r'^', include('main.urls')),
 )
 
