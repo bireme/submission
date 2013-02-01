@@ -18,7 +18,7 @@
                 
             <div class="relation">
                 {% block relations %}       
-                    <h2>{% trans "Opened submissions" %} ({{ submissions|length }})</h2>           
+                    <h2>{% trans "Opened submissions" %} ({{ total }})</h2>           
                     {% include 'submission/block-list-submission.html' %}
                 {% endblock %}
             </div>

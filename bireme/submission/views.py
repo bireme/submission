@@ -71,6 +71,7 @@ def index(request):
             page = request.REQUEST['page']
 
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
+    total = len(submissions)
 
     # pagination
     pagination = {}
@@ -88,6 +89,7 @@ def index(request):
     output['filters_type'] = filters_type
     output['filtr_type'] = filtr_type
     output['pagination'] = pagination
+    output['total'] = total
 
     return render_to_response('submission/index.html', output, context_instance=RequestContext(request))
         
@@ -300,6 +302,7 @@ def list(request):
             page = request.REQUEST['page']
 
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
+    total = len(submissions)
 
     # pagination
     pagination = {}
@@ -319,6 +322,7 @@ def list(request):
         'filters_type': filters_type,
         'filtr_type': filtr_type,
         'types': types,
+        'total': total,
     }
 
     return render_to_response('submission/list.html', output, context_instance=RequestContext(request))
