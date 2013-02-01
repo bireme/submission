@@ -6,11 +6,24 @@ from submission.models import *
 from bireme.submission.views import HEADERS
 from django.core.paginator import Paginator
 
+
 def search(request):
+    
+    user = request.user
+    user_groups = [group.name for group in user.groups.all()]
+    user_type = 'user'
+    submissions = TypeSubmission.objects.all().order_by('submission__updated')
     output = {}
 
     if not 'q' in request.GET:
         raise Http404
+
+    if 'admins' in user_groups:
+        user_type = 'admin'
+
+    if user_type == 'user':
+        profile = request.user.get_profile()
+        submissions = submissions.filter(submission__creator__userprofile__center=profile.center)
     
     query = request.GET.get('q')
     output['q'] = query
@@ -18,9 +31,9 @@ def search(request):
     filters_type = BibliographicType.objects.all()
 
     try:
-        submissions = TypeSubmission.objects.filter(submission__id=query)
+        submissions = submissions.filter(submission__id=query)
     except:
-        submissions = TypeSubmission.objects.filter(submission__creator__userprofile__center__code__icontains=query)
+        submissions = submissions.filter(submission__creator__userprofile__center__code__icontains=query)
 
     # requests of interface
     order_by = 'id'
