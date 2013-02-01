@@ -5,6 +5,7 @@ from django.conf import settings
 from whoosh import store, fields, index, qparser
 from submission.models import *
 
+
 WHOOSH_SCHEMA = fields.Schema(
     
     id=fields.NUMERIC(stored=True, unique=True),
@@ -12,18 +13,15 @@ WHOOSH_SCHEMA = fields.Schema(
     creator=fields.TEXT(stored=True),
     updated=fields.DATETIME(stored=True),
     updater=fields.TEXT(stored=True),
+    center=fields.TEXT(stored=True),
     
     type=fields.TEXT(stored=True),
-    current_status=fields.TEXT(stored=True),
-    observation=fields.TEXT(stored=True),
+    current_status=fields.TEXT(stored=True),    
     
     bibliographic_type=fields.TEXT(stored=True),
-    total_records=fields.TEXT(stored=True),
-    certified=fields.TEXT(stored=True),
-    iso_file=fields.TEXT(stored=True),
+    total_records=fields.NUMERIC(stored=True),
+    certified=fields.NUMERIC(stored=True),
     lildbi_version=fields.TEXT(stored=True),
-    
-    center=fields.TEXT(stored=True),
 )
 
 def search(query, field=None, limit=None, sortedby='created', type=None):
@@ -46,48 +44,62 @@ signals.post_syncdb.connect(create_index)
 
 def update_index(sender, instance, created, **kwargs):
 
-    type = instance.__class__.__name__
+    type = instance.__class__.__name__    
     
-    submission = instance.submission
-    current_status = submission.current_status
-    type_submission = instance
+    if not type == "NoneType":
     
-    if type == "FollowUp":
-        current_status = instance.current_status
-
-    document = {
-        "id": unicode(submission.id),
-        "created": submission.created,
-        "creator": submission.creator.username,
-        "updated": submission.updated,
-        "updater": submission.updater.username,
+        submission = instance.submission
+        current_status = submission.current_status
+        type_submission = instance
         
-        "type": unicode(submission.type),
-        "current_status": unicode(current_status),
-        "observation": submission.observation,
-        "center": unicode(submission.creator.get_profile().center.code),
+        if type == "FollowUp":
+            type_submission = TypeSubmission.objects.get(submission=submission)
+            current_status = instance.current_status
 
-        "bibliographic_type": unicode(type_submission.bibliographic_type),
-    }
+        document = {}
 
-    if type_submission.total_records:
-        document["total_records"] = type_submission.total_records,
+        fields = ['created', 'updated']
+        for field in fields:
+            if hasattr(submission, field):
+                attr = getattr(submission, field)
+                if attr:
+                    document[field] = attr
 
-    if type_submission.certified:
-        document["certified"] = type_submission.certified,
+        fields = ['id', 'creator', 'updater', 'type']
+        for field in fields:
+            if hasattr(submission, field):
+                attr = getattr(submission, field)
+                if attr:
+                    attr = unicode(attr)
+                    document[field] = attr
 
-    if type_submission.certified:
-        document["lildbi_version"] = type_submission.lildbi_version,    
+        fields = ['total_records', 'certified', 'lildbi_version', 'bibliographic_type']
+        for field in fields:
+            if hasattr(type_submission, field):
+                
+                attr = getattr(type_submission, field)
 
-    # Daqui para baixo é padrão, não necessita alterar nada    
-    # reading the index
-    ix = index.open_dir(settings.WHOOSH_INDEX)
+                if attr:
+                    if not isinstance(attr, int):
+                        attr = unicode(attr)
+                    document[field] = attr
+
+        if current_status:
+            document['current_status'] = unicode(current_status)
+
+        if submission.creator.get_profile().center.code:
+            document['center'] = submission.creator.get_profile().center.code
+        
+        # Daqui para baixo é padrão, não necessita alterar nada    
+        # reading the index
+        ix = index.open_dir(settings.WHOOSH_INDEX)
+        
+        # creating the writer object
+        writer = ix.writer()
+        writer.update_document(**document)
+
+        writer.commit() 
     
-    # creating the writer object
-    writer = ix.writer()
-    writer.update_document(**document)
-
-    writer.commit() 
 
 signals.post_save.connect(update_index, sender=FollowUp)
 signals.post_save.connect(update_index, sender=TypeSubmission)
