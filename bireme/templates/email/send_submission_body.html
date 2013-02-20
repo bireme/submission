@@ -5,7 +5,16 @@
     <p>
         {% trans "Your submission as been updated from the status" %}
         {{ previous_status }} {% trans "to" %} {{ current_status }}.
-        <br>
+    </p>
+
+    {% if message %}
+        <p>
+            {% trans "See the message below:" %} <br>
+            {{ message }}
+        </p>
+    {% endif %}
+    
+    <p>
         {% trans "Follow your submission in:" %} <br>
         <a href="{{ url }}">{{ url }}</a>
     </p>

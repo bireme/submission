@@ -246,6 +246,10 @@ def send_email(sender, instance, created, **kwargs):
         'current_status': followup.current_status,
     }
 
+    if followup.message:
+        output['message'] = followup.message
+
+
     EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
     EMAIL_CONTENT = render_to_string('email/send_submission_body.html', output, context_instance=RequestContext(request))
 
