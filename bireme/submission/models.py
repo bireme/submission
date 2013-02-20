@@ -152,26 +152,22 @@ class TypeSubmission(Generic):
 
     # Function that remove spaces and special characters from filenames
     def new_filename(instance, filename):
+        
         user = get_current_user()
         request = get_current_request()
         fname, dot, extension = filename.rpartition('.')
 
-        bibliographic_type = request.POST.get('bibliographic_type')
-        bibliographic_type = BibliographicType.objects.get(pk=bibliographic_type)
-        bibliographic_type = bibliographic_type.title
         extension = "iso"
 
         try:
-            submissions = TypeSubmission.objects.all()
-            last = submissions.reverse()[0]
-            id = last.id + 1
+            submissions = Submission.objects.all().order_by('-id')
+            id = submissions[0].id
         except:
             id = 1
 
         dir = settings.MEDIA_ROOT
         dir = os.path.join(dir, unicode(user.get_profile().center.code))
-        fname = slugify("%s-%s" % (bibliographic_type, id))
-        fname = "%s-%s" % (user.get_profile().center.code, fname)
+        fname = "%s-%s" % (user.get_profile().center.code, id)
         
         return os.path.join(dir, '%s.%s' % (fname, extension))
         
