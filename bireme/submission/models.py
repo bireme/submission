@@ -203,6 +203,16 @@ class TypeSubmission(Generic):
 
         return unicode(url)
 
+    def get_attac_url(self):
+        filename = self.file.name
+        url = filename.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
+        
+        if not os.path.exists(filename):
+            logger_logins = logging.getLogger('logview.userlogins')
+            logger_logins.error('File %s do not exists.', url)
+
+        return unicode(url)
+
 class Submission(Generic):
 
     class Meta:

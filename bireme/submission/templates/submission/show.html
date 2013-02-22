@@ -83,6 +83,18 @@
                                     <td>{{ type_submission.certified }}</td>
                                 </tr>
                             {% endif %}
+                            {% if type_submission.observation %}
+                                <tr>
+                                    <th>{% trans "Observation" %}</th>
+                                    <td>{{ type_submission.observation }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if type_submission.file %}
+                                <tr>
+                                    <th>{% trans "Attachment" %}</th>
+                                    <td><a href="{{ type_submission.get_attac_url }}">{{ type_submission.get_attac_url }}</a></td>
+                                </tr>
+                            {% endif %}
                         {% endif %}
                     </tbody>
                 </table>
