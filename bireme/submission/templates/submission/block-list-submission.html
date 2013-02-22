@@ -129,7 +129,7 @@
                                     <td>{{ sub.submission.updater }}</td>
                                     <td>{{ sub.submission.current_status }}</td>
                                     <td>{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE }}</td>
-                                    <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_filename }}</a></td>
+                                    <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_title }}</a></td>
                                 </tr>
                             {% endfor %}
                         {% else %}

@@ -147,16 +147,15 @@ class TypeSubmission(Generic):
     def get_absolute_url(self):
         return ('submission.views.show', [str(self.id)])
 
-    def iso_filename(self):
+    def iso_title(self):
         return os.path.basename(self.iso_file.name)
 
     # Function that remove spaces and special characters from filenames
-    def new_filename(instance, filename):
+    def iso_filename(instance, filename):
         
         user = get_current_user()
         request = get_current_request()
         fname, dot, extension = filename.rpartition('.')
-
         extension = "iso"
 
         try:
@@ -170,14 +169,29 @@ class TypeSubmission(Generic):
         fname = "%s-%s" % (user.get_profile().center.code, id)
         
         return os.path.join(dir, '%s.%s' % (fname, extension))
+
+    # Function that remove spaces and special characters from filenames
+    def file_filename(instance, filename):
+        
+        user = get_current_user()
+        request = get_current_request()
+        fname, dot, extension = filename.rpartition('.')
+
+        dir = settings.MEDIA_ROOT
+        dir = os.path.join(dir, unicode(user.get_profile().center.code))
+        fname = slugify(fname)
+        
+        return os.path.join(dir, '%s.%s' % (fname, extension))
         
     
     # iso    
     bibliographic_type = models.ForeignKey(BibliographicType, null=True)
     total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
     certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
-    iso_file = models.FileField(_('iso file'), max_length=510, upload_to=new_filename, blank=True, null=True)
+    iso_file = models.FileField(_('iso file'), max_length=510, upload_to=iso_filename, blank=True, null=True)
     lildbi_version = models.ForeignKey('LildbiVersion', null=True, blank=True)
+    observation = models.TextField(null=True, blank=True)
+    file = models.FileField(_('file'), max_length=510, upload_to=file_filename, blank=True, null=True)
 
     def get_iso_url(self):
         filename = self.iso_file.name
