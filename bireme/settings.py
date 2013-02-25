@@ -37,6 +37,8 @@ TIME_ZONE = 'America/Sao_Paulo'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'br'
 
+LANGUAGE_COOKIE_NAME = 'django_language'
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not

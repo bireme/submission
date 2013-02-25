@@ -1,11 +1,11 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from submission.views import HEADERS
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from submission.models import *
 from bireme.submission.views import HEADERS
 from django.core.paginator import Paginator
-
+from django.conf import settings
 
 def search(request):
     
@@ -83,3 +83,15 @@ def search(request):
     output['total'] = total
 
     return render_to_response('main/search.html', output, context_instance=RequestContext(request))
+
+
+def cookie_lang(request):
+
+    language = request.REQUEST.get('language')
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = language
+    request.session[settings.LANGUAGE_COOKIE_NAME] = language
+
+    response = HttpResponse(language)
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+
+    return response

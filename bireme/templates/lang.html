@@ -1,8 +1,16 @@
 <script>
 	function change_language(lang) {
-		var form = document.language;
-		form.language.value = lang;
-		form.submit();
+	
+        // armazena a linguagem em cookie, para relembrar na proxima entrada
+        $.get("{% url main.views.cookie_lang %}", { language: lang} , function(data) {
+            
+            var form = document.language;
+            form.language.value = lang;
+            
+            alert(data);
+            form.submit();
+        });
+
 	}
 </script>
 
