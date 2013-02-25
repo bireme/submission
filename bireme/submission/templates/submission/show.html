@@ -114,6 +114,7 @@
                                 <th>{% trans "Message" %}</th>
                                 {% if user_type == 'admin' %}<th>{% trans "Staff Message" %}</th>{% endif %}
                                 <th>{% trans "Attatchment" %}</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -148,13 +149,25 @@
                                             </td>
                                         {% endif %}
                                         <td>{% if item.attachment %}<a href="{{ item.get_attachment_url }}"><i class="icon-file"></i></a>{% else %}-{% endif %}</td>
+                                        <td>{% if user_type == 'admin' %}<a data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
-                                <tr><td colspan=4>{% trans "Sorry, there's no follow ups to this submission." %}</td></tr>
+                                <tr><td colspan=4>{% trans "There's no follow ups to this submission." %}</td></tr>
                             {% endif %}
                         </tbody>
                     </table>
+
+                    {% if user_type == 'admin' %}
+                        <div class="modal hide" id="editFollowUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">{% trans "Edit Follow Up" %}</h3>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer"></div>
+                        </div>
+                    {% endif %}
             </div>
         </div>
     </div>
