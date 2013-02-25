@@ -366,3 +366,25 @@ def bulk(request):
             submission.submission.save()
 
     return redirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def edit_followup(request, id):
+
+    followup = get_object_or_404(FollowUp, pk=id)
+    form = FollowUpForm(instance=followup)
+
+    if request.POST:
+        form = FollowUpForm(request.POST, instance=followup)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.save()
+
+            return redirect(reverse('submission.views.show', args=[followup.submission.id]))
+
+    output = {
+        'followup': followup,
+        'form': form,
+    }
+
+    return render_to_response('submission/edit-follow-up.html', output, context_instance=RequestContext(request))
