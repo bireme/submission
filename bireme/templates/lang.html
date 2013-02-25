@@ -1,13 +1,11 @@
 <script>
 	function change_language(lang) {
 	
-        // armazena a linguagem em cookie, para relembrar na proxima entrada
+        // chama, via ajax, a view que armazena a linguagem em cookie, para relembrar na proxima entrada
         $.get("{% url main.views.cookie_lang %}", { language: lang} , function(data) {
             
             var form = document.language;
             form.language.value = lang;
-            
-            alert(data);
             form.submit();
         });
 
