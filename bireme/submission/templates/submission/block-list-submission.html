@@ -127,7 +127,7 @@
                                     <td><span title="{{ sub.submission.updated }}">{{ sub.submission.updated|date:"d/m/Y H:i" }}</span></td>
                                     <td>{{ sub.submission.creator.get_profile.center.code }}</td>
                                     <td>{{ sub.submission.updater }}</td>
-                                    <td>{{ sub.submission.current_status }}</td>
+                                    <td>{{ sub.submission.current_status|translate:request.LANGUAGE_CODE }}</td>
                                     <td>{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE }}</td>
                                     <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_title }}</a></td>
                                 </tr>
