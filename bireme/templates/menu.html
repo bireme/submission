@@ -37,8 +37,8 @@
                 </li>
             {% endif %}
 
-            <li class="divider-vertical"></li>
-            {% if request.user.get_profile.is_admin %}            
+            {% if request.user.is_superuser %}            
+                <li class="divider-vertical"></li>
                 <li><a href="{% url report.views.search %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
             {% endif %}
             <li class="divider-vertical"></li>
