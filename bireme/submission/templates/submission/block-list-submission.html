@@ -128,7 +128,7 @@
                                     <td>{{ sub.submission.creator.get_profile.center.code }}</td>
                                     <td>{{ sub.submission.updater }}</td>
                                     <td>{{ sub.submission.current_status|translate:request.LANGUAGE_CODE }}</td>
-                                    <td>{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE }}</td>
+                                    <td><span title="{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE }}">{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE|slice:'23' }}{% if sub.bibliographic_type|translate:request.LANGUAGE_CODE|length > 23 %}...{% endif %}</span></td>
                                     <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_title }}</a></td>
                                 </tr>
                             {% endfor %}
@@ -170,9 +170,12 @@
                         {% for type in filters_type %}
                             <li>
                                 {% if filtr_type == type.id %}
-                                    <b>{{ type|translate:request.LANGUAGE_CODE }}</b>
+                                    <b><span title="{{ type|translate:request.LANGUAGE_CODE }}">{{ type|translate:request.LANGUAGE_CODE|slice:'20' }}{% if type|translate:request.LANGUAGE_CODE|length > 23 %}...{% endif %}</span></b>
                                 {% else %}
-                                    <a href="javascript:change_type('{{ type.id }}')" title="{% trans "Filter by type " %}{{ type|translate:request.LANGUAGE_CODE }}">{{ type|translate:request.LANGUAGE_CODE }}</a></li>
+                                    <a href="javascript:change_type('{{ type.id }}')" title="{% trans "Filter by type " %}{{ type|translate:request.LANGUAGE_CODE }}">
+                                        {{ type|translate:request.LANGUAGE_CODE|slice:'23' }}{% if type|translate:request.LANGUAGE_CODE|length > 23 %}...{% endif %}
+                                    </a>
+                                </li>
                                 {% endif %}
                         {% endfor %}
                     </ul>
