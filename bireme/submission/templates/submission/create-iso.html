@@ -1,8 +1,18 @@
 {% extends "submission/create.html" %}
 {% load i18n %}
 
+{% block extrahead %}
+    <script>
+        var invalid_records_message = "{% trans "ERROR: Total records cannot be blank." %}";
+        var invalid_bibliographic_type_message = "{% trans "ERROR: Bibliographic type cannot be blank." %}";
+        var invalid_iso_file_message = "{% trans "ERROR: You need to put a ISO file." %}";
+    </script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/validate-submit-submission.js"></script>
+{% endblock %}
+
 {% block "form" %}
-    <form name="iso" method="POST" class="form" action="{% url submission.views.create type.id %}" enctype="multipart/form-data">{% csrf_token %}
+    <form name="iso" onsubmit="return check_iso_form();" method="POST" class="form" action="{% url submission.views.create type.id %}" enctype="multipart/form-data">{% csrf_token %}
         {{ form }}
         <div class="control-panel">
             <button type="submit" class="btn btn-large btn-primary">{% trans "Submit" %}</button>
