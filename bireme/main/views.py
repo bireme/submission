@@ -27,7 +27,7 @@ def search(request):
     
     query = request.GET.get('q')
     output['q'] = query
-    filters = Step.objects.all().exclude(finish=True).exclude(close=True)
+    filters = Step.objects.all()
     filters_type = BibliographicType.objects.all()
 
     try:
