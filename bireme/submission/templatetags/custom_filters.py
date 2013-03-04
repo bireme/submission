@@ -1,5 +1,6 @@
 from django import template
 import hashlib
+from django.template.loader import get_template
 
 register = template.Library()
 
@@ -19,3 +20,12 @@ def translate(obj, lang):
         return obj.get_translation(lang)
     except:
         return obj
+
+@register.filter(name='exists')
+def exists(obj):
+    try: 
+        template = get_template(obj)
+        return True
+    except Exception as e:
+        return False
+    
