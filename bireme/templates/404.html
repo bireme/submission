@@ -2,5 +2,10 @@
 {% load i18n %}
 
 {% block content %}
-    <h2>{% trans "Sorry, this page cannot be found!" %}</h2>
+    <div class="hero-unit">
+        <h1>{% trans "Ops.. This page cannot be found." %}</h1>
+        <p>{% trans "The page that you try to see doesn't exist, or probably has been deleted." %}</p>
+        <p><a href="{% url submission.views.index %}" class="btn btn-primary btn-large">Come back</a></p>
+    </div>
 {% endblock %}
+
