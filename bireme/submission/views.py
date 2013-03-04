@@ -130,7 +130,7 @@ def create(request, type=None):
 
                 message = "ISO registrada com sucesso!"
                 type = 'success'
-                return redirect(reverse("submission.views.index") + "?message=%s&type=%s" % (message, type))
+                return redirect(reverse("submission.views.show", args=[submission.id]) + "?message=%s&type=%s" % (message, type))
 
         output = {
             'type': type,
