@@ -123,8 +123,8 @@
                                 <tr>
                                     <td><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></td>
                                     <td><a href="{% url submission.views.show sub.submission.id %}" title="{% trans 'Go to submission' %} {{ sub.submission.id }}"><b>{{ sub.submission.id }}</b></a></td>
-                                    <td><span title="{{ sub.submission.created }}">{{ sub.submission.created|date:"d/m/Y H:i" }}</span></td>
-                                    <td><span title="{{ sub.submission.updated }}">{{ sub.submission.updated|date:"d/m/Y H:i" }}</span></td>
+                                    <td><span title="{{ sub.submission.created }}">{{ sub.submission.created|date:"d/m/y" }}</span></td>
+                                    <td><span title="{{ sub.submission.updated }}">{{ sub.submission.updated|date:"d/m/y" }}</span></td>
                                     <td>{{ sub.submission.creator.get_profile.center.code }}</td>
                                     <td>{{ sub.submission.updater }}</td>
                                     <td>{{ sub.submission.current_status|translate:request.LANGUAGE_CODE }}</td>
