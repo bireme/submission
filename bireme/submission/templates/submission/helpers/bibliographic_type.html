@@ -1,13 +1,18 @@
+{% load i18n %}
 <p>
-    Tipos bibliográficos: selecionar o tipo bibliográfico dos registros que estão sendo enviados. 
-    Recomendamos que o arquivo iso tenha vários registros, mas todos devem ser do mesmo tipo bibliográfico.<br>
-    <b>Exemplo:</b> enviar em uma submissão vários monográficos e/ou teses.
+    {% blocktrans %}
+        Select the type of bibliographic records which will be sent.
+        We recommend that ISO file contain multiple records, but all must be the same bibliographic type.
+    {% endblocktrans %}
+    <br>
+
+    <b>{% trans "Example" %}:</b> {% trans "Send various monographs and / or theses in a submission" %}.
 </p>
 <p>
     <ul>
-        <li><b>Journal:</b> Revista: registro completo descrito e indexado.</li>
-        <li><b>Monography, Thesis and Non-conventional:</b> Monografia, Tese e Não Convencional: todos os tipos de literatura que podem ser descritos na Metodologia LILACS, excluindo as revistas.</li>
-        <li><b>Indexed and reviewed records - LILACS Express:</b> registros indexados e revisados de revistas que participam do LILACS-Express.</li>
-        <li><b>LILACS-Express:</b> registros sem indexação e sem revisão que são LILACS-Express. Este tipo a principio será administrado somente pela BIREME e visualizado pelos responsáveis por entrada de dados nas coleções SciELO. </li>
+        <li><b>{% trans "Journal" %}:</b> {% trans "complete record described and indexed" %}.</li>
+        <li><b>{% trans "Monography, Thesis and Non-conventional" %}:</b> {% trans "all types of literature that can be described in LILACS Methodology, excluding Journals" %}.</li>
+        <li><b>{% trans "Indexed and reviewed records - LILACS Express" %}:</b> {% trans "journal records indexed and reviewed that participate in LILACS-Express" %}.</li>
+        <li><b>{% trans "LILACS-Express" %}:</b> {% trans "Records without indexing and review which belongs to LILACS-Express. Initially, this type will be managed only by BIREME and viewed by those responsible for data entry in SciELO collections" %}.</li>
     </ul>
 </p>
