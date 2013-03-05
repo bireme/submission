@@ -7,5 +7,7 @@ else
     exit 1
 fi
 
+cd $PROJECT_PATH/submission-git/tools
+
 ./normalize-permissions.sh $PROJECT_PATH
 ./backup.sh $PROJECT_PATH
