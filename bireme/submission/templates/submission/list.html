@@ -4,6 +4,6 @@
 {% block "title" %}{% trans "Show all submissions" %} | {{ block.super }}{% endblock %}
 
 {% block relations %}
-	<h2>{% trans "All submissions" %} ({{ submissions|length }}/{{ total }})</h2>
+	<h2>{% trans "All submissions" %} <small>({{ submissions|length }}/{{ total }})</small></h2>
 	{% include 'submission/block-list-submission.html' %}
 {% endblock %}

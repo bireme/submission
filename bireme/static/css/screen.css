@@ -1,5 +1,5 @@
 .content {
-    margin-top: 100px;
+    margin-top: 35px;
 }
 .navbar .logged {
     margin: 5px 0 10px 15px;
@@ -19,20 +19,17 @@
     margin-top: 20px;
     margin-bottom: 50px;
 }
-.blockSubmission h2 {
+h2, h3, h4 {
     margin-bottom: 10px;
     letter-spacing: -1px;
 }
-.blockSubmission .filters .filter {
-    margin: 10px 0;
 
-}
-.blockSubmission .filters ul {
-    margin: 0 0 25px 0;
-}
-.blockSubmission .filters ul li {
-    list-style: none;
-    padding: 0 10px;
+h2 {
+    background: #f5f5f5;
+    padding: 30px 10px 15px 40px;
+    font-size: 25pt;
+    border-radius: 10px;
+    margin: 0 0 40px 0;
 }
 .confirm_change textarea {
     width: 98%;
@@ -97,3 +94,47 @@
 .footer .bireme .version {
     font-size: 80%;
 }
+
+.filters .filter {
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    
+}
+.filters h4 {
+    float: left;
+    text-transform: uppercase;
+    padding: 10px 30px 10px 10px;
+    width: 30px;
+}
+.filters ul {
+    padding: 10px 0;
+}
+.filters li {
+    display: inline;
+}
+.filters li a {
+    padding: 0 10px;
+}
+.filters li b {
+    background: #e6e6e6;
+    padding: 10px;
+}
+
+/* colando os filtros em cima */
+.affix  {
+    position: fixed;
+    top: 36px;
+    left: 0;
+    background: #fff;
+    width: 100%;
+}
+.affix .filter {
+    padding: 0 20px;
+    
+}
+.affix h3 {
+    display: none;
+}
+
+
