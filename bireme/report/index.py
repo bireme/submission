@@ -99,7 +99,23 @@ def update_index(sender, instance, created, **kwargs):
         writer.update_document(**document)
 
         writer.commit() 
-    
 
+def delete(sender, instance, **kwargs):
+
+    type = instance.__class__.__name__    
+    
+    if not type == "NoneType":
+    
+        submission = instance.submission
+
+        ix = index.open_dir(settings.WHOOSH_INDEX)
+
+        writer = ix.writer()
+        writer.delete_by_term('id', submission.id)
+
+        writer.commit() 
+        
+    
 signals.post_save.connect(update_index, sender=FollowUp)
 signals.post_save.connect(update_index, sender=TypeSubmission)
+signals.pre_delete.connect(delete, sender=TypeSubmission)
