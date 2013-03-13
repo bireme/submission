@@ -4,24 +4,21 @@
 {% block "title" %}{% trans "Dashboard" %} | {{ block.super }}{% endblock %}
 
 {% block content %}    
-    <div class="row-fluid">
-        <div class="submissions">
-            
-            <!-- block alert -->
-            {% if request.GET.message and request.GET.type %}
-                <div class="alert alert-{{ request.GET.type }}">
-                    <button class="close" data-dismiss="alert">×</button>
-                    <strong>{% trans "Success!" %}</strong><br>
-                    {{ request.GET.message }}
-                </div>
-            {% endif %}
-                
-            <div class="relation">
-                {% block relations %}       
-                    <h2>{% trans "Opened submissions" %} <small>({{ submissions|length }}/{{ total }})</small></h2>
-                    {% include 'submission/block-list-submission.html' %}
-                {% endblock %}
-            </div>
+    
+    <!-- block alert -->
+    {% if request.GET.message and request.GET.type %}
+        <div class="alert alert-{{ request.GET.type }}">
+            <button class="close" data-dismiss="alert">×</button>
+            <strong>{% trans "Success!" %}</strong><br>
+            {{ request.GET.message }}
         </div>
+    {% endif %}
+        
+    <div class="relation">
+        {% block relations %}       
+            <h2>{% trans "Opened submissions" %} <small>({{ submissions|length }}/{{ total }})</small></h2>
+            {% include 'submission/block-list-submission.html' %}
+        {% endblock %}
     </div>
+    
 {% endblock %}

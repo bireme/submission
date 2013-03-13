@@ -1,10 +1,13 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html>
-    <head>{% block "head" %}
+    <head>
 
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Bootstrap -->
         <link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="{{ STATIC_URL }}/css/screen.css" rel="stylesheet">
 
@@ -13,46 +16,15 @@
         <script src="{{ STATIC_URL }}/bootstrap/js/bootstrap-modal.js"></script>
         <script src="{{ STATIC_URL }}/bootstrap/js/bootstrap-transition.js"></script>
         <script src="{{ STATIC_URL }}/bootstrap/js/bootstrap-affix.js"></script>
+        <script src="{{ STATIC_URL }}/js/filters.js"></script>
 
         <title>{% block "title" %}{% trans "BIREME Submission" %}{% endblock %}</title>
 
-        <style>
-            html,
-            body {
-                height: 100%;
-            /* The html and body elements cannot have any padding or margin. */
-            }
-            /* Wrapper for page content to push down footer */
-            #wrap {
-                min-height: 100%;
-                height: auto !important;
-                height: 100%;
-                /* Negative indent footer by it's height */
-                margin: 0 auto -210px;
-            }
-
-            /* Set the fixed height of the footer here */
-            #push,
-            #footer {
-                height: 210px;
-            }
-
-            /* Lastly, apply responsive CSS fixes as necessary */
-            @media (max-width: 767px) {
-                #footer {
-                  margin-left: -20px;
-                  margin-right: -20px;
-                  padding-left: 20px;
-                  padding-right: 20px;
-                }
-            }
-        </style>
-
         {% block extrahead %}{% endblock %}
-    {% endblock %}</head>
-    
+    </head>
     <body>
-        <div id="wrap">
+        <div class="wrap">
+
             {% include "lang.html" %}
             {% block "body" %}
                 {% block top %}
@@ -66,46 +38,14 @@
                         </div>
                     </div>
                 {% endblock %}
-                <div class="container-fluid content">
+                <div class="container-fluid content {% block custom-wrap-class %}secondLevel{% endblock %}">
                     {% block content %}{% endblock %}
                 </div>
             {% endblock %}
 
-            <!-- <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="footer">
-                            <p>
-                                <img src="{{ STATIC_URL }}/image/logo_bir.png" title="BIREME/OPAS/OMS" />
-
-                                <b class="bireme">BIREME - OPAS - OMS</b><br>
-                                {% trans "Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde" %}<br>
-                                {% trans "Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800 | Fax: (55 11) 5575-8868 " %}<br>
-                                <a href="http://new.paho.org/bireme" title="{% trans 'Site Institucional da Bireme' %}">http://new.paho.org/bireme</a><br>
-                                v{% include "version.txt" %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            {% if GOOGLE_ANALYTICS_ID %}
-                <script type="text/javascript">
-                    var _gaq = _gaq || [];
-                    _gaq.push(['_setAccount', '{{ GOOGLE_ANALYTICS_ID }}']);
-                    _gaq.push(['_trackPageview']);
-
-                    (function() {
-                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                    })();
-                </script>
-            {% endif %}
-            <div id="push"></div>
         </div>
-
-        <div id="footer" class="footer">
-            <div class="container">
+        <div id="push"></div>
+        <div id="footer">
                 <p>
                     <img src="{{ STATIC_URL }}/image/logo_bir.png" title="BIREME/OPAS/OMS" />
 
@@ -113,10 +53,8 @@
                     {% trans "Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde" %}<br>
                     {% trans "Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800 | Fax: (55 11) 5575-8868 " %}<br>
                     <a href="http://new.paho.org/bireme" title="{% trans 'Site Institucional da Bireme' %}">http://new.paho.org/bireme</a><br>
-                    v{% include "version.txt" %}
+                    <small>v{% include 'version.txt' %}</small>
                 </p>
-            </div>
         </div>
-
     </body>
 </html>
