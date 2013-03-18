@@ -21,8 +21,9 @@ def search(request):
     user_groups = [group.name for group in user.groups.all()]
     user_type = 'user'
 
+    pre_filter = None
     if not 'admins' in user_groups:
-        return Http404
+        pre_filter = "center:%s" % user.get_profile().center
 
     fields = [item for item in WHOOSH_SCHEMA.names()]
     checked_fields = [field for field in request.GET.getlist('fields')]
@@ -41,7 +42,7 @@ def search(request):
     results = None
     if request.GET.get('q'):
         query = request.GET.get('q')
-        results = whoosh_search(query, sortedby=order_by)
+        results = whoosh_search(query, sortedby=order_by, pre_filter=pre_filter)
 
     output = {
         'results': results,

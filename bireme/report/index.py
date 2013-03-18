@@ -2,7 +2,7 @@
 import os
 from django.db.models import signals
 from django.conf import settings
-from whoosh import store, fields, index, qparser
+from whoosh import store, fields, index, qparser, query
 from submission.models import *
 
 
@@ -24,17 +24,22 @@ WHOOSH_SCHEMA = fields.Schema(
     lildbi_version=fields.TEXT(stored=True),
 )
 
-def search(query, field=None, limit=None, sortedby='created', type=None):
+def search(cur_query, field=None, limit=None, sortedby='created', pre_filter=None, type=None):
     
-    query = unicode(query)
+    cur_query = unicode(cur_query)
+
+    if pre_filter:
+        cur_query = "(%s) AND %s" % (pre_filter, cur_query)
+        print cur_query
 
     ix = index.open_dir(settings.WHOOSH_INDEX)
     searcher = ix.searcher()
 
     parser = qparser.QueryParser("id", ix.schema)
-    myquery = parser.parse(query)
-    
-    return searcher.search(myquery, limit=None, sortedby=sortedby)
+    myquery = parser.parse(cur_query)
+
+    result = searcher.search(myquery, limit=None, sortedby=sortedby)
+    return result
 
 def create_index(sender=None, **kwargs):
     if not os.path.exists(settings.WHOOSH_INDEX):

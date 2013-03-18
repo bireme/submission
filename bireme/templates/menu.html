@@ -37,10 +37,10 @@
                 </li>
             {% endif %}
 
-            {% if request.user.is_superuser %}            
-                <li class="divider-vertical"></li>
-                <li><a href="{% url report.views.search %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
-            {% endif %}
+            
+            <li class="divider-vertical"></li>
+            <li><a href="{% url report.views.search %}" title="{% trans "Reports" %}">{% trans "Reports" %}</a></li>
+            
             <li class="divider-vertical"></li>
 
             <li class="dropdown">
