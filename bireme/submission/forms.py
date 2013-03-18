@@ -9,7 +9,7 @@ class SubmissionForm(forms.ModelForm):
 class SubmissionIsoForm(forms.ModelForm):
     class Meta:
         model = TypeSubmission
-        fields = ('total_records', 'bibliographic_type' ,'iso_file', 'observation', 'file')
+        fields = ('total_records', 'bibliographic_type' ,'iso_file', 'observation', 'file', 'external')
 
 class SubmissionIsoFinalForm(forms.ModelForm):
     class Meta:
