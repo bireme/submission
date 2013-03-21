@@ -1,17 +1,20 @@
 $(function(){
 
+    // escondendo filters
     $('#filtersPanel').css('right', '-240px');
 
-    var speed = 500;
-    var is_open = false;
+    var speed = 250;
     var button = $("#filtersPanel");
     button.hover(function(){
-        if(is_open) {
+        // se ja tiver totalmente aberto, fecha denovo
+        if($('#filtersPanel').css('right') == '0px') {
             $('#filtersPanel').animate({right: '-240px',}, speed, function(){});
-            is_open = false;
-        } else {
+           
+        } 
+        // se ja tiver totalmente fehcado, abre denovo
+        if($('#filtersPanel').css('right') == '-240px') {
             $('#filtersPanel').animate({right: '0px',}, speed, function(){});
-            is_open = true;
+
         }
     });
 });

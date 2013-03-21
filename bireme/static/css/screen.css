@@ -3,7 +3,9 @@ body {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
 }
-
+.spacer {
+    clear:both;
+}
 /* Wrapper for page content to push down footer */
 .wrap {
     min-height: 100%;
@@ -24,7 +26,6 @@ body {
 }
 #footer img {
     float: left;
-    margin: 0 20px 0 10px;
 }
 .content.secondLevel {
     margin: 52px 0 0 0;
@@ -110,6 +111,19 @@ body {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.tableContainer {
+    border-radius: 6px;
+    padding: 1em;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+}
+.table th, .table td {
+    border-top: none;
+    border-bottom: 1px solid #DDDDDD;
+}
+
 /******** FILTERS ********/
 #filtersPanel {
     position: fixed;
@@ -154,4 +168,56 @@ body {
     padding-bottom: .2em;
     margin-bottom: .4em;
     border-bottom: 1px solid #ABABAB;
+}
+
+/******** FOLLOW UP ********/
+#followUp {
+    margin:40px 0;
+}
+.follopUpItem {
+    border-bottom: 1px solid #AAA;
+    padding: 6px;
+}
+.follopUpItem:hover{
+    background: #F5F5F5;
+}
+.followUp-id, .followUp-date {
+    font-size: 85%;
+    font-style: italic;
+}
+.followUp-author{
+    float: left;
+    width: 25%;
+    font-weight: bold;
+    font-size: 130%;
+}
+.followUp-status {
+    float:left;
+    width:70%;
+    color: #666;
+}
+.followUp-attachment {
+    float:right;
+    /*width:4%;*/
+}
+.followUp-status label {
+    display:inline;
+}
+.follopUpItem section {
+    margin-top: 12px;
+}
+.follopUpItem section .comment {
+    border-top: 1px solid #EAEAEA;
+    margin-left:25%;
+    padding:6px 6px 6px 0;
+}
+.follopUpItem section .reply {
+    margin-left:30%;
+}
+.follopUpItem section .icn-reply {
+    float:left;
+    margin-left: -22px;
+}
+.follopUpItem section button {
+    float:right;
 }

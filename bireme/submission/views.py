@@ -168,7 +168,7 @@ def show(request, id):
 
     metadata = None
     followup_form = FollowUpForm()
-    followups = FollowUp.objects.filter(submission=id).order_by('created')
+    followups = FollowUp.objects.filter(submission=id).order_by('-created')
     steps = Step.objects.filter(type=submission.type)
     pending = steps.filter(pending=True)[0]
     close = steps.filter(close=True)[0]
