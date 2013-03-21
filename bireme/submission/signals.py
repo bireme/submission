@@ -49,6 +49,7 @@ def send_to_external(sender, instance, created, **kwargs):
     request = get_current_request()
     
     if created:
+        print instance.external
         if instance.external:
             external = instance.external
 
@@ -58,18 +59,18 @@ def send_to_external(sender, instance, created, **kwargs):
                 'external': external,
             }
 
-        EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("New Submission")
-        EMAIL_CONTENT = render_to_string('email/send-to-external-database.html', output, context_instance=RequestContext(request))
+            EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("New Submission")
+            EMAIL_CONTENT = render_to_string('email/send-to-external-database.html', output, context_instance=RequestContext(request))
 
-        if external.email:
+            if external.email:
 
-            try:
-                msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [external.email])
-                msg.content_subtype = "html"
-                msg.send()
-            except Exception as e:
-                logger_logins = logging.getLogger('logview.userlogins')
-                logger_logins.error(e)
+                try:
+                    msg = EmailMessage(EMAIL_SUBJECT, EMAIL_CONTENT, settings.EMAIL_FROM, [external.email])
+                    msg.content_subtype = "html"
+                    msg.send()
+                except Exception as e:
+                    logger_logins = logging.getLogger('logview.userlogins')
+                    logger_logins.error(e)
 
 
 

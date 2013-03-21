@@ -1,4 +1,4 @@
-{% extends "submission/create.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load custom_filters %}
 
@@ -9,69 +9,309 @@
         var invalid_iso_file_message = "{% trans "ERROR: You need to put a ISO file." %}";
     </script>
 
-    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}/js/validate-submit-submission.js"></script>
 
     <script>
-    $(function(){
-        // tooltip
-        $('a[data-toggle=tooltip]').tooltip();
+        // ajustes de css que serão inseridos via javascript, para ficar mais fácil
+        $(function(){
+            $("#id_bibliographic_type").addClass('span5');
+            $("#id_observation").css('width', '100%');
+            $("#id_external").addClass('span7');
 
-        // popover   
-        $('a[data-toggle=popover]').popover({
-            html: true
+            $("#div-external").hide();
+            $('#cb_external').click(function(){
+                if($(this).is(':checked')){
+                    $("#div-external").show();
+                } else {
+                    $("#div-external").hide();
+                }
+            });
         });
-    })
     </script>
+
+    <style>
+        #form_iso div {
+            margin-top: 10px;
+        }
+    </style>
+
+    
 
 {% endblock %}
 
-{% block "form" %}
-    <form name="iso" onsubmit="return check_iso_form();" method="POST" class="form" action="{% url submission.views.create type.id %}" enctype="multipart/form-data">{% csrf_token %}
-        {{ form.non_field_errors }}
+{% block content %}
+    
+    <div class="submissionContent">
+        <div class="row">
+            <div class="span8 offset1">
 
-        {% for field in form %}
-            <div>
+                <h2>{% trans "New ISO Submission" %}</h2>
 
-                <!-- errors -->
-                {{ field.errors }}
-
-                <!-- label -->
-                {{ field.label_tag }}
-
-                <!--  field -->
-                {{ field }}
-
-                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
-                    <i class="icon-question-sign"></i>
-                </a>
-
-                <!-- helper -->
-                {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
-                {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
-                    {% if helper|exists %}
-                    <!-- Modal -->
-                    <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                <form name="iso" id='form_iso' class="tableContainer" onsubmit="return check_iso_form();" method="POST" class="form" action="{% url submission.views.create type.id %}" enctype="multipart/form-data">{% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-error">
+                            {{ form.non_field_errors.as_text  }}
                         </div>
-                            <div class="modal-body">
-                            {% include helper %}  
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    {% endif %}
+
+                    <div class='span2'>
+                        <!-- total of records -->
+                        {% with form.total_records as field %}
+                            
+                            <label for="id_{{ field.name }}">
+                                {{ field.label }}
+                                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                    <i class="icon-question-sign"></i>
+                                </a>
+                            </label>
+
+
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+
+                            {{ field }}
+                        {% endwith %}
+                    </div>
+                    <div class="span5">
+                        <!-- bib type -->
+                        {% with form.bibliographic_type as field %}
+                            
+                            <label for="id_{{ field.name }}">
+                                {{ field.label }}
+                                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                    <i class="icon-question-sign"></i>
+                                </a>
+                            </label>
+
+
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+
+                            {{ field }}
+                        {% endwith %}
+                    </div>
+                    <div class='span4'>
+                        <!-- iso file -->
+                        {% with form.iso_file as field %}
+                            
+                            <label for="id_{{ field.name }}">
+                                {{ field.label }}
+                                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                    <i class="icon-question-sign"></i>
+                                </a>
+                            </label>
+
+
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+
+                            {{ field }}
+                        {% endwith %}
+                    </div>
+
+                    <div class='span3'>
+                        <!-- iso file -->
+                        {% with form.file as field %}
+                            
+                            <label for="id_{{ field.name }}">
+                                {{ field.label }}
+                                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                    <i class="icon-question-sign"></i>
+                                </a>
+                            </label>
+
+
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+
+                            {{ field }}
+                        {% endwith %}
+                    </div>
+
+                    <div class='span7'>
+                        <!-- obs -->
+                        {% with form.observation as field %}
+                            
+                            <label for="id_{{ field.name }}">
+                                {{ field.label }}
+                                <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                    <i class="icon-question-sign"></i>
+                                </a>
+                            </label>
+
+
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+
+                            {{ field }}
+                        {% endwith %}
+                    </div>
+
+                    <div class='span7'>
+
+                        <label for="cb_external" id="label_cb_external">
+                            <input type="checkbox" id="cb_external">
+                            {% trans 'Submit to External Database?' %}
+                        </label>
+                        <div id='div-external'>
+                            <!-- external -->
+                            {% with form.external as field %}
+                                
+                                <label for="id_{{ field.name }}">
+                                    {{ field.label }}
+                                    <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                        <i class="icon-question-sign"></i>
+                                    </a>
+                                </label>
+
+
+                                {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                                {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                    {% if helper|exists %}
+                        
+                                    <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                        </div>
+                                            <div class="modal-body">
+                                            {% include helper %}  
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+
+                                {{ field }}
+                            {% endwith %}
                         </div>
                     </div>
-                    {% endif %}
-                {% endwith %}
-            </div>
-        {% endfor %}
 
-        
-        <div class="control-panel">
-            <button type="submit" class="btn btn-large btn-primary">{% trans "Submit" %}</button>
+
+                    <!-- 
+                    {% for field in form %}
+                        <div>
+
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+
+                            <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                <i class="icon-question-sign"></i>
+                            </a>
+
+                    
+                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                {% if helper|exists %}
+                    
+                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                    </div>
+                                        <div class="modal-body">
+                                        {% include helper %}  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    {% endfor %}
+                    -->
+                    
+                    <div class="control-panel offset6">
+                        <button type="submit" class="btn btn-large btn-primary">{% trans "Submit" %}</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
+    </div>
+
 {% endblock %}
