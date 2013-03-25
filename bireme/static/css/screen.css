@@ -27,6 +27,13 @@ body {
 #footer img {
     float: left;
 }
+#footer small a {
+    color: #999;
+    text-decoration: underline;
+}
+#footer small a:hover {
+    text-decoration: none;
+}
 .content.secondLevel {
     margin: 52px 0 0 0;
     
