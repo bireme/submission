@@ -3,6 +3,7 @@
 
 {% block extrahead %}
 <script>
+    // function that allow and disallow to receive emails
     $(function(){
         $('#receive_email').click(function(){
             var url = "{% url registration.views.allow_receive_email 0 %}";
