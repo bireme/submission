@@ -1,17 +1,3 @@
-<script>
-	function change_language(lang) {
-	
-        // chama, via ajax, a view que armazena a linguagem em cookie, para relembrar na proxima entrada
-        $.get("{% url main.views.cookie_lang %}", { language: lang} , function(data) {
-            
-            var form = document.language;
-            form.language.value = lang;
-            form.submit();
-        });
-
-	}
-</script>
-
 <form action="/i18n/setlang/" method="post" id="setlang" name="language">
 	{% csrf_token %}
 	<input name="next" type="hidden" value="{{ redirect_to }}" />
