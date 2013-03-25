@@ -195,10 +195,17 @@ class TypeSubmission(Generic):
     observation = models.TextField(null=True, blank=True)
     file = models.FileField(_('file'), max_length=510, upload_to=file_filename, blank=True, null=True)
     external = models.ForeignKey(ExternalDatabase, null=True, blank=True)
+    txt_external = models.TextField(_("Message to external database"), null=True, blank=True)
+
 
     def get_iso_url(self):
+        from django.contrib.sites.models import Site
+        current_site = Site.objects.get_current()
+        domain = current_site.domain
+        
         filename = self.iso_file.name
         url = filename.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
+        url = "http://%s/%s" % (domain, url)
         
         if not os.path.exists(filename):
             logger_logins = logging.getLogger('logview.userlogins')
@@ -207,6 +214,7 @@ class TypeSubmission(Generic):
         return unicode(url)
 
     def get_attac_url(self):
+
         filename = self.file.name
         url = filename.replace(settings.MEDIA_ROOT, settings.MEDIA_URL)
         
@@ -215,6 +223,7 @@ class TypeSubmission(Generic):
             logger_logins.error('File %s do not exists.', url)
 
         return unicode(url)
+signals.post_save.connect(send_to_external, sender=TypeSubmission, dispatch_uid="some.unique.string.id")
 
 class Submission(Generic):
 
@@ -254,4 +263,3 @@ class FollowUp(Generic):
     def get_attachment_url(self):
         return unicode(self.attachment.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
 signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
-signals.post_save.connect(send_to_external, sender=TypeSubmission, dispatch_uid="some.unique.string.id")

@@ -45,17 +45,21 @@ def send_email(sender, instance, created, **kwargs):
                 logger_logins = logging.getLogger('logview.userlogins')
                 logger_logins.error(e)
 
+
+
 def send_to_external(sender, instance, created, **kwargs):
+    
     request = get_current_request()
     
     if created:
-        print instance.external
+        print instance.iso_file
         if instance.external:
             external = instance.external
 
             output = {
-                'url': instance.get_absolute_url(),
+                'url': instance.get_iso_url(),
                 'date': instance.created,
+                'message': instance.txt_external,
                 'external': external,
             }
 

@@ -16,7 +16,7 @@
         $(function(){
             $("#id_bibliographic_type").addClass('span5');
             $("#id_observation").css('width', '100%');
-            $("#id_external").addClass('span7');
+            $("#id_external, #id_txt_external").addClass('span7');
 
             $("#div-external").hide();
             $('#cb_external').click(function(){
@@ -237,6 +237,38 @@
                         <div id='div-external'>
                             <!-- external -->
                             {% with form.external as field %}
+                                
+                                <label for="id_{{ field.name }}">
+                                    {{ field.label }}
+                                    <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
+                                        <i class="icon-question-sign"></i>
+                                    </a>
+                                </label>
+
+
+                                {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
+                                {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
+                                    {% if helper|exists %}
+                        
+                                    <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h3 id="myModalLabel">{% trans "Help" %}</h3>
+                                        </div>
+                                            <div class="modal-body">
+                                            {% include helper %}  
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+
+                                {{ field }}
+                            {% endwith %}
+
+                            {% with form.txt_external as field %}
                                 
                                 <label for="id_{{ field.name }}">
                                     {{ field.label }}

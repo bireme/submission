@@ -9,7 +9,7 @@ class SubmissionForm(forms.ModelForm):
 class SubmissionIsoForm(forms.ModelForm):
     class Meta:
         model = TypeSubmission
-        fields = ('total_records', 'bibliographic_type' ,'iso_file', 'observation', 'file', 'external')
+        fields = ('total_records', 'bibliographic_type' ,'iso_file', 'observation', 'file', 'external', 'txt_external')
         widgets = {
             'total_records': forms.TextInput(attrs={'class': 'span1'}),
         }
