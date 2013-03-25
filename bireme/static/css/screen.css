@@ -237,3 +237,7 @@ body {
 #followUpList section.messages {
     display: none;
 }
+
+#form_iso div {
+    margin-top: 10px;
+}
