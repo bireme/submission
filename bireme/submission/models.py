@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from center.models import ExternalDatabase
@@ -199,7 +200,7 @@ class TypeSubmission(Generic):
 
 
     def get_iso_url(self):
-        from django.contrib.sites.models import Site
+
         current_site = Site.objects.get_current()
         domain = current_site.domain
         
