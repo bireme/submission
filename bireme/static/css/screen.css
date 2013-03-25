@@ -241,3 +241,8 @@ body {
 #form_iso div {
     margin-top: 10px;
 }
+
+.edit-followup textarea {
+    width: 98%;
+    height: 90px;
+}

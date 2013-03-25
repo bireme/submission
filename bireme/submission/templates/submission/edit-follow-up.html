@@ -1,12 +1,4 @@
 {% load i18n %}
-
-<style>
-    .edit-followup textarea {
-        width: 98%;
-        height: 90px;
-    }
-</style>
-
 <form class="edit-followup" method="POST" action="{% url submission.views.edit_followup followup.id %}">
     {% csrf_token %}
     {{ form }}
