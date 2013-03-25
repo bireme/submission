@@ -233,3 +233,7 @@ body {
 #newSubmission .row {
     margin-top: .8em;
 }
+
+#followUpList section.messages {
+    display: none;
+}

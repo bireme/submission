@@ -8,255 +8,171 @@
 
 {% block extrahead %}
     <script src="{{ STATIC_URL }}/js/change-status.js"></script>
-    <script>
-        function open_message(id_message) {
-            $(id_message).toggle('fast');
-        }
-        
-        $(function(){
-            $('#followUpList section.messages').hide();
-        });
-    </script>
 {% endblock %}
 
-
-
 {% block content %}
-    <div class="">
+    <div>
+        <div class="row">
+            <div class="span10 offset3">
 
-        <!-- <div class="row-fluid">
-           
+                <h2>{% trans "Submission" %} #{{ submission.id }}: </h2>
+                <h3>
+                    {% trans "Current status" %}: {{ submission.current_status|translate:request.LANGUAGE_CODE }}
+                    {% if submission.current_status.allow_edit and user_type == 'admin' %}
+                        <small>
+                            <a class="btn btn-mini btn-primary" data-toggle="modal" href="{% url submission.views.edit_type_submission type_submission.id %}" data-target="#editType">{% trans "Edit" %}</a>
+                        </small>
+                    {% endif %}
+                </h3>
 
-                <h3>{% trans "Last follow ups" %} ({{ followups|length }})</h3>
+                {% if submission.current_status.allow_edit and user_type == 'admin' %}
+                    <div class="modal hide" id="editType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myModalLabel">{% trans "Edit register" %}</h3>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer"></div>
+                    </div>
+                {% endif %}
+
+                <div class="tableContainer">
+                    
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>{% trans "Date" %}</th>
-                                <th>{% trans "Author" %}</th>
-                                <th>{% trans "Previous Status" %}</th>
-                                <th>{% trans "Change to" %}</th>
-                                <th>{% trans "Message" %}</th>
-                                {% if user_type == 'admin' %}<th>{% trans "Staff Message" %}</th>{% endif %}
-                                <th>{% trans "Attatchment" %}</th>
-                                <th></th>
-                            </tr>
-                        </thead>
                         <tbody>
-                            {% if followups %}
-                                {% for item in followups %}
+                            <tr>
+                                <th>{% trans "Center" %}</th>
+                                <td>{{ submission.creator.get_profile.center.code }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Creator" %}</th>
+                                <td>{{ submission.creator }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Last updater" %}</th>
+                                <td>{{ submission.updater }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Created at" %}</th>
+                                <td>{{ submission.created }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans "Last update" %}</th>
+                                <td>{{ submission.updated }}</td>
+                            </tr>
+                            {% if submission.observation %}
+                                <tr>
+                                    <th>{% trans "Observation" %}</th>
+                                    <td>{{ submission.observation|slice:"40" }}{% if submission.observation|length > 40 %}...{% endif %}</td>
+                                </tr>
+                            {% endif %}
+
+                            {% if type_submission %}
+                                {% if type_submission.iso_file %}
                                     <tr>
-                                        <td>{{ item.id }}</td>
-                                        <td><span title="{{ item.created }}">{{ item.created|date:"d/m/y H:i" }}</span></td>
-                                        <td>{{ item.creator }}</td>
-                                        <td>{{ item.previous_status }}</td>
-                                        <td>{{ item.current_status }}</td>
-                                        <td>{% if item.message %}
-                                            {% if item.message|length > 20 %}
-                                                <span title="{{ item.message }}">{{ item.message|slice:":20" }}..</span>
-                                            {% else %}
-                                                {{ item.message }}
-                                            {% endif %}
-                                        {% else %}
-                                            -
-                                        {% endif %}</td>
-                                        {% if user_type == 'admin' %}
-                                            <td>
-                                                {% if item.staff_message %}
-                                                    {% if item.staff_message|length > 20 %}
-                                                        <span title="{{ item.staff_message }}">{{ item.staff_message|slice:":20" }}..</span>
-                                                    {% else %}
-                                                        {{ item.staff_message }}
-                                                    {% endif %}
-                                                {% else %}
-                                                    -
-                                                {% endif %}
-                                            </td>
-                                        {% endif %}
-                                        <td>{% if item.attachment %}<a href="{{ item.get_attachment_url }}"><i class="icon-file"></i></a>{% else %}-{% endif %}</td>
-                                        <td>{% if user_type == 'admin' %}<a data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
+                                        <th>ISO</th>
+                                        <td><a href="{{ type_submission.get_iso_url }}">{{ type_submission.iso_title }}</a></td>
                                     </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr><td colspan=4>{% trans "There's no follow ups to this submission." %}</td></tr>
+                                {% endif %}
+                                {% if type_submission.total_records > 0 %}
+                                    <tr>
+                                        <th>{% trans "Total of records" %}</th>
+                                        <td>{{ type_submission.total_records }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if type_submission.certified > 0 %}
+                                    <tr>
+                                        <th>{% trans "Total of certified records" %}</th>
+                                        <td>{{ type_submission.certified }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if type_submission.observation %}
+                                    <tr>
+                                        <th>{% trans "Observation" %}</th>
+                                        <td>{{ type_submission.observation }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if type_submission.file %}
+                                    <tr>
+                                        <th>{% trans "Attachment" %}</th>
+                                        <td><a href="{{ type_submission.get_attac_url }}">{{ type_submission.get_attac_url }}</a></td>
+                                    </tr>
+                                {% endif %}
                             {% endif %}
                         </tbody>
                     </table>
+                    {% include 'submission/action-bar.html' %}
+                </div>
 
-                    {% if user_type == 'admin' %}
-                        <div class="modal hide" id="editFollowUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">{% trans "Edit Follow Up" %}</h3>
+                <div class="row" id="followUp">
+                    <h3>{% trans "Last follow ups" %} ({{ followups|length }})</h3>
+                    <div id="followUpList">
+                        {% for item in followups %}
+                            <div class="follopUpItem" id="{{ item.id }}">
+                                <header>
+                                    <div class="followUp-header">
+                                        <span class="followUp-date">{{ item.created }}</span> 
+                                    </div>
+                                    <div class="followUp-author">{{ item.creator }}</div>
+                                    <div class="followUp-status">
+                                        <label>{% trans "Previous status" %}:</label> <strong>{{ item.previous_status }}</strong> | 
+                                        <label>{% trans "Changed to" %}:</label> <strong>{{ item.current_status }}</strong>
+                                    </div>
+
+                                    <!-- act -->
+                                    <div class="followUp-attachment">
+                                        {% if item.attachment %}
+                                            <a href="{{ item.get_attachment_url }}" title="download attachment"><i class="icon-download-alt"></i></a>
+                                        {% endif %}
+                                        {% if item.message %}
+                                            <a href="javascript:open_message('#message_{{ item.id }}');" class='open-message' title="download attachment"><i class="icon-envelope"></i></a>
+                                        {% endif %}
+
+                                        {% if user_type == 'admin' %}
+                                            <td>{% if user_type == 'admin' %}<a class="btn btn-mini btn-primary" id="{{ item.id }}" data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="spacer"></div>
+                                </header>
+
+                                {% if item.message or item.staff_message %}
+                                    <section class="messages" id="message_{{ item.id }}">
+                                        {% if item.message %}
+                                            <div class="comment">
+                                                <strong>{% trans "Message" %}</strong>
+                                                <p>{{ item.message }}</p>
+                                                <div class="spacer"></div>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if item.staff_message and user_type == 'admin' %}
+                                            <div class="comment">
+                                                <strong>{% trans "Staff Message" %}</strong>
+                                                <p>{{ item.staff_message }}</p>
+                                                <div class="spacer"></div>
+                                            </div>
+                                        {% endif %}
+                                    </section>
+                                {% endif %}
                             </div>
-                            <div class="modal-body"></div>
-                            <div class="modal-footer"></div>
-                        </div>
-                    {% endif %}
-            </div>
-        </div> -->
-
-    <div class="row">
-        <div class="span10 offset3">
-
-            <h2>{% trans "Submission" %} #{{ submission.id }}: </h2>
-            <h3>
-                {% trans "Current status" %}: {{ submission.current_status|translate:request.LANGUAGE_CODE }}
-                {% if submission.current_status.allow_edit and user_type == 'admin' %}
-                    <small>
-                        <a class="btn btn-mini btn-primary" data-toggle="modal" href="{% url submission.views.edit_type_submission type_submission.id %}" data-target="#editType">{% trans "Edit" %}</a>
-                    </small>
-                {% endif %}
-            </h3>
-
-            {% if submission.current_status.allow_edit and user_type == 'admin' %}
-                <div class="modal hide" id="editType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">{% trans "Edit register" %}</h3>
+                        {% endfor %}
                     </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer"></div>
-                </div>
-            {% endif %}
-
-            <div class="tableContainer">
-                
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>{% trans "Center" %}</th>
-                            <td>{{ submission.creator.get_profile.center.code }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans "Creator" %}</th>
-                            <td>{{ submission.creator }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans "Last updater" %}</th>
-                            <td>{{ submission.updater }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans "Created at" %}</th>
-                            <td>{{ submission.created }}</td>
-                        </tr>
-                        <tr>
-                            <th>{% trans "Last update" %}</th>
-                            <td>{{ submission.updated }}</td>
-                        </tr>
-                        {% if submission.observation %}
-                            <tr>
-                                <th>{% trans "Observation" %}</th>
-                                <td>{{ submission.observation|slice:"40" }}{% if submission.observation|length > 40 %}...{% endif %}</td>
-                            </tr>
-                        {% endif %}
-
-                        {% if type_submission %}
-                            {% if type_submission.iso_file %}
-                                <tr>
-                                    <th>ISO</th>
-                                    <td><a href="{{ type_submission.get_iso_url }}">{{ type_submission.iso_title }}</a></td>
-                                </tr>
-                            {% endif %}
-                            {% if type_submission.total_records > 0 %}
-                                <tr>
-                                    <th>{% trans "Total of records" %}</th>
-                                    <td>{{ type_submission.total_records }}</td>
-                                </tr>
-                            {% endif %}
-                            {% if type_submission.certified > 0 %}
-                                <tr>
-                                    <th>{% trans "Total of certified records" %}</th>
-                                    <td>{{ type_submission.certified }}</td>
-                                </tr>
-                            {% endif %}
-                            {% if type_submission.observation %}
-                                <tr>
-                                    <th>{% trans "Observation" %}</th>
-                                    <td>{{ type_submission.observation }}</td>
-                                </tr>
-                            {% endif %}
-                            {% if type_submission.file %}
-                                <tr>
-                                    <th>{% trans "Attachment" %}</th>
-                                    <td><a href="{{ type_submission.get_attac_url }}">{{ type_submission.get_attac_url }}</a></td>
-                                </tr>
-                            {% endif %}
-                        {% endif %}
-                    </tbody>
-                </table>
-                {% include 'submission/action-bar.html' %}
-            </div>
-
-            <div class="row" id="followUp">
-                <h3>{% trans "Last follow ups" %} ({{ followups|length }})</h3>
-                <div id="followUpList">
-                    {% for item in followups %}
-                        <div class="follopUpItem" id="{{ item.id }}">
-                            <header>
-                                <div class="followUp-header">
-                                    <span class="followUp-date">{{ item.created }}</span> 
-                                </div>
-                                <div class="followUp-author">{{ item.creator }}</div>
-                                <div class="followUp-status">
-                                    <label>{% trans "Previous status" %}:</label> <strong>{{ item.previous_status }}</strong> | 
-                                    <label>{% trans "Changed to" %}:</label> <strong>{{ item.current_status }}</strong>
-                                </div>
-
-                                <!-- act -->
-                                <div class="followUp-attachment">
-                                    {% if item.attachment %}
-                                        <a href="{{ item.get_attachment_url }}" title="download attachment"><i class="icon-download-alt"></i></a>
-                                    {% endif %}
-                                    {% if item.message %}
-                                        <a href="javascript:open_message('#message_{{ item.id }}');" class='open-message' title="download attachment"><i class="icon-envelope"></i></a>
-                                    {% endif %}
-
-                                    {% if user_type == 'admin' %}
-                                        <td>{% if user_type == 'admin' %}<a class="btn btn-mini btn-primary" id="{{ item.id }}" data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
-                                    {% endif %}
-                                </div>
-
-                                <div class="spacer"></div>
-                            </header>
-
-                            {% if item.message or item.staff_message %}
-                                <section class="messages" style="display: block" id="message_{{ item.id }}">
-                                    {% if item.message %}
-                                        <div class="comment">
-                                            <strong>{% trans "Message" %}</strong>
-                                            <p>{{ item.message }}</p>
-                                            <div class="spacer"></div>
-                                        </div>
-                                    {% endif %}
-
-                                    {% if item.staff_message and user_type == 'admin' %}
-                                        <div class="comment">
-                                            <strong>{% trans "Staff Message" %}</strong>
-                                            <p>{{ item.staff_message }}</p>
-                                            <div class="spacer"></div>
-                                        </div>
-                                    {% endif %}
-                                </section>
-                            {% endif %}
+                   
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editFollowUp" class="modal hide">
+                        <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h3 id="myModalLabel">Edit Follow Up</h3>
                         </div>
-                    {% endfor %}
-                </div>
-               
-                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editFollowUp" class="modal hide">
-                    <div class="modal-header">
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                        <h3 id="myModalLabel">Edit Follow Up</h3>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer"></div>
                     </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer"></div>
                 </div>
+
+
+
             </div>
-
-
-
         </div>
-    </div>
     </div>
 
 {% endblock %}
