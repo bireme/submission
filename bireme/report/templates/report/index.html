@@ -2,71 +2,20 @@
 {% load i18n attr %}
 
 {% block extrahead %}
-<script>
-    function check_all(attr) {
-        fields = $("." + attr)
-        fields.attr('checked', 'checked')
-    }
-    function show_options() {
-        $(".options").toggle();
-    }
-    function output(attr) {
-        var form = document.q
-        form.output.value = attr
-        form.submit()
-    }
-
-    $(function(){
-        $("#searchButton").click(function(){
-            var form = document.q
-            form.output.value = "screen"
-        });
-    });
-</script>
-
-<style>
     
-    {% if print %}
-        .navbar, .result-top  {
-            display:none;
-        }   
-        .row-fluid {
-            margin: -100px 0 0 0;
-        }     
-    {% endif %}
+    <link href="{{ STATIC_URL }}/css/report.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}/js/report.js"></script>
 
-    fieldset div input[type=checkbox]{
-        margin: 0 0 0 5px;
-    }
-
-    .options {
-        margin: 20px 0 0 0;
-        /*display: none;*/\
-    }
-
-    .checkboxes {
-        margin: 15px 0;
-    }
-
-    .table {
-        margin: 10px 0 0 0;
-    }
-
-    h2 {
-        margin: 0 0 30px 0;
-    }
-
-    .help {
-        font-size: 9pt;
-        color: #666;
-    }
-
-    .export {
-        float: right;
-        margin: -20px 5px 0 0;
-    }
-
-</style>
+    <style>
+        {% if print %}
+            .navbar, .result-top  {
+                display:none;
+            }   
+            .row-fluid {
+                margin: -100px 0 0 0;
+            }     
+        {% endif %}
+    </style>
 
 {% endblock %}
 

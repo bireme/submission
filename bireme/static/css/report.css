@@ -1,0 +1,24 @@
+fieldset div input[type=checkbox]{
+    margin: 0 0 0 5px;
+}
+.options {
+    margin: 20px 0 0 0;
+    /*display: none;*/\
+}
+.checkboxes {
+    margin: 15px 0;
+}
+.table {
+    margin: 10px 0 0 0;
+}
+h2 {
+    margin: 0 0 30px 0;
+}
+.help {
+    font-size: 9pt;
+    color: #666;
+}
+.export {
+    float: right;
+    margin: -20px 5px 0 0;
+}
