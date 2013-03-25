@@ -3,14 +3,13 @@ from django_tools.middlewares.ThreadLocal import get_current_user, get_current_r
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
-from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from center.models import ExternalDatabase
 from django.core.mail import EmailMessage
 from django.db.models import signals
-from submission.signals import *
 from django.conf import settings
 from datetime import datetime
 from django.db import models
@@ -224,7 +223,6 @@ class TypeSubmission(Generic):
             logger_logins.error('File %s do not exists.', url)
 
         return unicode(url)
-signals.post_save.connect(send_to_external, sender=TypeSubmission, dispatch_uid="some.unique.string.id")
 
 class Submission(Generic):
 
@@ -263,4 +261,3 @@ class FollowUp(Generic):
 
     def get_attachment_url(self):
         return unicode(self.attachment.name.replace(settings.MEDIA_ROOT, settings.MEDIA_URL))
-signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")

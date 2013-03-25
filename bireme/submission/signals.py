@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 from django.db.models import signals
 from django.conf import settings
 from datetime import datetime
+from models import *
 import logging
 import models
 
@@ -76,7 +77,5 @@ def send_to_external(sender, instance, created, **kwargs):
                     logger_logins = logging.getLogger('logview.userlogins')
                     logger_logins.error(e)
 
-
-
-
-
+signals.post_save.connect(send_email, sender=FollowUp, dispatch_uid="some.unique.string.id")
+signals.post_save.connect(send_to_external, sender=TypeSubmission, dispatch_uid="some.unique.string.id")
