@@ -269,44 +269,8 @@
                             {% endwith %}
                         </div>
                     </div>
-
-
-                    <!-- 
-                    {% for field in form %}
-                        <div>
-
-                            {{ field.errors }}
-                            {{ field.label_tag }}
-                            {{ field }}
-
-                            <a href="#{{ field.html_name|add:"-help" }}" role="button" data-toggle="modal">
-                                <i class="icon-question-sign"></i>
-                            </a>
-
                     
-                            {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
-                            {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
-                                {% if helper|exists %}
-                    
-                                <div id="{{ field.html_name|add:"-help" }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h3 id="myModalLabel">{% trans "Help" %}</h3>
-                                    </div>
-                                        <div class="modal-body">
-                                        {% include helper %}  
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                    </div>
-                                </div>
-                                {% endif %}
-                            {% endwith %}
-                        </div>
-                    {% endfor %}
-                    -->
-                    
-                    <div class="control-panel offset6">
+                    <div class="control-panel offset6 form-submit">
                         <button type="submit" class="btn btn-large btn-primary">{% trans "Submit" %}</button>
                     </div>
                 </form>
