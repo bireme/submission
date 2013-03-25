@@ -53,7 +53,7 @@ def send_to_external(sender, instance, created, **kwargs):
     request = get_current_request()
     
     if created:
-        print instance.iso_file
+        
         if instance.external:
             external = instance.external
 
