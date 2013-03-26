@@ -120,21 +120,23 @@
         </table>
     </form>
 
-    <div class="pagination">
-        <ul>
-            <li class="{% if not pagination.page.has_previous %}disabled{% endif %}">
-                <a href="javascript: change_page('{{ pagination.page.previous_page_number }}')">&#171;</a>
-            </li>
+    {% if pagination.page.has_next or pagination.page.has_previous %}
+        <div class="pagination">
+            <ul>
+                <li class="{% if not pagination.page.has_previous %}disabled{% endif %}">
+                    <a href="javascript: change_page('{{ pagination.page.previous_page_number }}')">&#171;</a>
+                </li>
 
-            {% for i in pagination.paginator.page_range %}
-                {% if i == pagination.page.number %}<li class="disabled">{% else %}<li>{% endif %}
-                <a href="javascript: change_page('{{ i }}')">{{ i }}</a></li>        
-            {% endfor %}
+                {% for i in pagination.paginator.page_range %}
+                    {% if i == pagination.page.number %}<li class="disabled">{% else %}<li>{% endif %}
+                    <a href="javascript: change_page('{{ i }}')">{{ i }}</a></li>        
+                {% endfor %}
 
 
-            <li class="{% if not pagination.page.has_next %}disabled{% endif %}">
-                <a href="javascript: change_page('{{ pagination.page.next_page_number }}')">&#187;</a>
-            </li>
-        </ul>
-    </div>
+                <li class="{% if not pagination.page.has_next %}disabled{% endif %}">
+                    <a href="javascript: change_page('{{ pagination.page.next_page_number }}')">&#187;</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 </div>
