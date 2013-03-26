@@ -3,7 +3,7 @@
 {% load custom_filters %}
 
 {% block "title" %}
-    {% trans "Submission" %} #{{ submission.id }} | {{ block.super}}
+    {% trans "Submission" %} #{{ submission.id }} | {{ block.super }}
 {% endblock %}
 
 {% block extrahead %}
@@ -104,70 +104,72 @@
                     {% include 'submission/action-bar.html' %}
                 </div>
 
-                <div class="row" id="followUp">
-                    <h3>{% trans "Last follow ups" %} ({{ followups|length }})</h3>
-                    <div id="followUpList">
-                        {% for item in followups %}
-                            <div class="follopUpItem" id="{{ item.id }}">
-                                <header>
-                                    <div class="followUp-header">
-                                        <span class="followUp-date">{{ item.created }}</span> 
-                                    </div>
-                                    <div class="followUp-author">{{ item.creator }}</div>
-                                    <div class="followUp-status">
-                                        <label>{% trans "Previous status" %}:</label> <strong>{{ item.previous_status }}</strong> | 
-                                        <label>{% trans "Changed to" %}:</label> <strong>{{ item.current_status }}</strong>
-                                    </div>
+                {% if followups %}
+                    <div class="row" id="followUp">
+                        <h3>{% trans "Last follow ups" %} ({{ followups|length }})</h3>
+                        <div id="followUpList">
+                            {% for item in followups %}
+                                <div class="follopUpItem" id="{{ item.id }}">
+                                    <header>
+                                        <div class="followUp-header">
+                                            <span class="followUp-date">{{ item.created }}</span> 
+                                        </div>
+                                        <div class="followUp-author">{{ item.creator }}</div>
+                                        <div class="followUp-status">
+                                            <label>{% trans "Previous status" %}:</label> <strong>{{ item.previous_status }}</strong> | 
+                                            <label>{% trans "Changed to" %}:</label> <strong>{{ item.current_status }}</strong>
+                                        </div>
 
-                                    <!-- act -->
-                                    <div class="followUp-attachment">
-                                        {% if item.attachment %}
-                                            <a href="{{ item.get_attachment_url }}" title="download attachment"><i class="icon-download-alt"></i></a>
-                                        {% endif %}
-                                        {% if item.message %}
-                                            <a href="javascript:open_message('#message_{{ item.id }}');" class='open-message' title="download attachment"><i class="icon-envelope"></i></a>
-                                        {% endif %}
+                                        <!-- act -->
+                                        <div class="followUp-attachment">
+                                            {% if item.attachment %}
+                                                <a href="{{ item.get_attachment_url }}" title="download attachment"><i class="icon-download-alt"></i></a>
+                                            {% endif %}
+                                            {% if item.message %}
+                                                <a href="javascript:open_message('#message_{{ item.id }}');" class='open-message' title="download attachment"><i class="icon-envelope"></i></a>
+                                            {% endif %}
 
-                                        {% if user_type == 'admin' %}
-                                            <td>{% if user_type == 'admin' %}<a class="btn btn-mini btn-primary" id="{{ item.id }}" data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
-                                        {% endif %}
-                                    </div>
+                                            {% if user_type == 'admin' %}
+                                                <td>{% if user_type == 'admin' %}<a class="btn btn-mini btn-primary" id="{{ item.id }}" data-toggle="modal" href="{% url submission.views.edit_followup item.id %}" data-target="#editFollowUp" title="{% trans "Edit Follow-up" %}">{% trans "Edit" %}</a>{% endif %}</td>
+                                            {% endif %}
+                                        </div>
 
-                                    <div class="spacer"></div>
-                                </header>
+                                        <div class="spacer"></div>
+                                    </header>
 
-                                {% if item.message or item.staff_message %}
-                                    <section class="messages" id="message_{{ item.id }}">
-                                        {% if item.message %}
-                                            <div class="comment">
-                                                <strong>{% trans "Message" %}</strong>
-                                                <p>{{ item.message }}</p>
-                                                <div class="spacer"></div>
-                                            </div>
-                                        {% endif %}
+                                    {% if item.message or item.staff_message %}
+                                        <section class="messages" id="message_{{ item.id }}">
+                                            {% if item.message %}
+                                                <div class="comment">
+                                                    <strong>{% trans "Message" %}</strong>
+                                                    <p>{{ item.message }}</p>
+                                                    <div class="spacer"></div>
+                                                </div>
+                                            {% endif %}
 
-                                        {% if item.staff_message and user_type == 'admin' %}
-                                            <div class="comment">
-                                                <strong>{% trans "Staff Message" %}</strong>
-                                                <p>{{ item.staff_message }}</p>
-                                                <div class="spacer"></div>
-                                            </div>
-                                        {% endif %}
-                                    </section>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
-                   
-                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editFollowUp" class="modal hide">
-                        <div class="modal-header">
-                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                            <h3 id="myModalLabel">Edit Follow Up</h3>
+                                            {% if item.staff_message and user_type == 'admin' %}
+                                                <div class="comment">
+                                                    <strong>{% trans "Staff Message" %}</strong>
+                                                    <p>{{ item.staff_message }}</p>
+                                                    <div class="spacer"></div>
+                                                </div>
+                                            {% endif %}
+                                        </section>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </div>
-                        <div class="modal-body"></div>
-                        <div class="modal-footer"></div>
+                       
+                        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editFollowUp" class="modal hide">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h3 id="myModalLabel">Edit Follow Up</h3>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer"></div>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
 
 
 
