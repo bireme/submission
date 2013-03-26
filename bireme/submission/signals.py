@@ -60,7 +60,7 @@ def send_to_external(sender, instance, created, **kwargs):
             output = {
                 'url': instance.get_iso_url(),
                 'date': instance.created,
-                'message': instance.txt_external,
+                'message': instance.observation,
                 'external': external,
             }
 
