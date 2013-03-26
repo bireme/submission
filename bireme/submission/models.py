@@ -193,7 +193,7 @@ class TypeSubmission(Generic):
     iso_file = models.FileField(_('iso file'), max_length=510, upload_to=iso_filename, blank=True, null=True)
     lildbi_version = models.ForeignKey('LildbiVersion', null=True, blank=True)
     observation = models.TextField(null=True, blank=True)
-    file = models.FileField(_('file'), max_length=510, upload_to=file_filename, blank=True, null=True)
+    file = models.FileField(_('attachment'), max_length=510, upload_to=file_filename, blank=True, null=True)
     external = models.ForeignKey(ExternalDatabase, null=True, blank=True)
 
     def get_iso_url(self):
