@@ -4,8 +4,8 @@ $(function(){
     $('#filtersPanel').css('right', '-240px');
 
     var speed = 250;
-    var button = $("#filtersPanel");
-    button.hover(function(){
+    var button = $(".filtersButton");
+    button.click(function(){
         // se ja tiver totalmente aberto, fecha denovo
         if($('#filtersPanel').css('right') == '0px') {
             $('#filtersPanel').animate({right: '-240px',}, speed, function(){});
