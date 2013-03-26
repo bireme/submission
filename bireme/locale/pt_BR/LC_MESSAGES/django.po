@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-25 17:15-0300\n"
+"POT-Creation-Date: 2013-03-26 12:59-0300\n"
 "PO-Revision-Date: 2013-03-25 17:22\n"
 "Last-Translator: Moacir Neto <moa.moda@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.6\n"
 
@@ -213,8 +213,8 @@ msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
-"Registro usando endereços de e-mails gratuitos são proibidos. Por favor, use"
-" um endereço de e-mail diferente."
+"Registro usando endereços de e-mails gratuitos são proibidos. Por favor, use "
+"um endereço de e-mail diferente."
 
 #: registration/models.py:34
 msgid "user"
@@ -319,7 +319,7 @@ msgstr "Novo usuário"
 msgid "Create"
 msgstr "Criar"
 
-#: report/templates/report/index.html:25 templates/menu.html:42
+#: report/templates/report/index.html:25 templates/menu.html:27
 msgid "Reports"
 msgstr "Relatórios"
 
@@ -328,45 +328,36 @@ msgstr "Relatórios"
 msgid "type here your query"
 msgstr "Sem resultados para a busca"
 
-#: report/templates/report/index.html:37 templates/menu.html:22
+#: report/templates/report/index.html:36 templates/menu.html:22
 msgid "Search"
 msgstr "Pesquisa"
 
-#: report/templates/report/index.html:38
-msgid "Show Options"
-msgstr "Exibir opções"
-
-#: report/templates/report/index.html:42
+#: report/templates/report/index.html:40
 msgid "If you wanna learn how to search, check this"
 msgstr "Para aprender mais sobre como montar relatórios, visite este"
 
-#: report/templates/report/index.html:43
+#: report/templates/report/index.html:41
 msgid "link"
 msgstr "link"
 
-#: report/templates/report/index.html:48
-#: submission/templates/submission/block-list-submission.html:92
-msgid "Order by"
-msgstr "Ordem por"
-
-#: report/templates/report/index.html:59
+#: report/templates/report/index.html:47
 msgid "Columns to show"
 msgstr "Exibir colunas"
 
-#: report/templates/report/index.html:60
+#: report/templates/report/index.html:48
 msgid "Check All"
 msgstr "Marcar todas"
 
-#: report/templates/report/index.html:80
+#: report/templates/report/index.html:68
 #, fuzzy
 msgid "Searching for"
 msgstr "Pesquisa"
 
-#: report/templates/report/index.html:83 report/templates/report/index.html:84
+#: report/templates/report/index.html:71 report/templates/report/index.html:72
 msgid "Export to CSV"
 msgstr "Exportar para CSV"
 
-#: report/templates/report/index.html:86 report/templates/report/index.html:87
+#: report/templates/report/index.html:74 report/templates/report/index.html:75
 msgid "Print"
 msgstr "Imprimir"
 
@@ -483,44 +474,35 @@ msgstr "total de registros certificados"
 msgid "iso file"
 msgstr "arquivo iso"
 
-#: submission/models.py:196
-#, fuzzy
-msgid "file"
-msgstr "arquivo iso"
-
-#: submission/models.py:198
-msgid "Message to external database"
-msgstr ""
-
-#: submission/models.py:230
-msgid "submission"
-msgstr "submissão"
-
-#: submission/models.py:231
-msgid "submissions"
-msgstr "submissões"
-
-#: submission/models.py:235
-msgid "observation"
-msgstr "observação"
-
-#: submission/models.py:243
-msgid "follow up"
-msgstr "atualização"
-
-#: submission/models.py:244
-msgid "follow ups"
-msgstr "atualizações"
-
-#: submission/models.py:255
-msgid "message"
-msgstr "mensagem"
-
-#: submission/models.py:256
+#: submission/models.py:196 submission/models.py:254
 msgid "attachment"
 msgstr "anexo"
 
-#: submission/models.py:257
+#: submission/models.py:228
+msgid "submission"
+msgstr "submissão"
+
+#: submission/models.py:229
+msgid "submissions"
+msgstr "submissões"
+
+#: submission/models.py:233
+msgid "observation"
+msgstr "observação"
+
+#: submission/models.py:241
+msgid "follow up"
+msgstr "atualização"
+
+#: submission/models.py:242
+msgid "follow ups"
+msgstr "atualizações"
+
+#: submission/models.py:253
+msgid "message"
+msgstr "mensagem"
+
+#: submission/models.py:255
 msgid "staff message"
 msgstr "mensagem administrativa"
 
@@ -604,6 +586,10 @@ msgstr "Ação em massa"
 msgid "Approve to next status"
 msgstr "Aprovar para o próximo status"
 
+#: submission/templates/submission/block-list-submission.html:92
+msgid "Order by"
+msgstr "Ordem por"
+
 #: submission/templates/submission/block-list-submission.html:106
 msgid "Go to submission"
 msgstr "Ir até submissão"
@@ -646,7 +632,6 @@ msgstr "Nova submissão"
 #: submission/templates/submission/create-iso.html:171
 #: submission/templates/submission/create-iso.html:206
 #: submission/templates/submission/create-iso.html:247
-#: submission/templates/submission/create-iso.html:279
 msgid "Help"
 msgstr "Ajuda"
 
@@ -654,7 +639,7 @@ msgstr "Ajuda"
 msgid "Submit to External Database?"
 msgstr "Submeter também a uma base externa?"
 
-#: submission/templates/submission/create-iso.html:297
+#: submission/templates/submission/create-iso.html:265
 msgid "Submit"
 msgstr "Submeter"
 
@@ -695,7 +680,7 @@ msgid "Current status"
 msgstr "Status atual"
 
 #: submission/templates/submission/show.html:23
-#: submission/templates/submission/show.html:132 templates/menu.html:66
+#: submission/templates/submission/show.html:133 templates/menu.html:51
 msgid "Edit"
 msgstr "Editar"
 
@@ -737,30 +722,30 @@ msgstr "Total de registros certificados"
 msgid "Attachment"
 msgstr "Anexo"
 
-#: submission/templates/submission/show.html:108
+#: submission/templates/submission/show.html:109
 msgid "Last follow ups"
 msgstr "Útimas ocorrências"
 
-#: submission/templates/submission/show.html:118
+#: submission/templates/submission/show.html:119
 #, fuzzy
 msgid "Previous status"
 msgstr "Status anterior"
 
-#: submission/templates/submission/show.html:119
+#: submission/templates/submission/show.html:120
 #, fuzzy
 msgid "Changed to"
 msgstr "Mudar para"
 
-#: submission/templates/submission/show.html:132
+#: submission/templates/submission/show.html:133
 #, fuzzy
 msgid "Edit Follow-up"
 msgstr "Útimas ocorrências"
 
-#: submission/templates/submission/show.html:143
+#: submission/templates/submission/show.html:144
 msgid "Message"
 msgstr "Mensagem"
 
-#: submission/templates/submission/show.html:151
+#: submission/templates/submission/show.html:152
 msgid "Staff Message"
 msgstr "Mensagem Administrativa (interna)"
 
@@ -768,7 +753,8 @@ msgstr "Mensagem Administrativa (interna)"
 msgid ""
 "\n"
 "        Select the type of bibliographic records which will be sent.\n"
-"        We recommend that ISO file contain multiple records, but all must be the same bibliographic type.\n"
+"        We recommend that ISO file contain multiple records, but all must be "
+"the same bibliographic type.\n"
 "    "
 msgstr ""
 
@@ -803,8 +789,7 @@ msgid "Indexed and reviewed records - LILACS Express"
 msgstr ""
 
 #: submission/templates/submission/helpers/bibliographic_type.html:15
-msgid ""
-"journal records indexed and reviewed that participate in LILACS-Express"
+msgid "journal records indexed and reviewed that participate in LILACS-Express"
 msgstr ""
 
 #: submission/templates/submission/helpers/bibliographic_type.html:16
@@ -822,7 +807,8 @@ msgstr ""
 #: submission/templates/submission/helpers/file.html:2
 msgid ""
 " \n"
-"    For unavailable documents on the Internet, send file with full text(s) document(s)\n"
+"    For unavailable documents on the Internet, send file with full text(s) "
+"document(s)\n"
 "    to be available in LILACS.\n"
 msgstr ""
 
@@ -844,8 +830,7 @@ msgstr ""
 
 #: submission/templates/submission/helpers/observation.html:4
 msgid ""
-"Inform the contents of the file, for example: journal name, volume and "
-"number"
+"Inform the contents of the file, for example: journal name, volume and number"
 msgstr ""
 
 #: submission/templates/submission/helpers/observation.html:5
@@ -883,8 +868,8 @@ msgstr ""
 
 #: templates/base.html:58
 msgid ""
-"Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800"
-" | Fax: (55 11) 5575-8868 "
+"Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800 "
+"| Fax: (55 11) 5575-8868 "
 msgstr ""
 
 #: templates/base.html:59
@@ -907,39 +892,27 @@ msgstr "Submissões"
 msgid "New submission"
 msgstr "Nova submissão"
 
-#: templates/menu.html:30
-msgid "Users"
-msgstr "Usuário"
-
-#: templates/menu.html:34
-msgid "New"
-msgstr "Novo"
-
-#: templates/menu.html:35
-msgid "Manage"
-msgstr "Gerenciar"
-
-#: templates/menu.html:48 templates/menu.html.py:54
+#: templates/menu.html:33 templates/menu.html.py:39
 msgid "English"
 msgstr "Inglês"
 
-#: templates/menu.html:49 templates/menu.html.py:56
+#: templates/menu.html:34 templates/menu.html.py:41
 msgid "Spanish"
 msgstr "Espanhol"
 
-#: templates/menu.html:50 templates/menu.html.py:55
+#: templates/menu.html:35 templates/menu.html.py:40
 msgid "Portuguese"
 msgstr "Português"
 
-#: templates/menu.html:65
+#: templates/menu.html:50
 msgid "Logged as"
 msgstr "Logado como"
 
-#: templates/menu.html:67
+#: templates/menu.html:52
 msgid "Change Password"
 msgstr "Trocar Senha"
 
-#: templates/menu.html:68
+#: templates/menu.html:53
 msgid "Logout"
 msgstr "Sair"
 
@@ -964,6 +937,22 @@ msgstr "Veja a mensagem abaixo:"
 #, fuzzy
 msgid "Follow your submission in:"
 msgstr "Selecione o tipo de submissão"
+
+#~ msgid "Show Options"
+#~ msgstr "Exibir opções"
+
+#, fuzzy
+#~ msgid "file"
+#~ msgstr "arquivo iso"
+
+#~ msgid "Users"
+#~ msgstr "Usuário"
+
+#~ msgid "New"
+#~ msgstr "Novo"
+
+#~ msgid "Manage"
+#~ msgstr "Gerenciar"
 
 #~ msgid "Do you really change this submission status?"
 #~ msgstr "Você deseja realmente alterar o status de submissão?"

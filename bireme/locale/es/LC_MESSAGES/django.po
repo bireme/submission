@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-25 17:15-0300\n"
+"POT-Creation-Date: 2013-03-26 12:59-0300\n"
 "PO-Revision-Date: 2013-01-23 17:43\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,7 +319,7 @@ msgstr "Nuevo Usuario"
 msgid "Create"
 msgstr "Crear"
 
-#: report/templates/report/index.html:25 templates/menu.html:42
+#: report/templates/report/index.html:25 templates/menu.html:27
 msgid "Reports"
 msgstr ""
 
@@ -328,45 +328,36 @@ msgstr ""
 msgid "type here your query"
 msgstr "Sin resultados para la búsqueda"
 
-#: report/templates/report/index.html:37 templates/menu.html:22
+#: report/templates/report/index.html:36 templates/menu.html:22
 msgid "Search"
 msgstr "Buscar"
 
-#: report/templates/report/index.html:38
-msgid "Show Options"
-msgstr ""
-
-#: report/templates/report/index.html:42
+#: report/templates/report/index.html:40
 msgid "If you wanna learn how to search, check this"
 msgstr ""
 
-#: report/templates/report/index.html:43
+#: report/templates/report/index.html:41
 msgid "link"
 msgstr ""
 
-#: report/templates/report/index.html:48
-#: submission/templates/submission/block-list-submission.html:92
-msgid "Order by"
-msgstr "Ordenar por"
-
-#: report/templates/report/index.html:59
+#: report/templates/report/index.html:47
 msgid "Columns to show"
 msgstr ""
 
-#: report/templates/report/index.html:60
+#: report/templates/report/index.html:48
 msgid "Check All"
 msgstr ""
 
-#: report/templates/report/index.html:80
+#: report/templates/report/index.html:68
 #, fuzzy
 msgid "Searching for"
 msgstr "Buscar"
 
-#: report/templates/report/index.html:83 report/templates/report/index.html:84
+#: report/templates/report/index.html:71 report/templates/report/index.html:72
 msgid "Export to CSV"
 msgstr ""
 
-#: report/templates/report/index.html:86 report/templates/report/index.html:87
+#: report/templates/report/index.html:74 report/templates/report/index.html:75
 msgid "Print"
 msgstr ""
 
@@ -483,44 +474,35 @@ msgstr "total de registros certificados"
 msgid "iso file"
 msgstr "archivo ISO"
 
-#: submission/models.py:196
-#, fuzzy
-msgid "file"
-msgstr "archivo ISO"
-
-#: submission/models.py:198
-msgid "Message to external database"
-msgstr ""
-
-#: submission/models.py:230
-msgid "submission"
-msgstr "sumisión"
-
-#: submission/models.py:231
-msgid "submissions"
-msgstr "sumisiones"
-
-#: submission/models.py:235
-msgid "observation"
-msgstr "observación"
-
-#: submission/models.py:243
-msgid "follow up"
-msgstr "acompañamiento"
-
-#: submission/models.py:244
-msgid "follow ups"
-msgstr "acompañamientos"
-
-#: submission/models.py:255
-msgid "message"
-msgstr "mensaje"
-
-#: submission/models.py:256
+#: submission/models.py:196 submission/models.py:254
 msgid "attachment"
 msgstr "anejo"
 
-#: submission/models.py:257
+#: submission/models.py:228
+msgid "submission"
+msgstr "sumisión"
+
+#: submission/models.py:229
+msgid "submissions"
+msgstr "sumisiones"
+
+#: submission/models.py:233
+msgid "observation"
+msgstr "observación"
+
+#: submission/models.py:241
+msgid "follow up"
+msgstr "acompañamiento"
+
+#: submission/models.py:242
+msgid "follow ups"
+msgstr "acompañamientos"
+
+#: submission/models.py:253
+msgid "message"
+msgstr "mensaje"
+
+#: submission/models.py:255
 msgid "staff message"
 msgstr "mensaje administrativa"
 
@@ -604,6 +586,10 @@ msgstr "Acciones masivas"
 msgid "Approve to next status"
 msgstr "Apruebe para el próximo estatus"
 
+#: submission/templates/submission/block-list-submission.html:92
+msgid "Order by"
+msgstr "Ordenar por"
+
 #: submission/templates/submission/block-list-submission.html:106
 msgid "Go to submission"
 msgstr "Ir para sumisión"
@@ -648,7 +634,6 @@ msgstr "Nueva Sumisión"
 #: submission/templates/submission/create-iso.html:171
 #: submission/templates/submission/create-iso.html:206
 #: submission/templates/submission/create-iso.html:247
-#: submission/templates/submission/create-iso.html:279
 msgid "Help"
 msgstr ""
 
@@ -656,7 +641,7 @@ msgstr ""
 msgid "Submit to External Database?"
 msgstr ""
 
-#: submission/templates/submission/create-iso.html:297
+#: submission/templates/submission/create-iso.html:265
 msgid "Submit"
 msgstr "Enviar"
 
@@ -697,7 +682,7 @@ msgid "Current status"
 msgstr "Estatus actual"
 
 #: submission/templates/submission/show.html:23
-#: submission/templates/submission/show.html:132 templates/menu.html:66
+#: submission/templates/submission/show.html:133 templates/menu.html:51
 msgid "Edit"
 msgstr "Editar"
 
@@ -739,30 +724,30 @@ msgstr "Total de registros certificados"
 msgid "Attachment"
 msgstr "Anejo"
 
-#: submission/templates/submission/show.html:108
+#: submission/templates/submission/show.html:109
 msgid "Last follow ups"
 msgstr "Últimos seguimientos"
 
-#: submission/templates/submission/show.html:118
+#: submission/templates/submission/show.html:119
 #, fuzzy
 msgid "Previous status"
 msgstr "Estatus anterior"
 
-#: submission/templates/submission/show.html:119
+#: submission/templates/submission/show.html:120
 #, fuzzy
 msgid "Changed to"
 msgstr "Cambiar para"
 
-#: submission/templates/submission/show.html:132
+#: submission/templates/submission/show.html:133
 #, fuzzy
 msgid "Edit Follow-up"
 msgstr "Últimos seguimientos"
 
-#: submission/templates/submission/show.html:143
+#: submission/templates/submission/show.html:144
 msgid "Message"
 msgstr "Mensaje"
 
-#: submission/templates/submission/show.html:151
+#: submission/templates/submission/show.html:152
 msgid "Staff Message"
 msgstr "Mensaje administrativa (interna)"
 
@@ -909,39 +894,27 @@ msgstr "Sumisiones"
 msgid "New submission"
 msgstr "Nueva sumisión"
 
-#: templates/menu.html:30
-msgid "Users"
-msgstr "Usuarios"
-
-#: templates/menu.html:34
-msgid "New"
-msgstr "Nuevo"
-
-#: templates/menu.html:35
-msgid "Manage"
-msgstr "Administrar"
-
-#: templates/menu.html:48 templates/menu.html.py:54
+#: templates/menu.html:33 templates/menu.html.py:39
 msgid "English"
 msgstr "Inglés"
 
-#: templates/menu.html:49 templates/menu.html.py:56
+#: templates/menu.html:34 templates/menu.html.py:41
 msgid "Spanish"
 msgstr "Español"
 
-#: templates/menu.html:50 templates/menu.html.py:55
+#: templates/menu.html:35 templates/menu.html.py:40
 msgid "Portuguese"
 msgstr "Portugués"
 
-#: templates/menu.html:65
+#: templates/menu.html:50
 msgid "Logged as"
 msgstr "Conectado como"
 
-#: templates/menu.html:67
+#: templates/menu.html:52
 msgid "Change Password"
 msgstr "Cambiar contraseña"
 
-#: templates/menu.html:68
+#: templates/menu.html:53
 msgid "Logout"
 msgstr "Salir"
 
@@ -966,6 +939,19 @@ msgstr ""
 #, fuzzy
 msgid "Follow your submission in:"
 msgstr "Seleccione el tipo de envío"
+
+#, fuzzy
+#~ msgid "file"
+#~ msgstr "archivo ISO"
+
+#~ msgid "Users"
+#~ msgstr "Usuarios"
+
+#~ msgid "New"
+#~ msgstr "Nuevo"
+
+#~ msgid "Manage"
+#~ msgstr "Administrar"
 
 #~ msgid "Do you really change this submission status?"
 #~ msgstr "¿Usted quiere realmente cambiar el estatus de la sumisión?"
