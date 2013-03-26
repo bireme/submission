@@ -195,8 +195,6 @@ class TypeSubmission(Generic):
     observation = models.TextField(null=True, blank=True)
     file = models.FileField(_('file'), max_length=510, upload_to=file_filename, blank=True, null=True)
     external = models.ForeignKey(ExternalDatabase, null=True, blank=True)
-    txt_external = models.TextField(_("Message to external database"), null=True, blank=True)
-
 
     def get_iso_url(self):
 
