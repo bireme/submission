@@ -17,8 +17,8 @@ To help us with translations, please click below and follow the instructions:
 How to report errors
 --------------------
 
-. Open a new ticket on GitHub
-. Open a new ticket on [Trac](http://trac.reddes.bvsalud.org/projects/bireme-submission)
-. Send us a [email](mailto:lilacs@bireme.org) (recommended)
+- Open a new ticket on GitHub
+- Open a new ticket on [Trac](http://trac.reddes.bvsalud.org/projects/bireme-submission)
+- Send us a [email](mailto:lilacs@bireme.org) (recommended)
 
 
