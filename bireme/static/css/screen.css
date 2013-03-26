@@ -127,6 +127,7 @@ body {
 }
 
 .tableContainer {
+    margin-top: 10px;
     border-radius: 6px;
     padding: 1em;
     -moz-box-shadow: 0 0 5px #888;
