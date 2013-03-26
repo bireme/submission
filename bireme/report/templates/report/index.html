@@ -33,9 +33,7 @@
 
                     <div class="input-append">
                         <input type="text" class="input-xxlarge" name="q" id="q" value="{{ request.GET.q }}" placeholder="{% trans "type here your query" %}">
-                        
                         <button type="submit" id="searchButton" class="btn">{% trans "Search" %}</button>
-                        <a href="javascript:show_options();" title="{% trans "Show Options" %}" class="btn">{% trans "Show Options" %}</a>
                     </div>
 
                         <div class="help"><i>
@@ -44,16 +42,6 @@
                         </i></div>
 
                     <div class="options">
-                        <div>
-                            <label>{% trans "Order by" %}:</label>
-                            <select name="order_by">
-                                <option value=""></option>
-                                {% for field in fields %}
-                                    <option value="{{ field }}" {% if request.GET.order_by == field %}selected{% endif %}>{{ field }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-
                         <div class="checkboxes">
                             <label>
                                 {% trans "Columns to show" %}: 
