@@ -27,7 +27,9 @@
 {% endblock %}
 
 {% block content %}
-	<h2>{% trans "Edit Your Profile" %}</h2>
+    <div class="header">
+	   <h2>{% trans "Edit Your Profile" %}</h2>
+    </div>
 
 	<form name="profile" action="{% url registration.views.edit %}" method="POST">{% csrf_token %}
 		{{ form }}

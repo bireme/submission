@@ -78,7 +78,7 @@
                 <tr>
                     <th><input type="checkbox" onclick="toggle_all(this);"></th>
                 {% for name, title in headers %}
-                    <th>
+                    <th class="th-{{ name }}">
                         {% if name != "" %}
                             {% if order_by == name %}
                                 <a href="javascript:change_order_type('{{ name }}')" title="Order type of {{ title }}">{{ title }}

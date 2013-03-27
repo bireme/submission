@@ -1,18 +1,12 @@
-html,
 body {
-    height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
+    background-image: url(../image/background.png);
 }
 .spacer {
     clear:both;
 }
 /* Wrapper for page content to push down footer */
 .wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -140px;
+    margin-bottom: 20px;    
 }
 
 /* Set the fixed height of the footer here */
@@ -191,31 +185,34 @@ body {
     margin:40px 0;
 }
 .follopUpItem {
-    border-bottom: 1px solid #AAA;
-    padding: 6px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 5px;
+    
 }
 .follopUpItem:hover{
     background: #F5F5F5;
+}
+.followup-header-first {
+    width: 25%;
 }
 .followUp-id, .followUp-date {
     font-size: 85%;
     font-style: italic;
 }
 .followUp-author{
-    float: left;
-    width: 25%;
     font-weight: bold;
     font-size: 130%;
 }
+.followUp-author i {
+    margin-top: 2px;
+}
 .followUp-status {
-    float:left;
-    width:70%;
     color: #666;
 }
-.followUp-attachment {
-    float:right;
-    width:4%;
+.followup-actions {
+    margin-top: -10px;
 }
+
 .followUp-status label {
     display:inline;
 }
@@ -242,16 +239,51 @@ body {
 #newSubmission .row {
     margin-top: .8em;
 }
-
 #followUpList section.messages {
     display: none;
 }
-
-#form_iso div {
-    margin-top: 10px;
+#form_iso {
+    margin-top: -20px;
 }
-
+#form_iso .form-input {
+    margin: 5px 20px 10px 0px;
+}
+.form-submit {
+    border-top: 1px solid #eee;
+    padding: 20px 0 0 0;
+    margin-top: 40px !important;
+}
+form label {
+    font-weight: bold;
+    font-size: 11pt;
+}
+form label i {
+    margin-top: 2px;
+}
 .edit-followup textarea {
     width: 98%;
     height: 90px;
+}
+
+.content {
+    margin: 70px 20px 10px 20px !important;
+    /*margin-left: 30px !important;*/
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #666;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
+}
+
+#footer {
+    margin-top: 0 !important;
+}
+
+.header {
+    padding: 0 0 9px 0;
+    border-bottom: 1px solid #eee;
+    margin: 10px 0 50px 0;
+}
+.header .pull-right {
+    margin-top: -35px;
 }
