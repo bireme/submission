@@ -32,20 +32,13 @@
 
             {% include "lang.html" %}
             {% block "body" %}
-                {% block top %}
-                    <div class="navbar navbar-fixed-top">
-                        <div class="navbar-inner">
-                            <div class="container-fluid">
-                                <div class="row-fluid top">
-                                    {% include 'menu.html' %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endblock %}
+
+                {% block top %}{% include 'menu.html' %}{% endblock %}
+
                 <div class="container-fluid content {% block custom-wrap-class %}secondLevel{% endblock %}">
                     {% block content %}{% endblock %}
                 </div>
+                
             {% endblock %}
 
         </div>

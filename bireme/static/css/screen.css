@@ -44,12 +44,12 @@ body {
     display: none;
 }
 #loginForm {
-    padding: 10% 0 0 0;
+    padding: 30px 0;
 }
 .form-signin {
     max-width: 300px;
     padding: 19px 29px 29px;
-    margin: 0 auto 20px;
+    margin: 0 auto;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
@@ -273,6 +273,7 @@ form label i {
     border: 1px solid #666;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 #footer {
