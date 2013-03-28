@@ -75,10 +75,13 @@ def index(request):
 
     # pagination
     pagination = {}
-    paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
-    pagination['paginator'] = paginator
-    pagination['page'] = paginator.page(page)
-    submissions = pagination['page'].object_list
+    try:
+        paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
+        pagination['paginator'] = paginator
+        pagination['page'] = paginator.page(page)
+        submissions = pagination['page'].object_list
+    except:
+        submissions = []
         
     output['headers'] = HEADERS
     output['submissions'] = submissions
@@ -90,6 +93,9 @@ def index(request):
     output['filtr_type'] = filtr_type
     output['pagination'] = pagination
     output['total'] = total
+
+    if request.GET.get('load_only_submissions'):
+        return render_to_response('submission/only-submissions.html', output, context_instance=RequestContext(request))
 
     return render_to_response('submission/index.html', output, context_instance=RequestContext(request))
         

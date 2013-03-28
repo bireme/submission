@@ -1,8 +1,49 @@
 {% load i18n %}
 {% load custom_filters %}
 
+<script src="http://imakewebthings.com/jquery-waypoints/waypoints.js"></script>
 <script>   
+    
+    // pega os itens do form interface e coloca num objeto
+    function get_interface_object() {
+
+        var iface = {}
+        for(i=0; i<document.interface.elements.length; i++){
+            iface[document.interface.elements[i].name] = document.interface.elements[i].value;
+        }
+
+        console.log(iface.page);
+
+        return iface;
+    }
+
+    function load_more_submissions() {
+
+        iface = get_interface_object();
+
+        iface.page = parseInt(iface.page) + 1;
+        document.interface.page.value = iface.page;
+        iface.load_only_submissions = true;
+
+        $.get(".", iface).done(function(data) {
+            
+            if($.trim(data) != "") {
+                $('tbody').append(data);
+            } else {
+                alert("{% trans "No have more submissions.." %}");
+                $('.button-load-more').hide();
+            }
+        });
+    }
+
     $(function(){
+        // quando bate no .pagination, carrega nova lista de submissions
+        $('.pagination').waypoint(function(dir) {
+            if(dir == 'down') {
+                load_more_submissions();      
+            }
+        }, {offset: '100%'});
+        
         // remove o href dos .disables, caso a pessoa clique por engano, para nao dar erro
         $(".disabled").find('a').attr('href', "#");
     });
@@ -122,7 +163,11 @@
 
     {% if pagination.page.has_next or pagination.page.has_previous %}
         <div class="pagination">
-            <ul>
+            <a href='javascript:load_more_submissions();' class='button-load-more btn' title="{% trans "Load more Submissions" %}">
+                {% trans "Load more Submissions" %}
+            </a>
+
+            <!-- <ul>
                 <li class="{% if not pagination.page.has_previous %}disabled{% endif %}">
                     <a href="javascript: change_page('{{ pagination.page.previous_page_number }}')">&#171;</a>
                 </li>
@@ -136,7 +181,7 @@
                 <li class="{% if not pagination.page.has_next %}disabled{% endif %}">
                     <a href="javascript: change_page('{{ pagination.page.next_page_number }}')">&#187;</a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     {% endif %}
 </div>
