@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load custom_filters %}
+
+{% for sub in submissions %}
+    <tr>
+        <td><input type="checkbox" class="checkbox_submission" name="submissions" value="{{ sub.id }}"></td>
+        <td><a href="{% url submission.views.show sub.submission.id %}" title="{% trans 'Go to submission' %} {{ sub.submission.id }}"><b>{{ sub.submission.id }}</b></a></td>
+        <td><span title="{{ sub.submission.created }}">{{ sub.submission.created|date:"d/m/y" }}</span></td>
+        <td><span title="{{ sub.submission.updated }}">{{ sub.submission.updated|date:"d/m/y" }}</span></td>
+        <td>{{ sub.submission.creator.get_profile.center.code }}</td>
+        <td>{{ sub.submission.updater }}</td>
+        <td>{{ sub.submission.current_status|translate:request.LANGUAGE_CODE }}</td>
+        <td><span title="{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE }}">{{ sub.bibliographic_type|translate:request.LANGUAGE_CODE|slice:'23' }}{% if sub.bibliographic_type|translate:request.LANGUAGE_CODE|length > 23 %}...{% endif %}</span></td>
+        <td><a href="{{ sub.get_iso_url }}" title="{% trans 'Download file' %}" target="_blank">{{ sub.iso_title }}</a></td>
+    </tr>
+{% endfor %}
