@@ -310,26 +310,31 @@ def list(request):
     submissions = submissions.order_by("%s%s" % (order_type, order_by))
     total = len(submissions)
 
+    output = {}
+    
     # pagination
     pagination = {}
-    paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
-    pagination['paginator'] = paginator
-    pagination['page'] = paginator.page(page)
-    submissions = pagination['page'].object_list
+    try:
+        paginator = Paginator(submissions, settings.ITEMS_PER_PAGE)
+        pagination['paginator'] = paginator
+        pagination['page'] = paginator.page(page)
+        submissions = pagination['page'].object_list
+    except:
+        submissions = []
+        
+    output['headers'] = HEADERS
+    output['submissions'] = submissions
+    output['order_by'] = order_by
+    output['order_type'] = order_type
+    output['filters'] = filters
+    output['filtr'] = filtr
+    output['filters_type'] = filters_type
+    output['filtr_type'] = filtr_type
+    output['pagination'] = pagination
+    output['total'] = total
 
-    output = {
-        'headers' : HEADERS,
-        'order_by' : order_by,
-        'order_type' : order_type,
-        'submissions': submissions,
-        'pagination': pagination,
-        'filters': filters,
-        'filtr': filtr,
-        'filters_type': filters_type,
-        'filtr_type': filtr_type,
-        'types': types,
-        'total': total,
-    }
+    if request.GET.get('load_only_submissions'):
+        return render_to_response('submission/only-submissions.html', output, context_instance=RequestContext(request))
 
     return render_to_response('submission/list.html', output, context_instance=RequestContext(request))
 
