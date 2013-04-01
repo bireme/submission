@@ -60,6 +60,23 @@ class Step(Generic):
     def __unicode__(self):
         return unicode(self.title)
 
+    def get_all_steps(self):
+        return len(Step.objects.all().exclude(close=True).exclude(pending=True))
+
+    def get_step_number(self, number=1, step=None):
+
+        if not step:
+            step = self
+
+        if step.parent:
+            number = number+1
+            return self.get_step_number(number=number, step=step.parent)
+
+        return number  
+
+    def get_current_progress(self):
+        return (self.get_step_number() * 100) / self.get_all_steps()
+
 class StepLocal(Generic):
     
     class Meta:

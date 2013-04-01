@@ -29,6 +29,10 @@
         {% endif %}
     </div>
 
+    <div class="progress progress-success progress-striped">
+        <div class="bar" style="width: {{ submission.current_status.get_current_progress }}%"></div>
+    </div>
+
     {% if submission.current_status.allow_edit and user_type == 'admin' %}
         <div class="modal hide" id="editType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
