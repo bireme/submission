@@ -1,7 +1,6 @@
 {% load i18n %}
 {% load custom_filters %}
 
-<script src="http://imakewebthings.com/jquery-waypoints/waypoints.js"></script>
 <script>   
     
     // pega os itens do form interface e coloca num objeto
@@ -25,24 +24,30 @@
         document.interface.page.value = iface.page;
         iface.load_only_submissions = true;
 
+        $('.mask').show();
         $.get("", iface).done(function(data) {
             
             if($.trim(data) != "") {
                 $('tbody').append(data);
             } else {
-                alert("{% trans "No have more submissions.." %}");
                 $('.button-load-more').hide();
             }
+
+            $('.mask').hide();
         });
     }
 
     $(function(){
-        // quando bate no .pagination, carrega nova lista de submissions
-        $('.pagination').waypoint(function(dir) {
-            if(dir == 'down') {
-                load_more_submissions();      
+
+        var rodape_height = 150;
+        
+        $(window).scroll(function(){
+            if($(window).scrollTop() + rodape_height >= $(document).height() - $(window).height()){
+                if($('.button-load-more').is(":visible") == true) {
+                    load_more_submissions();
+                }
             }
-        }, {offset: '100%'});
+        });
         
         // remove o href dos .disables, caso a pessoa clique por engano, para nao dar erro
         $(".disabled").find('a').attr('href', "#");
@@ -114,7 +119,7 @@
 
     <form name="submissions" method="POST" action="{% url submission.views.bulk %}">{% csrf_token %}
         <input type="hidden" name="action" value="">
-        <table class="table">
+        <table class="table submissions">
             <thead>
                 <tr>
                     <th><input type="checkbox" onclick="toggle_all(this);"></th>
@@ -166,22 +171,6 @@
             <a href='javascript:load_more_submissions();' class='button-load-more btn' title="{% trans "Load more Submissions" %}">
                 {% trans "Load more Submissions" %}
             </a>
-
-            <!-- <ul>
-                <li class="{% if not pagination.page.has_previous %}disabled{% endif %}">
-                    <a href="javascript: change_page('{{ pagination.page.previous_page_number }}')">&#171;</a>
-                </li>
-
-                {% for i in pagination.paginator.page_range %}
-                    {% if i == pagination.page.number %}<li class="disabled">{% else %}<li>{% endif %}
-                    <a href="javascript: change_page('{{ i }}')">{{ i }}</a></li>        
-                {% endfor %}
-
-
-                <li class="{% if not pagination.page.has_next %}disabled{% endif %}">
-                    <a href="javascript: change_page('{{ pagination.page.next_page_number }}')">&#187;</a>
-                </li>
-            </ul> -->
         </div>
     {% endif %}
 </div>
