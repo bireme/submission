@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-26 12:59-0300\n"
-"PO-Revision-Date: 2013-03-25 17:22\n"
-"Last-Translator: Moacir Neto <moa.moda@gmail.com>\n"
+"POT-Creation-Date: 2013-04-03 15:38-0300\n"
+"PO-Revision-Date: 2013-04-03 15:44\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.6\n"
 
@@ -213,8 +213,8 @@ msgid ""
 "Registration using free email addresses is prohibited. Please supply a "
 "different email address."
 msgstr ""
-"Registro usando endereços de e-mails gratuitos são proibidos. Por favor, use "
-"um endereço de e-mail diferente."
+"Registro usando endereços de e-mails gratuitos são proibidos. Por favor, use"
+" um endereço de e-mail diferente."
 
 #: registration/models.py:34
 msgid "user"
@@ -753,14 +753,13 @@ msgstr "Mensagem Administrativa (interna)"
 msgid ""
 "\n"
 "        Select the type of bibliographic records which will be sent.\n"
-"        We recommend that ISO file contain multiple records, but all must be "
-"the same bibliographic type.\n"
+"        We recommend that ISO file contain multiple records, but all must be the same bibliographic type.\n"
 "    "
 msgstr ""
 
 #: submission/templates/submission/helpers/bibliographic_type.html:9
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
 #: submission/templates/submission/helpers/bibliographic_type.html:9
 msgid "Send various monographs and / or theses in a submission"
@@ -789,7 +788,8 @@ msgid "Indexed and reviewed records - LILACS Express"
 msgstr ""
 
 #: submission/templates/submission/helpers/bibliographic_type.html:15
-msgid "journal records indexed and reviewed that participate in LILACS-Express"
+msgid ""
+"journal records indexed and reviewed that participate in LILACS-Express"
 msgstr ""
 
 #: submission/templates/submission/helpers/bibliographic_type.html:16
@@ -807,8 +807,7 @@ msgstr ""
 #: submission/templates/submission/helpers/file.html:2
 msgid ""
 " \n"
-"    For unavailable documents on the Internet, send file with full text(s) "
-"document(s)\n"
+"    For unavailable documents on the Internet, send file with full text(s) document(s)\n"
 "    to be available in LILACS.\n"
 msgstr ""
 
@@ -830,7 +829,8 @@ msgstr ""
 
 #: submission/templates/submission/helpers/observation.html:4
 msgid ""
-"Inform the contents of the file, for example: journal name, volume and number"
+"Inform the contents of the file, for example: journal name, volume and "
+"number"
 msgstr ""
 
 #: submission/templates/submission/helpers/observation.html:5
@@ -865,12 +865,15 @@ msgstr ""
 #: templates/base.html:57
 msgid "Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde"
 msgstr ""
+"Centro Latino-Americano e do Caribe de Informação em Ciências da Saúde"
 
 #: templates/base.html:58
 msgid ""
-"Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800 "
-"| Fax: (55 11) 5575-8868 "
+"Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800"
+" | Fax: (55 11) 5575-8868 "
 msgstr ""
+"Rua Botucatu, 862 | cep: 04023-901 | São Paulo - SP | Tel: (55 11) 5576-9800"
+" | Fax: (55 11) 5575-8868 "
 
 #: templates/base.html:59
 msgid "Site Institucional da Bireme"
@@ -941,7 +944,6 @@ msgstr "Selecione o tipo de submissão"
 #~ msgid "Show Options"
 #~ msgstr "Exibir opções"
 
-#, fuzzy
 #~ msgid "file"
 #~ msgstr "arquivo iso"
 
