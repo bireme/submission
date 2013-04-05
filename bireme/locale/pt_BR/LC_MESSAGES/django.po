@@ -280,8 +280,8 @@ msgstr "Sem resultados para a busca"
 #: registration/templates/registration/login.html:59
 #: registration/templates/registration/logout.html:11 templates/base.html:23
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
-msgid "BIREME Submission"
-msgstr "BIREME Submission"
+msgid "Lilacs Submission"
+msgstr "Lilacs Submission"
 
 #: registration/templates/registration/login.html:29
 #: registration/templates/registration/login.html:45

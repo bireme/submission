@@ -33,7 +33,7 @@ def send_email(sender, instance, created, **kwargs):
         output['message'] = followup.message
 
 
-    EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("Update in submission #%s" % followup.submission.id)
+    EMAIL_SUBJECT = u"[Lilacs Submission] %s" % _("Update in submission #%s" % followup.submission.id)
     EMAIL_CONTENT = render_to_string('email/send_submission_body.html', output, context_instance=RequestContext(request))
 
     if profile and profile.receive_email:
@@ -64,7 +64,7 @@ def send_to_external(sender, instance, created, **kwargs):
                 'external': external,
             }
 
-            EMAIL_SUBJECT = u"[BIREME Submission] %s" % _("New Submission")
+            EMAIL_SUBJECT = u"[Lilacs Submission] %s" % _("New Submission")
             EMAIL_CONTENT = render_to_string('email/send-to-external-database.html', output, context_instance=RequestContext(request))
 
             if external.email:
