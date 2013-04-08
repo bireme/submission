@@ -204,12 +204,12 @@ class TypeSubmission(Generic):
         
     
     # iso    
-    bibliographic_type = models.ForeignKey(BibliographicType, null=True)
+    bibliographic_type = models.ForeignKey(BibliographicType, null=True, verbose_name=_("bibliographic type"))
     total_records = models.CharField(_("total of records"), max_length=255, blank=True, null=True, default=0)
     certified = models.CharField(_("total of certified records"), max_length=255, blank=True, null=True, default=0)
     iso_file = models.FileField(_('iso file'), max_length=510, upload_to=iso_filename, blank=True, null=True)
     lildbi_version = models.ForeignKey('LildbiVersion', null=True, blank=True)
-    observation = models.TextField(null=True, blank=True)
+    observation = models.TextField(_('Observation'), null=True, blank=True)
     file = models.FileField(_('attachment'), max_length=510, upload_to=file_filename, blank=True, null=True)
     external = models.ForeignKey(ExternalDatabase, null=True, blank=True)
 

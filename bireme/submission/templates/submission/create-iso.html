@@ -54,7 +54,6 @@
                     </a>
                 </label>
 
-
                 {# aqui foi feito um filtro que testa se existe o arquivo de helper, caso existir, ele mostra #}
                 {% with "submission/helpers/"|add:field.html_name|add:".html" as helper %}
                     {% if helper|exists %}
