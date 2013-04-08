@@ -178,9 +178,10 @@
                 {{ field }}
             {% endwith %}
         </div>
+        
         <div class='form-input span7'>
-            <!-- attachment file -->
-            {% with form.file as field %}
+            <!-- external -->
+            {% with form.external as field %}
                 
                 <label for="id_{{ field.name }}">
                     {{ field.label }}
@@ -212,17 +213,18 @@
                 {{ field }}
             {% endwith %}
         </div>
+
         <div class='form-input span11'>
 
             <div class='form-input'>
                 <label for="cb_external" id="label_cb_external">
                     <input type="checkbox" id="cb_external">
-                    {% trans 'Submit to External Database?' %}
+                    {% trans 'Do you want to send an attachment?' %}
                 </label>
             </div>
             <div id='div-external' class="form-input">
-                <!-- external -->
-                {% with form.external as field %}
+                <!-- attachment file -->
+                {% with form.file as field %}
                     
                     <label for="id_{{ field.name }}">
                         {{ field.label }}
@@ -252,7 +254,7 @@
                     {% endwith %}
 
                     {{ field }}
-                {% endwith %}
+                {% endwith %}        
             </div>
         </div>
         
