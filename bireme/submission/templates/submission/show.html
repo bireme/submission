@@ -134,9 +134,9 @@
 
                             
                             <div class="followUp-status">
-                                <strong class='label'>{{ item.previous_status }}</strong> 
+                                <strong class='label'>{{ item.previous_status|translate:request.LANGUAGE_CODE }}</strong> 
                                 <i class='icon-chevron-right'></i>
-                                <strong class='label  label-info'>{{ item.current_status }}</strong>
+                                <strong class='label  label-info'>{{ item.current_status|translate:request.LANGUAGE_CODE }}</strong>
                             </div>
 
                             <!-- act -->
